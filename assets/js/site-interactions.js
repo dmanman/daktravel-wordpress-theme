@@ -34,12 +34,12 @@
     var hero = document.querySelector('.home .hero-media');
     if (!hero) return;
 
-    /* Bright real airport-terminal photograph by Samuel S, Unsplash. */
-    var photo = 'https://images.unsplash.com/photo-1415959588285-66bbf7450d17?auto=format&fit=crop&fm=jpg&q=88&w=2200';
+    /* Bright real airport-terminal photograph from Pexels. */
+    var photo = 'https://images.pexels.com/photos/12720528/pexels-photo-12720528.jpeg?auto=compress&cs=tinysrgb&w=2200';
 
     hero.style.setProperty(
       'background-image',
-      'linear-gradient(180deg, rgba(7,17,27,.01) 0%, rgba(7,17,27,.04) 55%, rgba(7,17,27,.30) 100%), url("' + photo + '")',
+      'linear-gradient(180deg, rgba(7,17,27,0) 0%, rgba(7,17,27,.03) 45%, rgba(7,17,27,.30) 100%), url("' + photo + '")',
       'important'
     );
     hero.style.setProperty('background-size', 'cover', 'important');
