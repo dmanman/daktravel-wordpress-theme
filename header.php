@@ -10,7 +10,7 @@
 
 <div class="utility-bar">
     <div class="container utility-inner">
-        <div class="utility-proof">Johannesburg · IATA accredited · ASATA member</div>
+        <div class="utility-proof">Johannesburg · South Africa–Israel specialists · IATA accredited · ASATA member</div>
         <div class="utility-links">
             <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking help</a>
             <span aria-hidden="true">•</span>
@@ -33,9 +33,9 @@
 
         <nav class="site-nav" aria-label="Primary navigation">
             <ul>
+                <li><a class="nav-israel" href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Israel Travel</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Groups &amp; Delegations</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Business Travel</a></li>
-                <li><a href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Israel Travel</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Complex Travel</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a></li>
             </ul>
@@ -43,7 +43,7 @@
 
         <div class="header-cta">
             <a class="header-email" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Email / Enquire</a>
-            <a class="btn btn--whatsapp btn--compact" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp Us</a>
+            <a class="btn btn--whatsapp btn--compact" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with travel between South Africa and Israel.' ) ); ?>">WhatsApp Us</a>
         </div>
     </div>
 </header>
