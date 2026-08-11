@@ -34,13 +34,13 @@ get_header();
             </div>
 
             <div class="hero-media-wrap">
-                <figure class="hero-media hero-media--clean-photo">
-                    <img class="hero-terminal-photo" src="<?php echo esc_url( $hero_image ); ?>" alt="Bright view from an airplane window showing the aircraft wing against a clear blue sky" fetchpriority="high" decoding="async">
+                <figure class="dak-media-slot has-image hero-home-media">
+                    <img class="dak-media-image hero-terminal-photo" src="<?php echo esc_url( $hero_image ); ?>" alt="Bright view from an airplane window showing the aircraft wing against a clear blue sky" fetchpriority="high" decoding="async">
+                    <figcaption class="hero-photo-meta" aria-hidden="true">
+                        <span>The world, within reach.</span>
+                        <span>Flights · Groups · Business · Complex journeys</span>
+                    </figcaption>
                 </figure>
-                <div class="hero-photo-meta" aria-hidden="true">
-                    <span>The world, within reach.</span>
-                    <span>Flights · Groups · Business · Complex journeys</span>
-                </div>
             </div>
         </div>
     </section>
