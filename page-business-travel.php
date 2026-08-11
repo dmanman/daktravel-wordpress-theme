@@ -6,7 +6,7 @@
             <div class="eyebrow">Business Travel</div>
             <h1>Personal travel support for businesses and organisations.</h1>
             <p class="lead">Reliable bookings, clear communication and a real person to contact when plans change.</p>
-            <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like to discuss business or organisational travel.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=business#enquiry') ); ?>">Email / Enquire</a></div>
+            <div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like to discuss business or organisational travel.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=business#enquiry') ); ?>">Email / Enquire</a></div>
         </div>
         <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_business_image', 'Premium international travel cabin', 'Business travel', 'https://images.unsplash.com/photo-1706921255467-4236b197b530?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
@@ -30,6 +30,6 @@
     <div class="container dak-narrow"><div class="eyebrow">For organisations</div><h2>A travel partner that knows the booking.</h2><p>When several people are travelling, consistency matters. D.A.K keeps the arrangements clear and gives your team a direct point of contact.</p></div>
 </section>
 
-<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">Business enquiry</div><h2>Tell us how your team travels.</h2><p>We will suggest a straightforward way for D.A.K to manage it.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like to discuss a business travel account.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=business#enquiry') ); ?>">Send Enquiry</a></div></div></section>
+<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">Business enquiry</div><h2>Tell us how your team travels.</h2><p>We will suggest a straightforward way for D.A.K to manage it.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like to discuss a business travel account.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=business#enquiry') ); ?>">Send Enquiry</a></div></div></section>
 </main>
 <?php get_footer(); ?>
