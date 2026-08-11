@@ -21,8 +21,8 @@ function daktravel_has_seo_plugin() {
 function daktravel_seo_defaults() {
     $defaults = array(
         'home' => array(
-            'title'       => 'South Africa–Israel Flights & Travel | D.A.K Travel',
-            'description' => 'D.A.K Travel is a Johannesburg travel agency specialising in flights and travel between South Africa and Israel, return travel, groups and complex international journeys.',
+            'title'       => 'D.A.K Travel | Israel, Group & Complex Travel South Africa',
+            'description' => 'Johannesburg travel specialists for South Africa–Israel flights, groups, delegations, business travel and complex international journeys. Personal expert support.',
         ),
         'israel-travel' => array(
             'title'       => 'Flights Between South Africa & Israel | D.A.K Travel',
