@@ -1,14 +1,24 @@
 <?php get_header(); ?>
 <main>
-<section class="dak-page-hero">
-    <div class="container dak-page-hero-grid">
+<section class="dak-page-hero dak-about-hero">
+    <div class="container dak-page-hero-grid dak-about-hero-grid">
         <div class="dak-page-hero-copy">
             <div class="eyebrow">About D.A.K Travel</div>
             <h1>Established in Johannesburg in 2006.</h1>
             <p class="lead">D.A.K is an experienced travel agency specialising in South Africa–Israel travel, groups, business travel and complex international journeys.</p>
             <p>We believe clients should know who is handling their booking and be able to reach someone who understands it.</p>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_team_image', 'D.A.K Travel', 'D.A.K Travel · Since 2006', '/2022/08/photo.small_.yk_.jpg' ) ); ?>
+        <aside class="dak-about-portrait" aria-label="D.A.K Travel personal service">
+            <?php
+            $team_image = daktravel_media_image( 'daktravel_team_image', 'medium', 'dak-about-portrait-image', 'D.A.K Travel team' );
+            if ( $team_image ) {
+                echo wp_kses_post( $team_image );
+            } else {
+                ?>
+                <img class="dak-about-portrait-image" src="<?php echo esc_url( daktravel_existing_upload_url( '/2022/08/photo.small_.yk_.jpg' ) ); ?>" alt="D.A.K Travel team" loading="lazy">
+            <?php } ?>
+            <div class="dak-about-portrait-copy"><span>Personal service</span><strong>Johannesburg · Since 2006</strong></div>
+        </aside>
     </div>
 </section>
 
@@ -38,6 +48,6 @@
     </div>
 </section>
 
-<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">D.A.K Travel</div><h2>Tell us where you need to go.</h2><p>WhatsApp or email us and we will help from there.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/#enquiry') ); ?>">Email Us</a></div></div></section>
+<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">D.A.K Travel</div><h2>Tell us where you need to go.</h2><p>WhatsApp or email us and we will help from there.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/#enquiry') ); ?>">Email Us</a></div></div></section>
 </main>
 <?php get_footer(); ?>
