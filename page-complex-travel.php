@@ -6,7 +6,7 @@
             <div class="eyebrow">Complex Personal Travel</div>
             <h1>For trips that are not a simple return ticket.</h1>
             <p class="lead">Multi-city journeys, families, elderly travellers and premium travel where the details really matter.</p>
-            <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I need help with a complex international trip.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/#enquiry') ); ?>">Email / Enquire</a></div>
+            <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I need help with a complex international trip.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=complex#enquiry') ); ?>">Email / Enquire</a></div>
         </div>
         <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_complex_image', 'Complex international travel', 'Complex journeys' ) ); ?>
     </div>
@@ -30,6 +30,6 @@
     <div class="container dak-narrow"><div class="eyebrow">Personal service</div><h2>Some journeys need judgement, not just a search result.</h2><p>We look at the practical journey as a whole — not only the lowest price on the screen.</p></div>
 </section>
 
-<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">Start planning</div><h2>Send us the itinerary you have in mind.</h2><p>We will help you make sense of it.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like help planning a complex trip.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/#enquiry') ); ?>">Send Enquiry</a></div></div></section>
+<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">Start planning</div><h2>Send us the itinerary you have in mind.</h2><p>We will help you make sense of it.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like help planning a complex trip.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=complex#enquiry') ); ?>">Send Enquiry</a></div></div></section>
 </main>
 <?php get_footer(); ?>
