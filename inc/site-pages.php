@@ -21,6 +21,14 @@ function daktravel_required_pages() {
             'title'   => 'Flights to Israel from Johannesburg',
             'content' => '',
         ),
+        'flights-to-israel-from-cape-town' => array(
+            'title'   => 'Flights to Israel from Cape Town',
+            'content' => '',
+        ),
+        'flights-to-israel-from-durban' => array(
+            'title'   => 'Flights to Israel from Durban',
+            'content' => '',
+        ),
         'flights-from-israel-to-south-africa' => array(
             'title'   => 'Flights from Israel to South Africa',
             'content' => '',
