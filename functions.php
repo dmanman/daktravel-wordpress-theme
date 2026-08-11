@@ -32,18 +32,24 @@ function daktravel_enqueue_assets() {
         $theme_version
     );
 
+    $premium_css_path = get_template_directory() . '/assets/css/premium-refine.css';
+    $premium_css_ver  = file_exists( $premium_css_path ) ? (string) filemtime( $premium_css_path ) : $theme_version;
+
     wp_enqueue_style(
         'daktravel-premium-refine',
         get_template_directory_uri() . '/assets/css/premium-refine.css',
         array( 'daktravel-style' ),
-        $theme_version . '-premium-1'
+        $premium_css_ver
     );
+
+    $trust_css_path = get_template_directory() . '/assets/css/trust-refine.css';
+    $trust_css_ver  = file_exists( $trust_css_path ) ? (string) filemtime( $trust_css_path ) : $theme_version;
 
     wp_enqueue_style(
         'daktravel-trust-refine',
         get_template_directory_uri() . '/assets/css/trust-refine.css',
         array( 'daktravel-premium-refine' ),
-        $theme_version . '-trust-1'
+        $trust_css_ver
     );
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
