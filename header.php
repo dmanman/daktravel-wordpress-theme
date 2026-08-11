@@ -16,17 +16,18 @@
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">D.A.K Travel</a>
             <?php endif; ?>
         </div>
+
         <nav class="site-nav" aria-label="Primary navigation">
-            <?php
-            wp_nav_menu(
-                array(
-                    'theme_location' => 'primary',
-                    'container'      => false,
-                    'fallback_cb'    => false,
-                )
-            );
-            ?>
+            <ul>
+                <li><a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Groups &amp; Delegations</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Business Travel</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Israel Travel</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Complex Travel</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/travel-updates/' ) ); ?>">Travel Updates</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a></li>
+            </ul>
         </nav>
+
         <div class="header-cta">
             <a class="btn btn--secondary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing Booking Help</a>
             <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>">Request a Quote</a>
