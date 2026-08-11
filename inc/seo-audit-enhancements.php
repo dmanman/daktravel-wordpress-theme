@@ -28,6 +28,14 @@ function daktravel_refine_seo_defaults( $defaults ) {
             'title'       => 'Flights to Israel from Johannesburg | D.A.K Travel',
             'description' => 'Compare Johannesburg to Israel flight options, connections, baggage and fare flexibility with D.A.K Travel, including Tel Aviv–Johannesburg return travel.',
         ),
+        'flights-to-israel-from-cape-town' => array(
+            'title'       => 'Flights to Israel from Cape Town | D.A.K Travel',
+            'description' => 'Compare Cape Town to Israel flight routes, connections, baggage, ticket structure and fare flexibility with specialist help from D.A.K Travel.',
+        ),
+        'flights-to-israel-from-durban' => array(
+            'title'       => 'Flights to Israel from Durban | D.A.K Travel',
+            'description' => 'Compare Durban to Israel flights, domestic and international connections, baggage and fare flexibility with specialist help from D.A.K Travel.',
+        ),
         'flights-from-israel-to-south-africa' => array(
             'title'       => 'Flights from Israel to South Africa | D.A.K Travel',
             'description' => 'Compare Tel Aviv to South Africa flights, Johannesburg connections and onward domestic travel, with practical advice on baggage and fare flexibility.',
@@ -120,7 +128,16 @@ function daktravel_breadcrumb_items() {
         array( 'name' => 'D.A.K Travel', 'url' => home_url( '/' ) ),
     );
 
-    if ( is_page( array( 'israel-travel', 'flights-to-israel-from-johannesburg', 'flights-from-israel-to-south-africa', 'south-africa-israel-flight-routes' ) ) ) {
+    $israel_pages = array(
+        'israel-travel',
+        'flights-to-israel-from-johannesburg',
+        'flights-to-israel-from-cape-town',
+        'flights-to-israel-from-durban',
+        'flights-from-israel-to-south-africa',
+        'south-africa-israel-flight-routes',
+    );
+
+    if ( is_page( $israel_pages ) ) {
         if ( ! is_page( 'israel-travel' ) ) {
             $items[] = array( 'name' => 'Israel Travel', 'url' => home_url( '/israel-travel/' ) );
         }
