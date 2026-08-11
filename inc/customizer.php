@@ -114,14 +114,30 @@ function daktravel_media_image( $setting_id, $size = 'full', $class = '', $alt =
 }
 
 /**
- * Reusable premium image slot. If no image has been uploaded yet, the design
- * remains intentional rather than showing a broken or generic stock image.
+ * Existing media-library asset from the current D.A.K website. Theme activation
+ * does not remove wp-content/uploads, so these are safe fallbacks while higher-
+ * resolution or newer photography is selected in the Customizer.
  */
-function daktravel_media_slot( $setting_id, $alt = '', $label = '' ) {
+function daktravel_existing_upload_url( $relative_path ) {
+    $relative_path = '/' . ltrim( (string) $relative_path, '/' );
+    return content_url( '/uploads' . $relative_path );
+}
+
+/**
+ * Reusable premium image slot. A selected Customizer image always wins. Where a
+ * verified existing-site image is supplied, it is used as a fallback instead of
+ * an empty placeholder.
+ */
+function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback_relative = '' ) {
     $image = daktravel_media_image( $setting_id, 'large', 'dak-media-image', $alt );
 
     if ( $image ) {
         return '<div class="dak-media-slot has-image">' . $image . '</div>';
+    }
+
+    if ( $fallback_relative ) {
+        $fallback_url = daktravel_existing_upload_url( $fallback_relative );
+        return '<div class="dak-media-slot has-image"><img class="dak-media-image" src="' . esc_url( $fallback_url ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy"></div>';
     }
 
     $label_html = $label ? '<span>' . esc_html( $label ) . '</span>' : '';
