@@ -1,9 +1,4 @@
 <?php
-$form_status = '';
-if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) ) {
-    $form_status = daktravel_process_enquiry_submission();
-}
-
 get_header();
 
 $requested_type = isset( $_GET['type'] ) ? sanitize_key( wp_unslash( $_GET['type'] ) ) : '';
@@ -29,11 +24,14 @@ if ( 'Group or delegation' === $prefill_type ) {
     $prefill_mode = 'travel';
 }
 
-if ( ! $form_status && isset( $_GET['sent'] ) ) {
-    $legacy_status = sanitize_text_field( wp_unslash( $_GET['sent'] ) );
-    if ( '1' === $legacy_status ) {
+$form_status = '';
+if ( isset( $_GET['sent'] ) ) {
+    $sent = sanitize_text_field( wp_unslash( $_GET['sent'] ) );
+    if ( '1' === $sent ) {
         $form_status = 'success';
-    } elseif ( in_array( $legacy_status, array( '0', 'error' ), true ) ) {
+    } elseif ( 'invalid' === $sent ) {
+        $form_status = 'invalid';
+    } elseif ( '0' === $sent || 'error' === $sent ) {
         $form_status = 'error';
     }
 }
@@ -69,11 +67,13 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
         <?php elseif ( 'invalid' === $form_status ) : ?>
             <div class="form-message form-message--error">Please complete your name, a valid email address and your message.</div>
         <?php elseif ( 'error' === $form_status ) : ?>
-            <div class="form-message form-message--error">We could not send your enquiry. Please try again or WhatsApp us.</div>
+            <div class="form-message form-message--error">We could not send your enquiry. Please try again or use WhatsApp Us.</div>
         <?php endif; ?>
 
-        <form class="dak-enquiry-form" method="post" action="">
+        <form class="dak-enquiry-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+            <input type="hidden" name="action" value="daktravel_enquiry">
             <input type="hidden" name="daktravel_enquiry_submit" value="1">
+            <input type="hidden" name="return_type" value="<?php echo esc_attr( $requested_type ); ?>">
             <?php wp_nonce_field( 'daktravel_enquiry', 'daktravel_enquiry_nonce' ); ?>
             <div class="dak-honeypot" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
@@ -105,10 +105,10 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
             <div class="form-conditional" data-enquiry-fields="group" <?php echo 'group' === $prefill_mode ? '' : 'hidden'; ?>>
                 <div class="form-grid">
                     <label>Organisation / group name<input type="text" name="organisation"></label>
-                    <label>Approx. group size<input type="text" name="travellers"></label>
+                    <label>Approx. group size<input type="text" name="group_travellers"></label>
                     <label>Departure city or cities<input type="text" name="origins"></label>
-                    <label>Destination<input type="text" name="destination"></label>
-                    <label>Travel dates<input type="text" name="dates" placeholder="If known"></label>
+                    <label>Destination<input type="text" name="group_destination"></label>
+                    <label>Travel dates<input type="text" name="group_dates" placeholder="If known"></label>
                 </div>
             </div>
 
