@@ -8,8 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function daktravel_enquiry_recipient() {
-    $recipient = sanitize_email( get_option( 'admin_email' ) );
-    return apply_filters( 'daktravel_enquiry_recipient', $recipient );
+    return apply_filters( 'daktravel_enquiry_recipient', 'info@daktravel.co.za' );
 }
 
 function daktravel_post_text( $key ) {
@@ -30,7 +29,6 @@ function daktravel_process_enquiry_submission() {
         return 'invalid';
     }
 
-    // Honeypot: genuine visitors should leave this field blank.
     if ( ! empty( $_POST['website'] ) ) {
         return 'success';
     }
@@ -97,10 +95,6 @@ function daktravel_process_enquiry_submission() {
     return wp_mail( $recipient, $subject, implode( "\n", $lines ), $headers ) ? 'success' : 'error';
 }
 
-/**
- * Keep the admin-post endpoint as a fallback for integrations/bookmarks, even
- * though the visible form submits to the Contact page itself.
- */
 function daktravel_handle_enquiry() {
     $status = daktravel_process_enquiry_submission();
     $sent   = 'success' === $status ? '1' : ( 'invalid' === $status ? 'error' : '0' );
