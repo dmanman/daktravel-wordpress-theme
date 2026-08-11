@@ -128,6 +128,9 @@ function daktravel_whatsapp_url( $message = '' ) {
 // Editable real photography and approved organisation logos.
 require_once get_template_directory() . '/inc/customizer.php';
 
+// Ensure all theme-linked WordPress pages actually exist so their page templates render.
+require_once get_template_directory() . '/inc/site-pages.php';
+
 // Simple form-to-email enquiry component.
 require_once get_template_directory() . '/inc/enquiry-form.php';
 
