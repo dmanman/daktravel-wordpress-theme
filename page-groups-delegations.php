@@ -8,7 +8,7 @@
             <p class="lead">D.A.K coordinates flights, passenger details, deadlines and different departure cities so the organiser has one point of contact.</p>
             <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I need help with group or delegation travel.' ) ); ?>">WhatsApp Group Travel</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=group#enquiry') ); ?>">Email / Enquire</a></div>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_group_image', 'Group travel', 'Groups & delegations' ) ); ?>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_group_image', 'Group travellers in an airport terminal', 'Groups & delegations', 'https://images.unsplash.com/photo-1713561684894-25393bb9594b?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
 </section>
 
