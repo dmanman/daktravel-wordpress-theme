@@ -27,6 +27,18 @@ function daktravel_customize_register( $wp_customize ) {
             'label'       => __( 'Israel luxury architecture image', 'daktravel' ),
             'description' => __( 'Use a strong licensed or original Israeli architecture / Tel Aviv image for the Israel page.', 'daktravel' ),
         ),
+        'daktravel_telaviv_image' => array(
+            'label'       => __( 'Tel Aviv supporting image', 'daktravel' ),
+            'description' => __( 'Optional supporting Tel Aviv image. The theme will also look for the existing-site image automatically.', 'daktravel' ),
+        ),
+        'daktravel_jerusalem_image' => array(
+            'label'       => __( 'Jerusalem supporting image', 'daktravel' ),
+            'description' => __( 'Optional supporting Jerusalem image. The theme will also look for the existing-site image automatically.', 'daktravel' ),
+        ),
+        'daktravel_deadsea_image' => array(
+            'label'       => __( 'Dead Sea supporting image', 'daktravel' ),
+            'description' => __( 'Optional supporting Dead Sea image. The theme will also look for the existing-site image automatically.', 'daktravel' ),
+        ),
         'daktravel_group_image' => array(
             'label'       => __( 'Groups & delegations image', 'daktravel' ),
             'description' => __( 'Use a genuine group/delegation or relevant professional travel image.', 'daktravel' ),
@@ -96,6 +108,9 @@ function daktravel_media_search_terms() {
         'daktravel_asata_logo'      => array( 'asata' ),
         'daktravel_clubtravel_logo' => array( 'club travel', 'clubtravel', 'club-travel' ),
         'daktravel_team_image'      => array( 'yochee', 'photo.small.yk', 'photo-small-yk' ),
+        'daktravel_telaviv_image'   => array( 'tel aviv', 'tel-aviv', 'telaviv' ),
+        'daktravel_jerusalem_image' => array( 'jerusalem' ),
+        'daktravel_deadsea_image'   => array( 'dead sea', 'dead-sea', 'deadsea' ),
     );
 }
 
