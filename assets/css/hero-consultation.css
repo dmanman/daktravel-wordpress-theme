@@ -68,6 +68,7 @@
 }
 
 .hero--consultation .hero-media-wrap {
+  position: relative;
   padding: 0;
 }
 
@@ -114,19 +115,34 @@
 }
 
 .hero-photo-meta {
+  position: absolute;
+  left: 42px;
+  right: 42px;
+  bottom: 38px;
+  z-index: 4;
   display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 14px 3px 0;
-  color: #6a7178;
-  font-size: .74rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 0;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(6,18,30,.62);
+  pointer-events: none;
+}
+
+.hero-photo-meta span:first-child {
+  font-size: clamp(1.45rem,2vw,2rem);
   font-weight: 700;
-  letter-spacing: .025em;
+  line-height: 1.1;
+  letter-spacing: -.02em;
 }
 
 .hero-photo-meta span:last-child {
-  text-align: right;
-  color: #8a7352;
+  text-align: left;
+  color: rgba(255,255,255,.94);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .055em;
 }
 
 /* Legacy overlay elements are deliberately disabled so the photograph stays unobstructed. */
@@ -212,16 +228,18 @@
   }
 
   .hero-photo-meta {
-    display: block;
-    line-height: 1.5;
+    left: 27px;
+    right: 27px;
+    bottom: 25px;
+    gap: 4px;
   }
 
-  .hero-photo-meta span {
-    display: block;
+  .hero-photo-meta span:first-child {
+    font-size: clamp(1.22rem,6.5vw,1.65rem);
   }
 
   .hero-photo-meta span:last-child {
-    margin-top: 3px;
-    text-align: left;
+    font-size: .68rem;
+    line-height: 1.45;
   }
 }
