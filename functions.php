@@ -55,6 +55,9 @@ function daktravel_enqueue_assets() {
     $mobile_css_path = get_template_directory() . '/assets/css/mobile-clarity.css';
     wp_enqueue_style( 'daktravel-mobile-clarity', get_template_directory_uri() . '/assets/css/mobile-clarity.css', array( 'daktravel-typography-premium' ), file_exists( $mobile_css_path ) ? (string) filemtime( $mobile_css_path ) : $theme_version );
 
+    $multilingual_css_path = get_template_directory() . '/assets/css/multilingual.css';
+    wp_enqueue_style( 'daktravel-multilingual', get_template_directory_uri() . '/assets/css/multilingual.css', array( 'daktravel-mobile-clarity' ), file_exists( $multilingual_css_path ) ? (string) filemtime( $multilingual_css_path ) : $theme_version );
+
     $interactions_path = get_template_directory() . '/assets/js/site-interactions.js';
     wp_enqueue_script( 'daktravel-site-interactions', get_template_directory_uri() . '/assets/js/site-interactions.js', array(), file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version, true );
 
@@ -71,7 +74,7 @@ function daktravel_enqueue_assets() {
     $inline_css .= '.home .trust-copy::before,.home .trust-copy::after{content:none!important;display:none!important;background:none!important;}';
     $inline_css .= '.home .trust-section img:not(.credential-logo-image){display:none!important;}';
 
-    wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
+    wp_add_inline_style( 'daktravel-multilingual', $inline_css );
 
     if ( is_front_page() ) {
         $remove_home_portrait = <<<'JS'
@@ -124,6 +127,51 @@ JS;
     }
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
+
+/**
+ * Compact TranslatePress language switcher for the top utility bar.
+ * It appears automatically once TranslatePress is active and the languages
+ * have been configured in WordPress.
+ */
+function daktravel_language_switcher() {
+    if ( ! function_exists( 'trp_custom_language_switcher' ) ) {
+        return '';
+    }
+
+    $languages = trp_custom_language_switcher();
+    if ( ! is_array( $languages ) || empty( $languages ) ) {
+        return '';
+    }
+
+    $labels = array(
+        'en' => 'EN',
+        'he' => 'עברית',
+        'ar' => 'العربية',
+        'ru' => 'Русский',
+    );
+
+    $links = array();
+    foreach ( $languages as $language ) {
+        $slug = isset( $language['short_language_name'] ) ? strtolower( (string) $language['short_language_name'] ) : '';
+        $base = preg_replace( '/[^a-z].*$/', '', $slug );
+        if ( ! $base || ! isset( $labels[ $base ] ) || empty( $language['current_page_url'] ) ) {
+            continue;
+        }
+
+        $links[] = sprintf(
+            '<a href="%1$s" hreflang="%2$s" lang="%2$s">%3$s</a>',
+            esc_url( $language['current_page_url'] ),
+            esc_attr( $base ),
+            esc_html( $labels[ $base ] )
+        );
+    }
+
+    if ( empty( $links ) ) {
+        return '';
+    }
+
+    return '<nav class="dak-language-switcher" aria-label="Language" data-no-translation>' . implode( '<span aria-hidden="true">·</span>', $links ) . '</nav>';
+}
 
 function daktravel_register_post_types() {
     register_post_type(
