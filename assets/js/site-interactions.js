@@ -11,14 +11,18 @@
       link.addEventListener('click', function (event) {
         event.preventDefault();
         event.stopPropagation();
+        event.stopImmediatePropagation();
 
         var href = link.getAttribute('href');
-        if (!href) return;
+        if (!href) return false;
 
-        var popup = window.open(href, '_blank', 'noopener,noreferrer');
-        if (!popup) {
-          window.location.assign(href);
+        var popup = window.open(href, '_blank');
+        if (popup) {
+          try { popup.opener = null; } catch (e) {}
+        } else {
+          window.location.href = href;
         }
+        return false;
       });
     });
   }
