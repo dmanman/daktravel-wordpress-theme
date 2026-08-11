@@ -1,4 +1,37 @@
-<?php get_header(); ?>
+<?php
+$route_slideshow_css_path = get_template_directory() . '/assets/css/route-slideshow.css';
+wp_enqueue_style(
+    'daktravel-route-slideshow',
+    get_template_directory_uri() . '/assets/css/route-slideshow.css',
+    array( 'daktravel-multilingual' ),
+    file_exists( $route_slideshow_css_path ) ? (string) filemtime( $route_slideshow_css_path ) : wp_get_theme()->get( 'Version' )
+);
+
+$south_africa_hero_images = array(
+    array(
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Cape_Town_Table_Mountain.jpg',
+        'alt'    => 'Cape Town and Table Mountain, South Africa',
+        'credit' => 'Cape Town & Table Mountain · Photo: Matthiasmullie / CC BY-SA 4.0',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/6624568/pexels-photo-6624568.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of Cape Town coastline, beaches and mountains',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/34166928/pexels-photo-34166928.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of Blyde River Canyon in South Africa',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/33621915/pexels-photo-33621915.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of an African elephant in the South African bush',
+        'credit' => '',
+    ),
+);
+
+get_header();
+?>
 <main>
 <section class="dak-page-hero">
     <div class="container dak-page-hero-grid">
@@ -8,9 +41,23 @@
             <p class="lead">D.A.K Travel helps travellers compare Tel Aviv–South Africa options and onward connections to Johannesburg, Cape Town, Durban and regional cities where required.</p>
             <div class="dak-page-actions"><a class="btn btn--primary" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Start a Return Travel Enquiry</a></div>
         </div>
-        <figure class="dak-media-slot has-image dak-south-africa-waterfront">
-            <img class="dak-media-image" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Cape_Town_Table_Mountain.jpg" alt="Cape Town and Table Mountain, South Africa" width="1600" height="1200" loading="eager" fetchpriority="high">
-            <figcaption class="image-credit">Cape Town &amp; Table Mountain · Photo: Matthiasmullie / CC BY-SA 4.0</figcaption>
+        <figure class="dak-media-slot has-image dak-route-slideshow-frame">
+            <div class="dak-route-slideshow" aria-hidden="true">
+                <?php foreach ( $south_africa_hero_images as $index => $image ) : ?>
+                    <span class="dak-route-slide dak-route-slide--<?php echo esc_attr( $index + 1 ); ?>">
+                        <img
+                            class="dak-media-image"
+                            src="<?php echo esc_url( $image['url'] ); ?>"
+                            alt="<?php echo esc_attr( $image['alt'] ); ?>"
+                            <?php echo 0 === $index ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; ?>
+                            decoding="async"
+                        >
+                        <?php if ( ! empty( $image['credit'] ) ) : ?>
+                            <span class="dak-route-slide-credit"><?php echo esc_html( $image['credit'] ); ?></span>
+                        <?php endif; ?>
+                    </span>
+                <?php endforeach; ?>
+            </div>
         </figure>
     </div>
 </section>
