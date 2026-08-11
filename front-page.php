@@ -9,9 +9,8 @@ wp_enqueue_style(
 
 $hero_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_hero_image', 'full' ) : '';
 if ( ! $hero_image ) {
-    $hero_image = get_template_directory_uri() . '/assets/images/hero-consultation.svg';
+    $hero_image = 'https://images.pexels.com/photos/13315324/pexels-photo-13315324.jpeg?auto=compress&cs=tinysrgb&w=2000';
 }
-$hero_style = "background-image:linear-gradient(145deg,rgba(8,20,32,.08),rgba(8,20,32,.04)),url('" . esc_url( $hero_image ) . "') !important;";
 
 get_header();
 ?>
@@ -35,14 +34,12 @@ get_header();
             </div>
 
             <div class="hero-media-wrap">
-                <div class="hero-media" role="img" aria-label="Professional travel consultation overlooking the Tel Aviv coastline" style="<?php echo esc_attr( $hero_style ); ?>">
-                    <div class="hero-photo-overlay" aria-hidden="true"></div>
-                    <div class="hero-photo-label">Human travel expertise</div>
-                    <div class="hero-photo-card">
-                        <span class="hero-card-kicker">From South Africa to the world</span>
-                        <strong>One experienced travel desk.</strong>
-                        <p>Groups · Business travel · Israel travel · Complex journeys</p>
-                    </div>
+                <figure class="hero-media hero-media--clean-photo">
+                    <img class="hero-terminal-photo" src="<?php echo esc_url( $hero_image ); ?>" alt="Bright modern airport terminal with large glass windows and an aircraft outside" fetchpriority="high" decoding="async">
+                </figure>
+                <div class="hero-photo-meta" aria-hidden="true">
+                    <span>International travel, personally managed.</span>
+                    <span>Flights · Groups · Business · Complex journeys</span>
                 </div>
             </div>
         </div>
