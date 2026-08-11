@@ -1,6 +1,35 @@
 <?php get_header(); ?>
 <main>
-<section class="section section--ivory"><div class="container editorial-split"><div><div class="eyebrow">Groups & Delegations</div><h1>One group. One clear travel plan.</h1><p class="lead">D.A.K coordinates flights, passenger details, deadlines and different departure cities so the organiser has one point of contact.</p><div class="hero-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I need help with group or delegation travel.' ) ); ?>">WhatsApp Group Travel</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/') ); ?>">Email / Enquire</a></div></div><div class="editorial-panel"><div class="case-study-label">Typical work</div><h3>Multi-origin group travel</h3><p>Passengers can leave from different South African cities, connect onto the same international journey and return on different dates or routes.</p></div></div></section>
-<section class="section"><div class="container"><div class="section-intro"><div class="eyebrow">What we manage</div><h2>The details that make group travel difficult.</h2></div><div class="service-grid"><article class="service-card"><div class="service-no">01</div><h3>Flights & connections</h3><p>International flights plus domestic feeder sectors where needed.</p></article><article class="service-card"><div class="service-no">02</div><h3>Passenger details</h3><p>Names, passport information and travel requirements kept organised.</p></article><article class="service-card"><div class="service-no">03</div><h3>Deadlines</h3><p>Deposits, payments and ticketing dates clearly tracked.</p></article><article class="service-card"><div class="service-no">04</div><h3>Clear communication</h3><p>One organiser receives simple, client-ready travel information.</p></article></div></div></section>
-<section class="final-cta"><div class="container final-cta-inner"><div><div class="eyebrow">Group travel</div><h2>Tell us how many people are travelling.</h2><p>Send us the dates, origins and destination and we will take it from there.</p></div><div class="final-cta-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like a group travel quotation.' ) ); ?>">WhatsApp Us</a><a class="btn btn--light" href="<?php echo esc_url( home_url('/contact/') ); ?>">Email Us</a></div></div></section>
-</main><?php get_footer(); ?>
+<section class="dak-page-hero">
+    <div class="container dak-page-hero-grid">
+        <div class="dak-page-hero-copy">
+            <div class="eyebrow">Groups &amp; Delegations</div>
+            <h1>One group. One clear travel plan.</h1>
+            <p class="lead">D.A.K coordinates flights, passenger details, deadlines and different departure cities so the organiser has one point of contact.</p>
+            <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I need help with group or delegation travel.' ) ); ?>">WhatsApp Group Travel</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/#enquiry') ); ?>">Email / Enquire</a></div>
+        </div>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_group_image', 'Group travel', 'Groups & delegations' ) ); ?>
+    </div>
+</section>
+
+<section class="dak-intro-section">
+    <div class="container dak-narrow">
+        <div class="eyebrow">What we manage</div>
+        <h2>The difficult parts, kept together.</h2>
+        <p class="lead">Groups often involve different cities, passenger lists, deadlines and changes. We keep the moving parts in one place.</p>
+        <div class="dak-feature-list">
+            <div class="dak-feature-row"><span class="num">01</span><strong>Flights &amp; connections</strong><p>International flights plus domestic feeder sectors where needed.</p></div>
+            <div class="dak-feature-row"><span class="num">02</span><strong>Passenger coordination</strong><p>Names, requirements and booking information kept organised.</p></div>
+            <div class="dak-feature-row"><span class="num">03</span><strong>Deadlines</strong><p>Deposits, payments and ticketing dates clearly tracked.</p></div>
+            <div class="dak-feature-row"><span class="num">04</span><strong>Clear communication</strong><p>Simple, client-ready travel information for the organiser.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="dak-dark-band">
+    <div class="container dak-narrow"><div class="eyebrow">Multi-origin travel</div><h2>Passengers do not all need to start in the same city.</h2><p>We can coordinate travellers joining the same international journey from Johannesburg, Cape Town, Durban and regional cities, with different return arrangements where required.</p></div>
+</section>
+
+<section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">Group enquiry</div><h2>Tell us how many people are travelling.</h2><p>Send the dates, origins and destination and we will take it from there.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like a group travel quotation.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/#enquiry') ); ?>">Send Enquiry</a></div></div></section>
+</main>
+<?php get_footer(); ?>
