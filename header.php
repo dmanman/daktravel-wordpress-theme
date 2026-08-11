@@ -13,7 +13,7 @@
         <div class="utility-proof"><strong>Established 2006</strong><span>Johannesburg</span><span>IATA accredited</span><span>ASATA member</span></div>
         <div class="utility-links">
             <span class="utility-specialist">South Africa–Israel specialists</span>
-            <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking help</a>
+            <a href="<?php echo esc_url( home_url( '/contact/?type=existing#enquiry' ) ); ?>">Existing booking</a>
         </div>
     </div>
 </div>
@@ -41,8 +41,23 @@
         </nav>
 
         <div class="header-cta">
-            <a class="header-email" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Email / Enquire</a>
+            <a class="header-email" href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Email / Enquire</a>
             <a class="btn btn--whatsapp btn--compact" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with travel between South Africa and Israel.' ) ); ?>">WhatsApp Us</a>
         </div>
+
+        <details class="mobile-menu">
+            <summary aria-label="Open menu">Menu</summary>
+            <div class="mobile-menu-panel">
+                <a class="mobile-menu-primary" href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Israel Travel</a>
+                <a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Groups &amp; Delegations</a>
+                <a href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Business Travel</a>
+                <a href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Complex Travel</a>
+                <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About D.A.K</a>
+                <div class="mobile-menu-divider"></div>
+                <a href="<?php echo esc_url( home_url( '/contact/?type=existing#enquiry' ) ); ?>">Existing booking</a>
+                <a href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Email / Enquire</a>
+                <a class="mobile-menu-whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a>
+            </div>
+        </details>
     </div>
 </header>
