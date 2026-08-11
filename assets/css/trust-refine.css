@@ -2,12 +2,13 @@
 
 /* High-contrast utility bar: short, readable and deliberately secondary. */
 .utility-bar {
-  background: #08141f;
+  background: #07131f;
   color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,.10);
 }
 .utility-inner {
-  min-height: 40px;
-  gap: 28px;
+  min-height: 44px;
+  gap: 30px;
 }
 .utility-proof,
 .utility-links {
@@ -15,34 +16,35 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0;
-  font-size: .79rem;
-  line-height: 1.35;
-  letter-spacing: .015em;
+  font-size: .83rem;
+  line-height: 1.4;
+  letter-spacing: .01em;
+  font-weight: 650;
   opacity: 1;
 }
 .utility-proof strong {
-  color: #f0d8ae;
+  color: #f3d9a8;
   font-weight: 800;
 }
 .utility-proof span,
 .utility-links > * {
-  color: rgba(255,255,255,.92);
+  color: #f6f8fa;
 }
 .utility-proof span::before,
 .utility-links > * + *::before {
   content: "·";
-  color: rgba(255,255,255,.42);
-  margin: 0 10px;
+  color: rgba(255,255,255,.52);
+  margin: 0 11px;
 }
 .utility-links a {
-  color: #fff;
-  font-weight: 700;
+  color: #ffffff;
+  font-weight: 750;
   text-decoration: none;
 }
-.utility-links a:hover { color: #f0d8ae; }
+.utility-links a:hover { color: #f3d9a8; }
 .utility-specialist {
-  color: #f0d8ae !important;
-  font-weight: 750;
+  color: #f3d9a8 !important;
+  font-weight: 800;
 }
 
 .trust-section {
@@ -134,6 +136,63 @@
   text-transform: uppercase;
 }
 
+/* Confidentiality is part of the premium service, not hidden legal copy. */
+.confidentiality-section {
+  padding: 88px 0;
+  background: #0b1927;
+  color: #d9e1e7;
+  border-top: 1px solid rgba(255,255,255,.05);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.confidentiality-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(420px,.9fr);
+  gap: 72px;
+  align-items: center;
+}
+.confidentiality-section .eyebrow { color: #e2c796; }
+.confidentiality-section h2 {
+  color: #ffffff;
+  max-width: 720px;
+}
+.confidentiality-section .lead {
+  color: #e4e9ed;
+  max-width: 690px;
+}
+.confidentiality-copy p:not(.lead) {
+  color: #b8c2ca;
+  max-width: 680px;
+}
+.confidentiality-section .text-link {
+  color: #ffffff;
+  border-color: rgba(255,255,255,.35);
+}
+.confidentiality-points {
+  background: #ffffff;
+  color: #25313d;
+  box-shadow: 0 28px 80px rgba(0,0,0,.24);
+  border-top: 3px solid #b28a50;
+}
+.confidentiality-point {
+  padding: 25px 30px;
+  border-bottom: 1px solid rgba(11,23,36,.09);
+}
+.confidentiality-point:last-child { border-bottom: 0; }
+.confidentiality-point strong {
+  display: block;
+  color: #0b1724;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.confidentiality-point span {
+  display: block;
+  color: #64707b;
+  font-size: .9rem;
+  line-height: 1.55;
+}
+
 .confidence-item .proof-no { color: #9b733c; }
 .feature-point { box-shadow: inset 0 1px 0 rgba(255,255,255,.035); }
 .feature-point strong {
@@ -181,23 +240,27 @@
 .utility-page-back a { color: var(--ink); font-weight: 700; text-decoration: none; }
 
 @media (max-width: 980px) {
-  .utility-inner { align-items: flex-start; padding: 9px 0; }
+  .utility-inner { align-items: flex-start; padding: 10px 0; }
   .utility-proof { max-width: 65%; }
   .utility-specialist { display: none; }
-  .trust-grid { grid-template-columns: 1fr; gap: 48px; }
-  .trust-panel { max-width: 720px; }
+  .trust-grid,
+  .confidentiality-grid { grid-template-columns: 1fr; gap: 48px; }
+  .trust-panel,
+  .confidentiality-points { max-width: 720px; }
 }
 
 @media (max-width: 680px) {
   .utility-bar { display: block !important; }
-  .utility-inner { min-height: auto; display: block; padding: 9px 0; }
-  .utility-proof { max-width: none; font-size: .73rem; }
+  .utility-inner { min-height: auto; display: block; padding: 10px 0; }
+  .utility-proof { max-width: none; font-size: .76rem; }
   .utility-proof span:nth-of-type(1) { display: none; }
-  .utility-links { margin-top: 4px; font-size: .72rem; }
+  .utility-links { margin-top: 5px; font-size: .75rem; }
   .utility-specialist { display: none; }
-  .trust-section { padding: 68px 0 72px; }
+  .trust-section,
+  .confidentiality-section { padding: 68px 0 72px; }
   .trust-panel { padding: 32px 26px 28px; }
   .credential-row { grid-template-columns: 62px 1fr; gap: 16px; }
+  .confidentiality-point { padding: 22px 24px; }
   .utility-page-hero { padding: 48px 0 24px; }
   .utility-page-content { padding-bottom: 60px; }
   .legal-card { padding: 28px 24px; }
