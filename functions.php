@@ -34,7 +34,6 @@ function daktravel_enqueue_assets() {
 
     $premium_css_path = get_template_directory() . '/assets/css/premium-refine.css';
     $premium_css_ver  = file_exists( $premium_css_path ) ? (string) filemtime( $premium_css_path ) : $theme_version;
-
     wp_enqueue_style(
         'daktravel-premium-refine',
         get_template_directory_uri() . '/assets/css/premium-refine.css',
@@ -44,7 +43,6 @@ function daktravel_enqueue_assets() {
 
     $trust_css_path = get_template_directory() . '/assets/css/trust-refine.css';
     $trust_css_ver  = file_exists( $trust_css_path ) ? (string) filemtime( $trust_css_path ) : $theme_version;
-
     wp_enqueue_style(
         'daktravel-trust-refine',
         get_template_directory_uri() . '/assets/css/trust-refine.css',
@@ -52,11 +50,20 @@ function daktravel_enqueue_assets() {
         $trust_css_ver
     );
 
+    $luxury_css_path = get_template_directory() . '/assets/css/luxury-simple.css';
+    $luxury_css_ver  = file_exists( $luxury_css_path ) ? (string) filemtime( $luxury_css_path ) : $theme_version;
+    wp_enqueue_style(
+        'daktravel-luxury-simple',
+        get_template_directory_uri() . '/assets/css/luxury-simple.css',
+        array( 'daktravel-trust-refine' ),
+        $luxury_css_ver
+    );
+
     /* Apply uploaded real photography and approved affiliation logos. */
     $inline_css = '';
     $hero_image = daktravel_media_url( 'daktravel_hero_image', 'full' );
     if ( $hero_image ) {
-        $inline_css .= '.hero-media{background-image:linear-gradient(145deg,rgba(8,20,31,.82),rgba(16,38,61,.62)),url("' . esc_url_raw( $hero_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+        $inline_css .= '.hero-media{background-image:linear-gradient(145deg,rgba(8,20,31,.72),rgba(16,38,61,.46)),url("' . esc_url_raw( $hero_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
     }
 
     $logo_settings = array(
@@ -72,7 +79,7 @@ function daktravel_enqueue_assets() {
     }
 
     if ( $inline_css ) {
-        wp_add_inline_style( 'daktravel-trust-refine', $inline_css );
+        wp_add_inline_style( 'daktravel-luxury-simple', $inline_css );
     }
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
