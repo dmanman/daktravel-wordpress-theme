@@ -60,17 +60,14 @@ function daktravel_enqueue_assets() {
 
     /*
      * Homepage specialist panel image.
-     * Deliberately does NOT use daktravel_hero_image, because that older setting
-     * may contain the About portrait. The woman must remain on About only.
-     * Use a Tel Aviv image from the media library when available, otherwise a
-     * restrained Tel Aviv skyline fallback under a strong navy overlay.
+     * This is intentionally hard-coded to Israel imagery so no Customizer or
+     * media-library setting can reintroduce the About portrait on the homepage.
      */
-    $specialist_image = daktravel_media_url( 'daktravel_telaviv_image', 'full' );
-    if ( ! $specialist_image ) {
-        $specialist_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
-    }
+    $specialist_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
 
-    $inline_css = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.91),rgba(16,38,61,.74)),url("' . esc_url_raw( $specialist_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+    $inline_css  = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.91),rgba(16,38,61,.74)),url("' . esc_url_raw( $specialist_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+    $inline_css .= '.home img[src*="photo.small_.yk_"],.home img[src*="photo.small.yk"],.home img[src*="yochee"],.home img[src*="photo-small-yk"],.front-page img[src*="photo.small_.yk_"],.front-page img[src*="photo.small.yk"],.front-page img[src*="yochee"],.front-page img[src*="photo-small-yk"]{display:none!important;}';
+
     wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
