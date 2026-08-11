@@ -145,18 +145,11 @@ function daktravel_register_post_types() {
 add_action( 'init', 'daktravel_register_post_types' );
 
 function daktravel_whatsapp_url( $message = '' ) {
-    $base = 'https://api.whatsapp.com/send?phone=27824406144';
-    return $message ? $base . '&text=' . rawurlencode( $message ) : $base;
+    $base = 'https://wa.me/27824406144';
+    return $message ? $base . '?text=' . rawurlencode( $message ) : $base;
 }
 
-// Editable real photography and approved organisation logos.
 require_once get_template_directory() . '/inc/customizer.php';
-
-// Ensure all theme-linked WordPress pages actually exist so their page templates render.
 require_once get_template_directory() . '/inc/site-pages.php';
-
-// Simple form-to-email enquiry component.
 require_once get_template_directory() . '/inc/enquiry-form.php';
-
-// Lightweight SEO defaults, social metadata and TravelAgency structured data.
 require_once get_template_directory() . '/inc/seo.php';
