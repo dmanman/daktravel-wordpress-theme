@@ -199,7 +199,7 @@ function daktravel_output_additional_schema() {
             'dateModified'     => get_the_modified_date( DATE_W3C, $post_id ),
             'author'           => array( '@type' => 'Organization', 'name' => 'D.A.K Travel' ),
             'publisher'        => array( '@id' => home_url( '/#travelagency' ) ),
-            'inLanguage'       => 'en-ZA',
+            'inLanguage'       => daktravel_current_language_tag(),
         );
 
         if ( ! empty( $meta['description'] ) ) {
