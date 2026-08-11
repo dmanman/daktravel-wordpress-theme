@@ -169,8 +169,9 @@ html, body { overflow-x: clip; }
   .dark-feature { gap: 24px !important; }
   .home .dark-feature .feature-points { display: none; }
 
-  /* The homepage already links to detailed pages; don't duplicate everything on a phone. */
-  .home .mobile-deprioritize { display: none; }
+  /* Detailed process and case-study sections duplicate linked service pages on phones. */
+  .home main > section:nth-of-type(8),
+  .home main > section:nth-of-type(9) { display: none; }
 
   /* Interior pages are deliberately short. */
   .dak-page-hero { padding: 44px 0 50px; }
