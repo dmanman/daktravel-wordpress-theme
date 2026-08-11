@@ -58,15 +58,19 @@ function daktravel_enqueue_assets() {
     $interactions_path = get_template_directory() . '/assets/js/site-interactions.js';
     wp_enqueue_script( 'daktravel-site-interactions', get_template_directory_uri() . '/assets/js/site-interactions.js', array(), file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version, true );
 
-    /* Subtle real-world imagery behind the homepage specialist panel. A selected
-       image wins; otherwise use a restrained Tel Aviv fallback with a strong
-       navy overlay so the copy always remains readable. */
-    $hero_image = daktravel_media_url( 'daktravel_hero_image', 'full' );
-    if ( ! $hero_image ) {
-        $hero_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
+    /*
+     * Homepage specialist panel image.
+     * Deliberately does NOT use daktravel_hero_image, because that older setting
+     * may contain the About portrait. The woman must remain on About only.
+     * Use a Tel Aviv image from the media library when available, otherwise a
+     * restrained Tel Aviv skyline fallback under a strong navy overlay.
+     */
+    $specialist_image = daktravel_media_url( 'daktravel_telaviv_image', 'full' );
+    if ( ! $specialist_image ) {
+        $specialist_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
     }
 
-    $inline_css = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.90),rgba(16,38,61,.72)),url("' . esc_url_raw( $hero_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+    $inline_css = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.91),rgba(16,38,61,.74)),url("' . esc_url_raw( $specialist_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
     wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
