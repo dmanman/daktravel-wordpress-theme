@@ -8,11 +8,24 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<?php
+$specialist_label = 'South Africa–Israel specialists';
+$specialist_url   = home_url( '/flights-to-israel-from-johannesburg/' );
+
+if ( is_page( 'flights-to-israel-from-johannesburg' ) ) {
+    $specialist_label = 'Israel - South Africa specialists';
+    $specialist_url   = home_url( '/flights-from-israel-to-south-africa/' );
+} elseif ( is_page( 'flights-from-israel-to-south-africa' ) ) {
+    $specialist_label = 'South Africa–Israel specialists';
+    $specialist_url   = home_url( '/flights-to-israel-from-johannesburg/' );
+}
+?>
+
 <div class="utility-bar">
     <div class="container utility-inner">
         <div class="utility-proof"><strong>Established 2006</strong><span>Johannesburg</span><span>IATA accredited</span><span>ASATA member</span></div>
         <div class="utility-links">
-            <span class="utility-specialist">South Africa–Israel specialists</span>
+            <a class="utility-specialist" href="<?php echo esc_url( $specialist_url ); ?>"><?php echo esc_html( $specialist_label ); ?></a>
             <a href="<?php echo esc_url( home_url( '/contact/?type=existing#enquiry' ) ); ?>">Existing booking</a>
         </div>
     </div>
