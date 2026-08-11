@@ -10,7 +10,7 @@
 
 <div class="utility-bar">
     <div class="container utility-inner">
-        <div class="utility-proof">Established Johannesburg travel agency · IATA accredited · ASATA member · South Africa–Israel specialists</div>
+        <div class="utility-proof">Established 2006 · Johannesburg · IATA accredited · ASATA member · South Africa–Israel specialists</div>
         <div class="utility-links">
             <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking help</a>
             <span aria-hidden="true">•</span>
@@ -26,7 +26,7 @@
                 <?php the_custom_logo(); ?>
             <?php else : ?>
                 <a class="brand-wordmark" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <strong>D.A.K TRAVEL</strong><span>TRAVEL ADVISORY</span>
+                    <strong>D.A.K TRAVEL</strong><span>TRAVEL ADVISORY · SINCE 2006</span>
                 </a>
             <?php endif; ?>
         </div>
