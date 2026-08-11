@@ -12,6 +12,25 @@ if ( ! $hero_image ) {
     $hero_image = 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200';
 }
 
+$hero_images = array(
+    array(
+        'url' => $hero_image,
+        'alt' => 'Bright view from an airplane window showing the aircraft wing against a clear blue sky',
+    ),
+    array(
+        'url' => 'https://images.pexels.com/photos/3769138/pexels-photo-3769138.jpeg?auto=compress&cs=tinysrgb&w=2200',
+        'alt' => 'Aerial view of a dramatic coastline and turquoise sea',
+    ),
+    array(
+        'url' => 'https://images.pexels.com/photos/5368745/pexels-photo-5368745.jpeg?auto=compress&cs=tinysrgb&w=2200',
+        'alt' => 'Aerial view of a river cruise boat moving through calm water',
+    ),
+    array(
+        'url' => 'https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=2200',
+        'alt' => 'Aerial view of a white-sand island beach and clear tropical water',
+    ),
+);
+
 get_header();
 ?>
 <main>
@@ -35,7 +54,17 @@ get_header();
 
             <div class="hero-media-wrap">
                 <figure class="dak-media-slot has-image hero-home-media">
-                    <img class="dak-media-image hero-terminal-photo" src="<?php echo esc_url( $hero_image ); ?>" alt="Bright view from an airplane window showing the aircraft wing against a clear blue sky" fetchpriority="high" decoding="async">
+                    <div class="hero-home-slideshow" aria-hidden="true">
+                        <?php foreach ( $hero_images as $index => $image ) : ?>
+                            <img
+                                class="dak-media-image hero-terminal-photo hero-slide hero-slide--<?php echo esc_attr( $index + 1 ); ?>"
+                                src="<?php echo esc_url( $image['url'] ); ?>"
+                                alt=""
+                                <?php echo 0 === $index ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'; ?>
+                                decoding="async"
+                            >
+                        <?php endforeach; ?>
+                    </div>
                     <figcaption class="hero-photo-meta" aria-hidden="true">
                         <span>The world, within reach.</span>
                         <span>Flights · Groups · Business · Complex journeys</span>
