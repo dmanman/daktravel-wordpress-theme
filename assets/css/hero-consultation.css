@@ -72,13 +72,17 @@
   padding: 0;
 }
 
-/* The homepage now uses the exact shared .dak-media-slot component from interior pages.
-   Do not recreate its border or overlay here. */
+/* Keep the exact shared interior-page image frame. Only the photography inside it changes. */
 .hero--consultation .hero-home-media {
   min-height: 0;
   margin: 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+}
+
+.hero--consultation .hero-home-slideshow {
+  position: absolute;
+  inset: 0;
 }
 
 .hero--consultation .hero-home-media .hero-terminal-photo {
@@ -92,6 +96,16 @@
   transform: scale(1.005);
 }
 
+.hero--consultation .hero-home-media .hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.hero--consultation .hero-home-media .hero-slide--1 {
+  opacity: 1;
+}
+
 .hero-photo-meta {
   position: absolute;
   left: 42px;
@@ -103,7 +117,6 @@
   align-items: flex-start;
   gap: 5px;
   padding: 0;
-  margin: 0;
   color: #fff;
   text-shadow: 0 2px 14px rgba(6,18,30,.62);
   pointer-events: none;
@@ -122,6 +135,27 @@
   font-size: .78rem;
   font-weight: 700;
   letter-spacing: .055em;
+}
+
+/* Four images, six seconds each, with a gentle 1.2 second crossfade. */
+@keyframes hero-home-crossfade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 681px) and (prefers-reduced-motion: no-preference) {
+  .hero--consultation .hero-home-media .hero-slide {
+    animation: hero-home-crossfade 24s linear infinite;
+    will-change: opacity;
+  }
+
+  .hero--consultation .hero-home-media .hero-slide--1 { animation-delay: -1.2s; }
+  .hero--consultation .hero-home-media .hero-slide--2 { animation-delay: 4.8s; }
+  .hero--consultation .hero-home-media .hero-slide--3 { animation-delay: 10.8s; }
+  .hero--consultation .hero-home-media .hero-slide--4 { animation-delay: 16.8s; }
 }
 
 /* Legacy overlay elements are deliberately disabled. */
@@ -161,6 +195,17 @@
 
   .hero--consultation .hero-home-media {
     aspect-ratio: 16 / 10;
+  }
+}
+
+/* Keep phones light and respect reduced-motion preferences: one static hero image only. */
+@media (max-width: 680px), (prefers-reduced-motion: reduce) {
+  .hero--consultation .hero-home-media .hero-slide {
+    animation: none !important;
+  }
+
+  .hero--consultation .hero-home-media .hero-slide:not(.hero-slide--1) {
+    display: none;
   }
 }
 
