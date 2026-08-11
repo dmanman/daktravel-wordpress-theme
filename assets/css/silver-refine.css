@@ -10,6 +10,20 @@
   --dak-silver-line: rgba(174,182,189,.42);
 }
 
+/* Existing D.A.K brand mark is retained cleanly until a newer approved mark replaces it. */
+.legacy-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.legacy-site-logo {
+  display: block;
+  width: auto;
+  max-width: 215px;
+  max-height: 62px;
+  object-fit: contain;
+}
+
 /* Fine silver rules create structure without adding more boxes. */
 .site-header {
   border-bottom-color: rgba(174,182,189,.32);
@@ -115,6 +129,10 @@
 }
 
 @media (max-width: 680px) {
+  .legacy-site-logo {
+    max-width: 155px;
+    max-height: 48px;
+  }
   .hero-media,
   .dak-media-slot {
     outline-offset: 4px;
