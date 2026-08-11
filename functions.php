@@ -130,8 +130,7 @@ add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
 /**
  * Compact TranslatePress language switcher for the top utility bar.
- * It appears automatically once TranslatePress is active and the languages
- * have been configured in WordPress.
+ * The site intentionally supports English, Hebrew and Arabic only.
  */
 function daktravel_language_switcher() {
     if ( ! function_exists( 'trp_custom_language_switcher' ) ) {
@@ -147,7 +146,6 @@ function daktravel_language_switcher() {
         'en' => 'EN',
         'he' => 'עברית',
         'ar' => 'العربية',
-        'ru' => 'Русский',
     );
 
     $links = array();
