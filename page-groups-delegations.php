@@ -26,6 +26,18 @@
     </div>
 </section>
 
+<section class="section section--ivory">
+    <div class="container editorial-split">
+        <div>
+            <div class="eyebrow">Groups travelling to Israel</div>
+            <h2>South Africa–Israel group travel can involve several departure cities.</h2>
+            <p class="lead">D.A.K can coordinate group members joining the same international journey from different parts of South Africa, with domestic feeder sectors, passenger details and return arrangements kept together.</p>
+            <p>For individual route planning and current flight options, see our <a href="<?php echo esc_url( home_url('/israel-travel/') ); ?>">South Africa–Israel travel service</a> and <a href="<?php echo esc_url( home_url('/south-africa-israel-flight-routes/') ); ?>">South Africa–Israel flight route guide</a>.</p>
+        </div>
+        <div class="editorial-panel"><div class="case-study-label">Typical complexity</div><h3>Different origins. One international journey.</h3><p>Johannesburg, Cape Town, Durban and regional-city travellers can be coordinated around the same group programme where suitable flight options are available.</p></div>
+    </div>
+</section>
+
 <section class="dak-dark-band">
     <div class="container dak-narrow"><div class="eyebrow">Multi-origin travel</div><h2>Passengers do not all need to start in the same city.</h2><p>We can coordinate travellers joining the same international journey from Johannesburg, Cape Town, Durban and regional cities, with different return arrangements where required.</p></div>
 </section>
