@@ -63,3 +63,6 @@ function daktravel_whatsapp_url( $message = '' ) {
     $base = 'https://wa.me/27824406144';
     return $message ? $base . '?text=' . rawurlencode( $message ) : $base;
 }
+
+// Lightweight SEO defaults, social metadata and TravelAgency structured data.
+require_once get_template_directory() . '/inc/seo.php';
