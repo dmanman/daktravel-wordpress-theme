@@ -54,11 +54,28 @@
     updateFields();
   }
 
+  function showFormStatus(status, result) {
+    status.className = 'form-live-status';
+
+    if (result === 'success') {
+      status.textContent = 'Thank you. Your enquiry has been sent to D.A.K Travel.';
+      status.classList.add('form-live-status--success');
+    } else if (result === 'invalid') {
+      status.textContent = 'Please complete your name, a valid email address and your message.';
+      status.classList.add('form-live-status--error');
+    } else {
+      status.textContent = 'We could not send your enquiry. Please try again or use WhatsApp Us.';
+      status.classList.add('form-live-status--error');
+    }
+
+    status.hidden = false;
+  }
+
   function setupEnquiryForm(form) {
     var submit = form.querySelector('button[type="submit"]');
     var status = form.querySelector('.form-live-status');
 
-    if (!submit || !status || !window.fetch) return;
+    if (!submit || !status || !window.fetch || !window.DOMParser) return;
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -75,7 +92,7 @@
       status.className = 'form-live-status';
       status.textContent = '';
 
-      fetch(form.action, {
+      fetch(form.action || window.location.href, {
         method: 'POST',
         body: new FormData(form),
         credentials: 'same-origin',
@@ -84,35 +101,27 @@
         if (!response.ok) {
           throw new Error('HTTP ' + response.status);
         }
+        return response.text();
+      }).then(function (html) {
+        var parsed = new DOMParser().parseFromString(html, 'text/html');
+        var resultNode = parsed.querySelector('[data-enquiry-result]');
+        var result = resultNode ? resultNode.getAttribute('data-enquiry-result') : '';
 
-        var finalUrl = new URL(response.url, window.location.href);
-        var sent = finalUrl.searchParams.get('sent');
+        if (!result) {
+          throw new Error('No form result returned');
+        }
 
-        if (sent === '1') {
-          status.textContent = 'Thank you. Your enquiry has been sent to D.A.K Travel.';
-          status.classList.add('form-live-status--success');
-          status.hidden = false;
+        showFormStatus(status, result);
+
+        if (result === 'success') {
           form.reset();
           var select = form.querySelector('[name="enquiry_type"]');
-          if (select) {
-            select.dispatchEvent(new Event('change'));
-          }
-          status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          return;
+          if (select) select.dispatchEvent(new Event('change'));
         }
 
-        if (sent === 'invalid') {
-          status.textContent = 'Please complete your name, a valid email address and your message.';
-          status.classList.add('form-live-status--error');
-          status.hidden = false;
-          return;
-        }
-
-        status.textContent = 'We could not send your enquiry. Please try again or use WhatsApp Us.';
-        status.classList.add('form-live-status--error');
-        status.hidden = false;
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }).catch(function () {
-        status.textContent = 'The enquiry could not be submitted from this preview. Please refresh the page and try again.';
+        status.textContent = 'The enquiry could not be submitted from this page. Please refresh and try again.';
         status.classList.add('form-live-status--error');
         status.hidden = false;
       }).finally(function () {
