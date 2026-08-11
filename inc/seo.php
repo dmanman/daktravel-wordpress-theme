@@ -18,6 +18,15 @@ function daktravel_has_seo_plugin() {
         || class_exists( 'All_in_One_SEO_Pack' );
 }
 
+function daktravel_current_language_tag() {
+    $locale = get_locale();
+    if ( ! $locale ) {
+        return 'en-ZA';
+    }
+
+    return str_replace( '_', '-', sanitize_text_field( $locale ) );
+}
+
 function daktravel_seo_defaults() {
     $defaults = array(
         'home' => array(
@@ -245,6 +254,8 @@ function daktravel_output_schema() {
         return;
     }
 
+    $language = daktravel_current_language_tag();
+
     $business = array(
         '@type'         => 'TravelAgency',
         '@id'           => home_url( '/#travelagency' ),
@@ -295,7 +306,7 @@ function daktravel_output_schema() {
         'url'           => home_url( '/' ),
         'name'          => 'D.A.K Travel',
         'alternateName' => 'DAK Travel',
-        'inLanguage'    => 'en-ZA',
+        'inLanguage'    => $language,
         'publisher'     => array( '@id' => home_url( '/#travelagency' ) ),
     );
 
@@ -308,7 +319,7 @@ function daktravel_output_schema() {
             '@id'        => trailingslashit( $page_url ) . '#webpage',
             'url'        => $page_url,
             'name'       => $meta['title'],
-            'inLanguage' => 'en-ZA',
+            'inLanguage' => $language,
             'isPartOf'   => array( '@id' => home_url( '/#website' ) ),
             'about'      => array( '@id' => home_url( '/#travelagency' ) ),
             'publisher'  => array( '@id' => home_url( '/#travelagency' ) ),
