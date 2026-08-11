@@ -1,9 +1,4 @@
 <?php
-$form_status = '';
-if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) && isset( $_POST['daktravel_enquiry_submit'] ) ) {
-    $form_status = daktravel_process_enquiry_submission();
-}
-
 get_header();
 
 $requested_type = isset( $_GET['type'] ) ? sanitize_key( wp_unslash( $_GET['type'] ) ) : '';
@@ -29,7 +24,8 @@ if ( 'Group or delegation' === $prefill_type ) {
     $prefill_mode = 'travel';
 }
 
-if ( ! $form_status && isset( $_GET['sent'] ) ) {
+$form_status = '';
+if ( isset( $_GET['sent'] ) ) {
     $sent = sanitize_text_field( wp_unslash( $_GET['sent'] ) );
     if ( '1' === $sent ) {
         $form_status = 'success';
@@ -74,7 +70,8 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
             <div class="form-message form-message--error">We could not send your enquiry. Please try again or use WhatsApp Us.</div>
         <?php endif; ?>
 
-        <form class="dak-enquiry-form" method="post" action="">
+        <form class="dak-enquiry-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+            <input type="hidden" name="action" value="daktravel_enquiry">
             <input type="hidden" name="daktravel_enquiry_submit" value="1">
             <input type="hidden" name="return_type" value="<?php echo esc_attr( $requested_type ); ?>">
             <?php wp_nonce_field( 'daktravel_enquiry', 'daktravel_enquiry_nonce' ); ?>
