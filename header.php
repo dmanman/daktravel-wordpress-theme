@@ -10,11 +10,10 @@
 
 <div class="utility-bar">
     <div class="container utility-inner">
-        <div class="utility-proof">Established 2006 · Johannesburg · IATA accredited · ASATA member · South Africa–Israel specialists</div>
+        <div class="utility-proof"><strong>Established 2006</strong><span>Johannesburg</span><span>IATA accredited</span><span>ASATA member</span></div>
         <div class="utility-links">
+            <span class="utility-specialist">South Africa–Israel specialists</span>
             <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking help</a>
-            <span aria-hidden="true">•</span>
-            <a class="utility-muted" href="tel:+27114405980">+27 11 440 5980</a>
         </div>
     </div>
 </div>
