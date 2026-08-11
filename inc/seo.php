@@ -27,11 +27,11 @@ function daktravel_seo_defaults() {
     $defaults = array(
         'home' => array(
             'title'       => 'South Africa to Israel Travel Specialists | D.A.K Travel',
-            'description' => 'D.A.K Travel specialises in flights and complex travel between South Africa and Israel, plus groups, delegations and business travel. WhatsApp our Johannesburg team.',
+            'description' => 'Established in Johannesburg in 2006, D.A.K Travel specialises in South Africa–Israel travel, complex flights, groups, delegations and business travel.',
         ),
         'israel-travel' => array(
             'title'       => 'South Africa to Israel Flights & Travel | D.A.K Travel',
-            'description' => 'Specialist South Africa–Israel travel planning from D.A.K Travel. We compare current routings, connections, baggage and fare flexibility for individuals, families, groups and organisations.',
+            'description' => 'Specialist South Africa–Israel travel planning from D.A.K Travel, established in 2006. We compare current routings, connections, baggage and fare flexibility.',
         ),
         'groups-delegations' => array(
             'title'       => 'Group & Delegation Travel South Africa | D.A.K Travel',
@@ -46,8 +46,8 @@ function daktravel_seo_defaults() {
             'description' => 'Multi-city, family, premium and complicated international travel planned by experienced D.A.K Travel consultants in Johannesburg.',
         ),
         'about' => array(
-            'title'       => 'About D.A.K Travel | Johannesburg Travel Specialists',
-            'description' => 'Meet D.A.K Travel, a Johannesburg travel agency specialising in South Africa–Israel travel, complex international journeys, groups and organisational travel.',
+            'title'       => 'About D.A.K Travel | Established Johannesburg Travel Agency',
+            'description' => 'D.A.K Travel is an established Johannesburg travel agency serving travellers since 2006, with specialist expertise in South Africa–Israel and complex international travel.',
         ),
         'contact' => array(
             'title'       => 'Contact D.A.K Travel | WhatsApp or Email Our Team',
@@ -169,13 +169,14 @@ function daktravel_output_schema() {
     }
 
     $business = array(
-        '@type'       => 'TravelAgency',
-        '@id'         => home_url( '/#travelagency' ),
-        'name'        => 'D.A.K Travel',
-        'url'         => home_url( '/' ),
-        'telephone'   => '+27 11 440 5980',
-        'description' => 'Johannesburg travel agency specialising in travel between South Africa and Israel, complex international journeys, groups, delegations and organisational travel.',
-        'areaServed'  => array(
+        '@type'        => 'TravelAgency',
+        '@id'          => home_url( '/#travelagency' ),
+        'name'         => 'D.A.K Travel',
+        'url'          => home_url( '/' ),
+        'telephone'    => '+27 11 440 5980',
+        'foundingDate' => '2006',
+        'description'  => 'Established in Johannesburg in 2006, D.A.K Travel specialises in travel between South Africa and Israel, complex international journeys, groups, delegations and organisational travel.',
+        'areaServed'   => array(
             array(
                 '@type' => 'Country',
                 'name'  => 'South Africa',
