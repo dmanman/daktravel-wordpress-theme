@@ -26,6 +26,7 @@ if ( is_page( 'flights-to-israel-from-johannesburg' ) ) {
         <div class="utility-proof"><strong>Established 2006</strong><span>Johannesburg</span><span>IATA accredited</span><span>ASATA member</span></div>
         <div class="utility-links">
             <a class="utility-specialist" href="<?php echo esc_url( $specialist_url ); ?>"><?php echo esc_html( $specialist_label ); ?></a>
+            <?php echo wp_kses_post( daktravel_language_switcher() ); ?>
             <a href="<?php echo esc_url( home_url( '/contact/?type=existing#enquiry' ) ); ?>">Existing booking</a>
         </div>
     </div>
