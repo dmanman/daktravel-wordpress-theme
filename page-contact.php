@@ -62,11 +62,7 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
 
 <section class="dak-intro-section" id="enquiry">
     <div class="container utility-page-shell">
-        <div class="section-intro">
-            <div class="eyebrow">Email enquiry</div>
-            <h2>Keep it simple.</h2>
-            <p class="lead">Start with the basics. Extra fields only appear when they are useful for that type of enquiry.</p>
-        </div>
+        <div class="eyebrow">Email enquiry</div>
 
         <?php if ( 'success' === $form_status ) : ?>
             <div class="form-message form-message--success">Thank you. Your enquiry has been sent to D.A.K Travel.</div>
