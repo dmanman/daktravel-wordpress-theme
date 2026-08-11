@@ -63,9 +63,9 @@
             </div>
             <div class="trust-panel" aria-label="D.A.K Travel credentials">
                 <div class="trust-panel-title">Professional credentials</div>
-                <div class="credential-row"><span class="credential-mark">IATA</span><div><strong>IATA accredited</strong><small>IATA No. 772 1572-5</small></div></div>
-                <div class="credential-row"><span class="credential-mark">ASATA</span><div><strong>ASATA member</strong><small>South African travel industry membership</small></div></div>
-                <div class="credential-row"><span class="credential-mark">CT</span><div><strong>Club Travel affiliate</strong><small>Part of an established travel network</small></div></div>
+                <div class="credential-row"><?php echo wp_kses_post( daktravel_credential_mark( 'daktravel_iata_logo', 'IATA', 'IATA Accredited Agent' ) ); ?><div><strong>IATA accredited</strong><small>IATA No. 772 1572-5</small></div></div>
+                <div class="credential-row"><?php echo wp_kses_post( daktravel_credential_mark( 'daktravel_asata_logo', 'ASATA', 'ASATA member' ) ); ?><div><strong>ASATA member</strong><small>South African travel industry membership</small></div></div>
+                <div class="credential-row"><?php echo wp_kses_post( daktravel_credential_mark( 'daktravel_clubtravel_logo', 'CT', 'Club Travel affiliate' ) ); ?><div><strong>Club Travel affiliate</strong><small>Part of an established travel network</small></div></div>
                 <div class="trust-signoff">Established · Accredited · Specialist · Personal</div>
             </div>
         </div>
