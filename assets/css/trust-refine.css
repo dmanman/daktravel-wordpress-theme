@@ -1,5 +1,50 @@
 /* D.A.K Travel trust, experience and premium-positioning layer */
 
+/* High-contrast utility bar: short, readable and deliberately secondary. */
+.utility-bar {
+  background: #08141f;
+  color: #ffffff;
+}
+.utility-inner {
+  min-height: 40px;
+  gap: 28px;
+}
+.utility-proof,
+.utility-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: .79rem;
+  line-height: 1.35;
+  letter-spacing: .015em;
+  opacity: 1;
+}
+.utility-proof strong {
+  color: #f0d8ae;
+  font-weight: 800;
+}
+.utility-proof span,
+.utility-links > * {
+  color: rgba(255,255,255,.92);
+}
+.utility-proof span::before,
+.utility-links > * + *::before {
+  content: "·";
+  color: rgba(255,255,255,.42);
+  margin: 0 10px;
+}
+.utility-links a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.utility-links a:hover { color: #f0d8ae; }
+.utility-specialist {
+  color: #f0d8ae !important;
+  font-weight: 750;
+}
+
 .trust-section {
   position: relative;
   padding: 92px 0 98px;
@@ -16,14 +61,8 @@
   align-items: center;
 }
 
-.trust-copy h2 {
-  max-width: 760px;
-}
-
-.trust-copy p:not(.lead) {
-  max-width: 720px;
-  color: #64707b;
-}
+.trust-copy h2 { max-width: 760px; }
+.trust-copy p:not(.lead) { max-width: 720px; color: #64707b; }
 
 .trust-panel {
   position: relative;
@@ -34,7 +73,6 @@
   box-shadow: 0 30px 85px rgba(11,23,36,.18);
   overflow: hidden;
 }
-
 .trust-panel::before {
   content: "";
   position: absolute;
@@ -42,7 +80,6 @@
   border: 1px solid rgba(255,255,255,.08);
   pointer-events: none;
 }
-
 .trust-panel::after {
   content: "";
   position: absolute;
@@ -53,7 +90,6 @@
   border: 1px solid rgba(215,194,160,.22);
   border-radius: 50%;
 }
-
 .trust-panel-title {
   position: relative;
   z-index: 1;
@@ -64,7 +100,6 @@
   letter-spacing: .18em;
   text-transform: uppercase;
 }
-
 .credential-row {
   position: relative;
   z-index: 1;
@@ -75,7 +110,6 @@
   padding: 21px 0;
   border-top: 1px solid rgba(255,255,255,.12);
 }
-
 .credential-mark {
   display: grid;
   place-items: center;
@@ -86,66 +120,34 @@
   font-weight: 800;
   letter-spacing: .08em;
 }
-
-.credential-row strong {
-  display: block;
-  margin-bottom: 3px;
-  color: #fff;
-  font-size: .98rem;
-}
-
-.credential-row small {
-  display: block;
-  color: rgba(255,255,255,.58);
-  font-size: .78rem;
-  line-height: 1.45;
-}
-
+.credential-row strong { display: block; margin-bottom: 3px; color: #fff; font-size: .98rem; }
+.credential-row small { display: block; color: rgba(255,255,255,.68); font-size: .8rem; line-height: 1.45; }
 .trust-signoff {
   position: relative;
   z-index: 1;
   padding-top: 21px;
   border-top: 1px solid rgba(255,255,255,.12);
-  color: rgba(255,255,255,.7);
-  font-size: .68rem;
+  color: rgba(255,255,255,.76);
+  font-size: .7rem;
   font-weight: 750;
   letter-spacing: .13em;
   text-transform: uppercase;
 }
 
-/* Make premium credentials visible without looking promotional. */
-.confidence-item .proof-no {
-  color: #9b733c;
-}
-
-.feature-point {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
-}
-
+.confidence-item .proof-no { color: #9b733c; }
+.feature-point { box-shadow: inset 0 1px 0 rgba(255,255,255,.035); }
 .feature-point strong {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.12rem;
   font-weight: 500;
 }
-
-/* Increase refinement of key panels. */
 .editorial-panel,
 .written-contact-panel,
 .process-step,
 .service-card,
-.confidence-item {
-  border-color: rgba(11,23,36,.075);
-}
-
-.editorial-panel {
-  box-shadow: 0 24px 70px rgba(11,23,36,.085);
-}
-
-.final-cta {
-  position: relative;
-  overflow: hidden;
-}
-
+.confidence-item { border-color: rgba(11,23,36,.075); }
+.editorial-panel { box-shadow: 0 24px 70px rgba(11,23,36,.085); }
+.final-cta { position: relative; overflow: hidden; }
 .final-cta::after {
   content: "";
   position: absolute;
@@ -156,34 +158,47 @@
   border: 1px solid rgba(215,194,160,.17);
   border-radius: 50%;
 }
+.final-cta-inner { position: relative; z-index: 1; }
 
-.final-cta-inner {
-  position: relative;
-  z-index: 1;
+/* Hidden email-disclaimer utility page. It is intentionally not in the main navigation. */
+.utility-page { background: #f7f4ee; min-height: 60vh; }
+.utility-page-hero { padding: 68px 0 34px; }
+.utility-page-shell { max-width: 900px; }
+.utility-page-hero h1 { margin-bottom: 12px; font-size: clamp(2.6rem,5vw,4.2rem); }
+.utility-page-hero p { max-width: 680px; color: #68737e; }
+.utility-page-content { padding: 0 0 86px; }
+.legal-card {
+  background: #fff;
+  padding: 42px 46px;
+  border: 1px solid rgba(11,23,36,.08);
+  box-shadow: 0 20px 60px rgba(11,23,36,.07);
+  color: #46515d;
 }
+.legal-card h2,
+.legal-card h3 { font-family: Georgia, "Times New Roman", serif; }
+.legal-card p:last-child { margin-bottom: 0; }
+.utility-page-back { margin-top: 24px; }
+.utility-page-back a { color: var(--ink); font-weight: 700; text-decoration: none; }
 
 @media (max-width: 980px) {
-  .trust-grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-
-  .trust-panel {
-    max-width: 720px;
-  }
+  .utility-inner { align-items: flex-start; padding: 9px 0; }
+  .utility-proof { max-width: 65%; }
+  .utility-specialist { display: none; }
+  .trust-grid { grid-template-columns: 1fr; gap: 48px; }
+  .trust-panel { max-width: 720px; }
 }
 
 @media (max-width: 680px) {
-  .trust-section {
-    padding: 68px 0 72px;
-  }
-
-  .trust-panel {
-    padding: 32px 26px 28px;
-  }
-
-  .credential-row {
-    grid-template-columns: 62px 1fr;
-    gap: 16px;
-  }
+  .utility-bar { display: block !important; }
+  .utility-inner { min-height: auto; display: block; padding: 9px 0; }
+  .utility-proof { max-width: none; font-size: .73rem; }
+  .utility-proof span:nth-of-type(1) { display: none; }
+  .utility-links { margin-top: 4px; font-size: .72rem; }
+  .utility-specialist { display: none; }
+  .trust-section { padding: 68px 0 72px; }
+  .trust-panel { padding: 32px 26px 28px; }
+  .credential-row { grid-template-columns: 62px 1fr; gap: 16px; }
+  .utility-page-hero { padding: 48px 0 24px; }
+  .utility-page-content { padding-bottom: 60px; }
+  .legal-card { padding: 28px 24px; }
 }
