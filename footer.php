@@ -9,14 +9,20 @@
         </div>
         <div>
             <h3 style="color:#fff;">Services</h3>
-            <p><a href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Israel Travel</a><br>
-            <a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Groups & Delegations</a><br>
+            <p><a href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">South Africa–Israel Travel</a><br>
+            <a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Groups &amp; Delegations</a><br>
             <a href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Business Travel</a><br>
             <a href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Complex Travel</a></p>
+            <h3 style="color:#fff;margin-top:26px;">Israel Flight Guides</h3>
+            <p><a href="<?php echo esc_url( home_url( '/flights-to-israel-from-johannesburg/' ) ); ?>">Johannesburg to Israel</a><br>
+            <a href="<?php echo esc_url( home_url( '/flights-to-israel-from-cape-town/' ) ); ?>">Cape Town to Israel</a><br>
+            <a href="<?php echo esc_url( home_url( '/flights-to-israel-from-durban/' ) ); ?>">Durban to Israel</a><br>
+            <a href="<?php echo esc_url( home_url( '/flights-from-israel-to-south-africa/' ) ); ?>">Israel to South Africa</a></p>
         </div>
         <div>
             <h3 style="color:#fff;">Information</h3>
-            <p><a href="<?php echo esc_url( home_url( '/travel-updates/' ) ); ?>">Travel Updates</a><br>
+            <p><a href="<?php echo esc_url( home_url( '/south-africa-israel-flight-routes/' ) ); ?>">South Africa–Israel Flight Routes</a><br>
+            <a href="<?php echo esc_url( home_url( '/travel-updates/' ) ); ?>">Travel Updates</a><br>
             <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a><br>
             <a href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Contact</a><br>
             <a href="<?php echo esc_url( home_url( '/privacy-notice/' ) ); ?>">Privacy &amp; Confidentiality</a><br>
