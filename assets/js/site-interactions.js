@@ -34,12 +34,12 @@
     var hero = document.querySelector('.home .hero-media');
     if (!hero) return;
 
-    /* Real photograph of Tel Aviv beach and skyline by Joshi Milestoner, Unsplash. */
-    var photo = 'https://images.unsplash.com/photo-1752167096396-71504587bd48?auto=format&fit=crop&fm=jpg&q=84&w=1800';
+    /* Real airport-terminal photograph by Matthias Pretterhofer, Unsplash. */
+    var photo = 'https://images.unsplash.com/photo-1661764337360-2b4c1a6721fb?auto=format&fit=crop&fm=jpg&q=84&w=2200';
 
     hero.style.setProperty(
       'background-image',
-      'linear-gradient(180deg, rgba(7,17,27,.08) 0%, rgba(7,17,27,.16) 42%, rgba(7,17,27,.58) 100%), url("' + photo + '")',
+      'linear-gradient(180deg, rgba(7,17,27,.04) 0%, rgba(7,17,27,.10) 42%, rgba(7,17,27,.48) 100%), url("' + photo + '")',
       'important'
     );
     hero.style.setProperty('background-size', 'cover', 'important');
@@ -48,7 +48,7 @@
 
     var card = hero.querySelector('.advisory-card');
     if (card) {
-      card.style.background = 'rgba(7, 17, 27, .72)';
+      card.style.background = 'rgba(7, 17, 27, .68)';
       card.style.backdropFilter = 'blur(4px)';
       card.style.webkitBackdropFilter = 'blur(4px)';
     }
