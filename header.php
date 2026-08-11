@@ -24,8 +24,8 @@
             <?php if ( has_custom_logo() ) : ?>
                 <?php the_custom_logo(); ?>
             <?php else : ?>
-                <a class="brand-wordmark" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <strong>D.A.K TRAVEL</strong><span>TRAVEL ADVISORY · SINCE 2006</span>
+                <a class="legacy-logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="D.A.K Travel home">
+                    <img class="legacy-site-logo" src="<?php echo esc_url( daktravel_existing_upload_url( '/2015/08/cropped-logo.daktravel.jpg' ) ); ?>" alt="D.A.K Travel">
                 </a>
             <?php endif; ?>
         </div>
