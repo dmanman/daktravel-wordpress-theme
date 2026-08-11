@@ -1,0 +1,278 @@
+/* D.A.K Travel — final premium-simple design layer
+   Principles: real imagery, strong hierarchy, restrained colour, fewer cards,
+   generous whitespace, high contrast, simple copy and written-contact first. */
+
+:root {
+  --dak-ink: #0a1723;
+  --dak-navy: #11283d;
+  --dak-gold: #a98049;
+  --dak-cream: #f6f2ea;
+  --dak-paper: #fffdf9;
+  --dak-muted: #68737d;
+  --dak-line: rgba(10,23,35,.11);
+  --dak-soft-shadow: 0 22px 60px rgba(10,23,35,.09);
+  --dak-deep-shadow: 0 34px 90px rgba(10,23,35,.17);
+}
+
+/* Less visual noise. Premium comes from proportion, typography and imagery. */
+body { background: var(--dak-paper); }
+.section { padding: 96px 0; }
+.section-intro { max-width: 760px; margin-bottom: 42px; }
+.section-intro .lead { max-width: 690px; }
+
+/* Utility bar: short and readable, never a wall of micro-copy. */
+.utility-bar { background: #07131e; }
+.utility-inner { min-height: 42px; }
+.utility-proof,
+.utility-links { font-size: .82rem; letter-spacing: 0; }
+.utility-proof strong { color: #f0d8ae; }
+.utility-proof span,
+.utility-links > * { color: rgba(255,255,255,.95); }
+.utility-links a { font-weight: 650; }
+
+/* Header is calmer and more editorial. */
+.site-header { box-shadow: 0 7px 28px rgba(10,23,35,.045); }
+.header-inner { min-height: 88px; }
+.site-nav a { font-weight: 650; }
+.header-email { font-weight: 650; }
+.btn { border-radius: 0; }
+.btn--whatsapp { box-shadow: none; }
+
+/* Main homepage hero: strong left message + one large visual. */
+.hero { padding: 78px 0 88px; }
+.hero-grid { grid-template-columns: minmax(0,.88fr) minmax(500px,1.12fr); gap: 82px; }
+.hero h1 { font-size: clamp(3.4rem,4.8vw,5.1rem); }
+.hero-copy p { max-width: 590px; }
+.hero-tags { gap: 8px 10px; }
+.hero-tag { background: transparent; padding: 6px 0; border: 0; margin-right: 12px; }
+.hero-media { min-height: 530px; border: 0; box-shadow: var(--dak-deep-shadow); }
+.hero-media::before { inset: 20px; }
+.contact-note { box-shadow: var(--dak-soft-shadow); }
+
+/* Proof should feel like a quiet brand strip, not ecommerce cards. */
+.confidence-bar { padding: 0; background: #fff; border-top: 1px solid var(--dak-line); border-bottom: 1px solid var(--dak-line); }
+.confidence-grid { transform: none; gap: 0; }
+.confidence-item {
+  box-shadow: none;
+  border: 0 !important;
+  border-right: 1px solid var(--dak-line) !important;
+  padding: 28px 34px;
+}
+.confidence-item:last-child { border-right: 0 !important; }
+.confidence-item .proof-no { margin-bottom: 8px; }
+
+/* Homepage trust section — more editorial, less card-heavy. */
+.trust-section { padding: 102px 0; }
+.trust-grid { gap: 96px; }
+.trust-panel { box-shadow: var(--dak-deep-shadow); }
+
+/* Privacy is a quiet reassurance, not a legal warning. */
+.confidentiality-section {
+  padding: 78px 0;
+  background: #fff;
+  border-top: 1px solid var(--dak-line);
+  border-bottom: 1px solid var(--dak-line);
+}
+.confidentiality-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(360px,.72fr);
+  gap: 88px;
+  align-items: center;
+}
+.confidentiality-copy h2 { max-width: 710px; }
+.confidentiality-copy p { max-width: 690px; }
+.confidentiality-points { border-top: 1px solid var(--dak-line); }
+.confidentiality-point { padding: 22px 0; border-bottom: 1px solid var(--dak-line); }
+.confidentiality-point strong { display: block; color: var(--dak-ink); margin-bottom: 5px; }
+.confidentiality-point span { color: var(--dak-muted); font-size: .92rem; }
+
+/* Fewer boxes. Service cards become editorial rows with restrained depth. */
+.service-grid { gap: 1px; background: var(--dak-line); }
+.service-card {
+  box-shadow: none;
+  border: 0;
+  min-height: 285px;
+  padding: 42px;
+}
+.service-card:hover { transform: none; box-shadow: none; }
+.service-card::after { display: none; }
+
+/* Interior pages */
+.dak-page-hero {
+  padding: 76px 0 86px;
+  background: linear-gradient(135deg,#fbfaf7 0%,#f3eee6 100%);
+}
+.dak-page-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0,.9fr) minmax(480px,1.1fr);
+  gap: 82px;
+  align-items: center;
+}
+.dak-page-hero-copy { max-width: 650px; }
+.dak-page-hero-copy h1 {
+  font-family: Georgia,"Times New Roman",serif;
+  color: var(--dak-ink);
+  font-size: clamp(3rem,4.7vw,5rem);
+  line-height: 1.02;
+  font-weight: 500;
+  margin: 0 0 26px;
+  letter-spacing: -.025em;
+}
+.dak-page-hero-copy .lead { max-width: 610px; }
+.dak-page-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+
+.dak-media-slot {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 15%,rgba(169,128,73,.24),transparent 28%),
+    linear-gradient(145deg,#0b1b2a,#1b3850);
+  box-shadow: var(--dak-deep-shadow);
+}
+.dak-media-slot::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255,255,255,.17);
+  pointer-events: none;
+}
+.dak-media-image { width: 100%; height: 100%; min-height: 500px; object-fit: cover; display: block; }
+.dak-media-slot.has-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,rgba(6,17,27,.04),rgba(6,17,27,.13));
+  z-index: 1;
+  pointer-events: none;
+}
+.dak-media-placeholder { display: grid; place-items: end start; padding: 46px; }
+.dak-media-placeholder span {
+  position: relative;
+  z-index: 2;
+  color: #d8c29c;
+  font-size: .72rem;
+  font-weight: 750;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.dak-intro-section { padding: 96px 0; }
+.dak-narrow { max-width: 760px; }
+.dak-feature-list {
+  margin-top: 44px;
+  border-top: 1px solid var(--dak-line);
+}
+.dak-feature-row {
+  display: grid;
+  grid-template-columns: 54px minmax(180px,.7fr) minmax(0,1.3fr);
+  gap: 28px;
+  align-items: start;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--dak-line);
+}
+.dak-feature-row .num { color: var(--dak-gold); font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+.dak-feature-row strong { color: var(--dak-ink); font-family: Georgia,"Times New Roman",serif; font-size: 1.2rem; font-weight: 500; }
+.dak-feature-row p { margin: 0; color: var(--dak-muted); }
+
+.dak-dark-band { padding: 90px 0; background: var(--dak-ink); color: #d7e0e7; }
+.dak-dark-band h2 { color: #fff; max-width: 760px; }
+.dak-dark-band p { color: #bec9d2; max-width: 700px; }
+.dak-dark-band .eyebrow { color: #d8c29c; }
+
+.dak-quiet-cta {
+  padding: 82px 0;
+  background: var(--dak-cream);
+  border-top: 1px solid var(--dak-line);
+}
+.dak-quiet-cta-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 54px;
+}
+.dak-quiet-cta h2 { max-width: 780px; margin-bottom: 12px; }
+.dak-quiet-cta p { margin-bottom: 0; max-width: 690px; }
+
+/* Contact form: looks like a premium enquiry form, not a plugin widget. */
+.dak-enquiry-form {
+  background: #fff;
+  border: 1px solid var(--dak-line);
+  padding: 46px;
+  box-shadow: var(--dak-soft-shadow);
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 24px; }
+.dak-enquiry-form label { display: block; color: var(--dak-ink); font-size: .84rem; font-weight: 700; }
+.dak-enquiry-form label > span { color: var(--dak-gold); margin-left: 3px; }
+.dak-enquiry-form input,
+.dak-enquiry-form select,
+.dak-enquiry-form textarea {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid rgba(10,23,35,.18);
+  border-radius: 0;
+  background: #fff;
+  color: var(--dak-ink);
+  font: inherit;
+  padding: 13px 14px;
+  outline: 0;
+}
+.dak-enquiry-form input:focus,
+.dak-enquiry-form select:focus,
+.dak-enquiry-form textarea:focus { border-color: var(--dak-gold); box-shadow: 0 0 0 2px rgba(169,128,73,.10); }
+.form-full { margin-top: 24px; }
+.form-submit { display: flex; align-items: center; gap: 18px; margin-top: 25px; }
+.form-submit span { color: var(--dak-muted); font-size: .82rem; }
+.dak-honeypot { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.form-message { margin-bottom: 24px; padding: 14px 16px; border: 1px solid var(--dak-line); background: #fff; }
+.form-message--success { border-left: 3px solid #2a745d; }
+.form-message--error { border-left: 3px solid #a44d45; }
+
+/* Legal/utility pages remain quiet and readable. */
+.legal-card { box-shadow: none; border-top: 2px solid var(--dak-gold); }
+
+/* Footer: reduce clutter and make written channels prominent. */
+.site-footer { padding-top: 70px; }
+.site-footer p { color: #b9c4cd; }
+
+@media (max-width: 1120px) {
+  .hero-grid,
+  .dak-page-hero-grid { grid-template-columns: 1fr 1fr; gap: 52px; }
+  .dak-media-slot,
+  .dak-media-image { min-height: 450px; }
+  .confidentiality-grid { gap: 52px; }
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .dak-page-hero-grid,
+  .confidentiality-grid { grid-template-columns: 1fr; }
+  .hero-media-wrap,
+  .dak-media-slot { max-width: 760px; }
+  .dak-page-hero { padding: 58px 0 70px; }
+  .dak-quiet-cta-inner { display: block; }
+  .dak-quiet-cta-inner .dak-page-actions { margin-top: 28px; }
+}
+
+@media (max-width: 680px) {
+  .section,
+  .dak-intro-section { padding: 70px 0; }
+  .utility-inner { display: flex; align-items: center; padding: 8px 0; }
+  .utility-proof span { display: none; }
+  .utility-links .utility-specialist { display: none; }
+  .hero { padding: 54px 0 65px; }
+  .hero h1,
+  .dak-page-hero-copy h1 { font-size: clamp(2.75rem,13vw,4rem); }
+  .hero-media,
+  .dak-media-slot,
+  .dak-media-image { min-height: 400px; }
+  .confidence-grid { grid-template-columns: 1fr; }
+  .confidence-item { border-right: 0 !important; border-bottom: 1px solid var(--dak-line) !important; padding: 22px 0; }
+  .confidence-item:last-child { border-bottom: 0 !important; }
+  .dak-feature-row { grid-template-columns: 42px 1fr; gap: 14px 18px; }
+  .dak-feature-row p { grid-column: 2; }
+  .dak-enquiry-form { padding: 28px 22px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-submit { display: block; }
+  .form-submit span { display: block; margin-top: 10px; }
+}
