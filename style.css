@@ -3,7 +3,7 @@ Theme Name: D.A.K Travel
 Theme URI: https://daktravel.co.za/
 Author: D.A.K Travel
 Description: Custom WordPress theme for D.A.K Travel — groups, delegations, business travel, Israel travel and complex international journeys.
-Version: 0.1.0
+Version: 0.1.1
 Text Domain: daktravel
 */
 
@@ -15,7 +15,7 @@ Text Domain: daktravel
   --dak-surface: #EEF2F5;
   --dak-text: #374151;
   --dak-white: #FFFFFF;
-  --dak-max: 1200px;
+  --dak-max: 1280px;
 }
 
 * { box-sizing: border-box; }
@@ -29,28 +29,37 @@ body {
 }
 a { color: var(--dak-navy); }
 img { max-width: 100%; height: auto; }
-.container { width: min(calc(100% - 32px), var(--dak-max)); margin-inline: auto; }
+.container { width: min(calc(100% - 40px), var(--dak-max)); margin-inline: auto; }
 .section { padding: 88px 0; }
 .section--soft { background: var(--dak-bg); }
 .eyebrow { color: var(--dak-gold); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
 h1, h2, h3 { color: var(--dak-navy-dark); line-height: 1.15; margin-top: 0; }
-h1 { font-size: clamp(2.4rem, 5vw, 3.5rem); }
+h1 { font-size: clamp(2.7rem, 5vw, 4.35rem); letter-spacing: -.025em; }
 h2 { font-size: clamp(2rem, 4vw, 2.6rem); }
 h3 { font-size: 1.35rem; }
-.btn { display: inline-block; padding: 14px 22px; border-radius: 8px; font-weight: 700; text-decoration: none; margin-right: 10px; margin-bottom: 10px; }
+.btn { display: inline-block; padding: 14px 22px; border-radius: 9px; font-weight: 700; text-decoration: none; margin-right: 8px; margin-bottom: 8px; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(11,29,48,.10); }
 .btn--primary { background: var(--dak-navy); color: var(--dak-white); }
-.btn--secondary { border: 1px solid var(--dak-navy); color: var(--dak-navy); }
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.97); border-bottom: 1px solid #e5e7eb; }
-.header-inner { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.site-branding a { font-weight: 800; font-size: 1.25rem; text-decoration: none; color: var(--dak-navy-dark); }
-.site-nav ul { display: flex; flex-wrap: wrap; gap: 18px; list-style: none; padding: 0; margin: 0; }
-.site-nav a { text-decoration: none; font-weight: 600; }
+.btn--secondary { border: 1px solid var(--dak-navy); color: var(--dak-navy); background: #fff; }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.98); border-bottom: 1px solid #e5e7eb; box-shadow: 0 2px 12px rgba(11,29,48,.03); }
+.header-inner { min-height: 86px; display: grid; grid-template-columns: minmax(210px, 300px) 1fr auto; align-items: center; gap: 28px; }
+.site-branding { display:flex; align-items:center; }
+.site-branding .custom-logo-link { display:block; line-height:0; }
+.site-branding .custom-logo { width: auto; max-width: 270px; max-height: 72px; object-fit: contain; }
+.site-branding > a:not(.custom-logo-link) { font-weight: 800; font-size: 1.25rem; text-decoration: none; color: var(--dak-navy-dark); }
+.site-nav { justify-self:center; }
+.site-nav ul { display: flex; align-items:center; flex-wrap: nowrap; gap: 18px; list-style: none; padding: 0; margin: 0; }
+.site-nav a { text-decoration: none; font-weight: 650; font-size: .94rem; white-space: nowrap; color: var(--dak-navy-dark); }
+.site-nav a:hover { color: var(--dak-gold); }
+.header-cta { display:flex; align-items:center; white-space: nowrap; }
+.header-cta .btn { margin-bottom:0; }
 .hero { background: linear-gradient(135deg, var(--dak-bg), var(--dak-white)); }
-.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 52px; align-items: center; }
-.hero-placeholder { min-height: 420px; border-radius: 18px; background: var(--dak-surface); display: grid; place-items: center; color: #64748b; text-align: center; padding: 30px; }
-.trust-line { margin-top: 20px; font-weight: 600; color: #475569; }
+.hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 58px; align-items: center; min-height: 650px; }
+.hero p { font-size: 1.16rem; max-width: 760px; }
+.hero-placeholder { min-height: 500px; border-radius: 24px; background: var(--dak-surface); display: grid; place-items: center; color: #64748b; text-align: center; padding: 44px; }
+.trust-line { margin-top: 24px; font-weight: 650; color: #475569; }
 .cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-.card { padding: 28px; border: 1px solid #e5e7eb; border-radius: 14px; background: var(--dak-white); }
+.card { padding: 30px; border: 1px solid #e5e7eb; border-radius: 16px; background: var(--dak-white); box-shadow: 0 10px 30px rgba(11,29,48,.035); }
 .card p:last-child { margin-bottom: 0; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; counter-reset: dakstep; }
@@ -60,17 +69,31 @@ h3 { font-size: 1.35rem; }
 .site-footer a { color: #fff; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
 .mobile-actions { display:none; }
+@media (max-width: 1180px) {
+  .header-inner { grid-template-columns: minmax(180px,240px) 1fr auto; gap:18px; }
+  .site-branding .custom-logo { max-width: 220px; max-height: 64px; }
+  .site-nav ul { gap: 12px; }
+  .site-nav a { font-size: .87rem; }
+  .header-cta .btn--secondary { display:none; }
+}
 @media (max-width: 900px) {
-  .site-nav { display:none; }
+  .header-inner { display:flex; justify-content:space-between; }
+  .site-nav, .header-cta { display:none; }
+  .site-branding .custom-logo { max-width: 240px; max-height: 62px; }
   .hero-grid, .split { grid-template-columns: 1fr; }
+  .hero-grid { min-height:auto; padding: 20px 0; }
+  .hero-placeholder { min-height: 360px; }
   .cards { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr; }
   .section { padding: 60px 0; }
-  .mobile-actions { position: fixed; display:grid; grid-template-columns: repeat(3,1fr); bottom:0; left:0; right:0; z-index:60; background:#fff; border-top:1px solid #e5e7eb; }
+  .mobile-actions { position: fixed; display:grid; grid-template-columns: repeat(3,1fr); bottom:0; left:0; right:0; z-index:60; background:#fff; border-top:1px solid #e5e7eb; box-shadow:0 -5px 20px rgba(11,29,48,.08); }
   .mobile-actions a { padding: 12px 6px; text-align:center; text-decoration:none; font-weight:700; }
   body { padding-bottom: 50px; }
 }
 @media (max-width: 600px) {
+  .container { width: min(calc(100% - 28px), var(--dak-max)); }
   .cards, .footer-grid { grid-template-columns: 1fr; }
-  .header-inner { min-height: 64px; }
+  .header-inner { min-height: 68px; }
+  .site-branding .custom-logo { max-width: 210px; max-height: 56px; }
+  h1 { font-size: clamp(2.55rem, 12vw, 3.5rem); }
 }
