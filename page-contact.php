@@ -51,7 +51,7 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
                 <p class="lead">For something quick, use WhatsApp. For a quotation or a longer request, send the short form below.</p>
             <?php endif; ?>
             <div class="dak-page-actions">
-                <a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a>
+                <a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp Us</a>
                 <a class="btn btn--outline" href="#enquiry">Email Enquiry</a>
             </div>
             <p class="contact-phone"><strong>Telephone:</strong> <a href="tel:+27114405980">+27 11 440 5980</a> <span>if you prefer to call</span></p>
@@ -69,7 +69,7 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
         <?php elseif ( 'invalid' === $form_status ) : ?>
             <div class="form-message form-message--error">Please complete your name, a valid email address and your message.</div>
         <?php elseif ( 'error' === $form_status ) : ?>
-            <div class="form-message form-message--error">We could not send your enquiry. Please try again or use WhatsApp D.A.K.</div>
+            <div class="form-message form-message--error">We could not send your enquiry. Please try again or WhatsApp us.</div>
         <?php endif; ?>
 
         <form class="dak-enquiry-form" method="post" action="">
