@@ -1,148 +1,168 @@
 <?php get_header(); ?>
 <main>
-    <section class="hero section">
+    <section class="hero">
         <div class="container hero-grid">
             <div class="hero-copy">
-                <div class="eyebrow">Johannesburg • South Africa</div>
+                <div class="eyebrow">Johannesburg · South Africa</div>
                 <h1>Travel, personally managed.</h1>
                 <p>D.A.K Travel handles complex international journeys, groups, delegations and organisational travel with experience, discretion and personal accountability.</p>
-                <p>We compare the whole journey — routing, timing, flexibility and practical detail — then remain available when plans change.</p>
+                <p>Start with a conversation. We assess the whole journey — routing, timing, flexibility and practical detail — then remain involved when plans change.</p>
                 <div class="hero-actions">
-                    <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>">Plan My Journey</a>
-                    <a class="btn btn--secondary" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a new travel enquiry.' ) ); ?>">Speak to a Travel Specialist</a>
+                    <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>">Start Planning</a>
+                    <a class="text-link" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance planning a journey.' ) ); ?>">WhatsApp a specialist</a>
                 </div>
-                <div class="trust-line">IATA accredited • ASATA member • Club Travel affiliate • Johannesburg based</div>
+                <div class="hero-tags">
+                    <span>Groups &amp; Delegations</span>
+                    <span>Business Travel</span>
+                    <span>Israel Travel</span>
+                    <span>Complex Journeys</span>
+                </div>
             </div>
-            <div class="hero-placeholder">
-                <div><strong>Signature photography</strong><br>Reserved for a premium, genuine D.A.K image — consultant with client, discreetly composed.</div>
+
+            <div class="hero-media-wrap">
+                <div class="hero-media">
+                    <div class="hero-media-kicker">D.A.K Travel Advisory</div>
+                    <div class="hero-media-message">
+                        <strong>Your journey, considered end to end.</strong>
+                        <span>Replace this art panel with a strong real D.A.K or destination photograph once approved.</span>
+                    </div>
+                </div>
+                <div class="hero-note">
+                    <strong>One accountable point of contact</strong>
+                    From first enquiry through departure, changes and return.
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section class="confidence-bar" aria-label="D.A.K Travel strengths">
+        <div class="container confidence-grid">
+            <div class="confidence-item"><strong>Personal travel management</strong><span>A known consultant who understands the booking.</span></div>
+            <div class="confidence-item"><strong>Complex itinerary expertise</strong><span>Multi-origin journeys, groups, connections and fare conditions.</span></div>
+            <div class="confidence-item"><strong>Human support when it matters</strong><span>Clear assistance before, during and after travel.</span></div>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div class="intro-copy">
-                <div class="eyebrow">A different kind of travel agency</div>
-                <h2>When the journey matters, the details matter.</h2>
-                <p>A complex trip can involve domestic feeder flights, different departure cities, passports, fare conditions, special requests, payment deadlines and several people who all need accurate information. D.A.K brings those moving parts together and gives the traveller or organising body one experienced point of contact.</p>
+            <div class="section-intro">
+                <div class="eyebrow">How we can help</div>
+                <h2>Not every journey belongs in a booking engine.</h2>
+                <p class="lead">When several travellers, cities, suppliers or deadlines are involved, the value is in getting the entire journey right. D.A.K provides experienced judgement and one clear point of responsibility.</p>
             </div>
-            <div class="cards">
-                <article class="card"><h3>Groups & Delegations</h3><p>Multi-origin itineraries, passenger administration, deadlines and clear coordination for organisations and travelling groups.</p><a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Discover group travel →</a></article>
-                <article class="card"><h3>Business & Organisational Travel</h3><p>A responsive human travel desk for organisations that need control, reporting and reliable support.</p><a href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Explore business travel →</a></article>
-                <article class="card"><h3>South Africa–Israel</h3><p>Specialist advice on current routing options, fare flexibility, domestic connections and travel requirements.</p><a href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Explore Israel travel →</a></article>
-                <article class="card"><h3>Complex Personal Travel</h3><p>Multi-city travel, families, elderly passengers, premium cabins and journeys where personal advice matters.</p><a href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Explore complex travel →</a></article>
+
+            <div class="service-grid">
+                <article class="service-card">
+                    <div class="service-no">01 · GROUPS</div>
+                    <h3>Groups &amp; Delegations</h3>
+                    <p>Multi-origin travel, passenger coordination, payment deadlines, documentation, feeder flights and clear communication for the organiser.</p>
+                    <a class="text-link" href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Explore group travel</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-no">02 · ORGANISATIONS</div>
+                    <h3>Business Travel</h3>
+                    <p>A responsive travel desk for businesses and organisations that need approvals, reporting, flexible options and dependable human support.</p>
+                    <a class="text-link" href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Explore business travel</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-no">03 · SPECIALIST DESK</div>
+                    <h3>South Africa–Israel Travel</h3>
+                    <p>Current routing advice, domestic connections, fare flexibility and specialist support for individuals, families, groups and organisations.</p>
+                    <a class="text-link" href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Explore Israel travel</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-no">04 · PERSONAL</div>
+                    <h3>Complex Personal Travel</h3>
+                    <p>Multi-city itineraries, families, elderly travellers, premium cabins and journeys where the cheapest search result is not necessarily the right answer.</p>
+                    <a class="text-link" href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Explore complex travel</a>
+                </article>
             </div>
         </div>
     </section>
 
-    <section class="section section--soft">
-        <div class="container split">
+    <section class="section section--ink">
+        <div class="container dark-feature">
             <div>
                 <div class="eyebrow">Why D.A.K</div>
-                <h2>Not another booking engine.</h2>
-                <p>Technology is excellent at showing options. It is less effective at taking responsibility for a complicated journey.</p>
-                <p>D.A.K combines experienced judgement with modern travel systems, so clients receive clear advice before committing and a known person to contact afterwards.</p>
+                <h2>A booking is one transaction. We manage the journey around it.</h2>
+                <p>Leading enquiry-led travel companies place expertise, personalisation and the human relationship ahead of the booking button. D.A.K applies that same principle to the work we already do: complicated flights, groups, organisations and journeys where somebody needs to stay accountable.</p>
+                <a class="btn btn--light" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">Meet D.A.K Travel</a>
             </div>
-            <div class="feature-panel">
-                <h3>The D.A.K standard</h3>
-                <p><strong>Considered choices</strong><br>Price, routing, connection time and flexibility assessed together.</p>
-                <p><strong>One accountable consultant</strong><br>A real person who understands your booking.</p>
-                <p><strong>Human intervention</strong><br>Support when schedules change or plans need to be adjusted.</p>
-                <p><strong>End-to-end coordination</strong><br>Particularly valuable for groups and complex itineraries.</p>
+            <div class="feature-points">
+                <div class="feature-point"><strong>We listen first</strong><span>Your priorities determine the itinerary — not an algorithmic ranking.</span></div>
+                <div class="feature-point"><strong>We compare beyond price</strong><span>Routing, timing, baggage, flexibility and practical risk are considered together.</span></div>
+                <div class="feature-point"><strong>We coordinate the details</strong><span>Names, deadlines, domestic sectors, special requests and related arrangements stay connected.</span></div>
+                <div class="feature-point"><strong>We remain reachable</strong><span>When plans change, you have an agency that already understands the booking.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--ivory">
+        <div class="container">
+            <div class="section-intro">
+                <div class="eyebrow">The D.A.K process</div>
+                <h2>Start with a conversation.</h2>
+                <p class="lead">Premium enquiry-led travel brands convert by making the first step easy and personal. We do the same: tell us what needs to happen, and we take it from there.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step"><div class="step-no">01 · DISCOVER</div><h3>Tell us what matters</h3><p>Dates, travellers, cities, purpose, flexibility and any non-negotiable requirements.</p></div>
+                <div class="process-step"><div class="step-no">02 · DESIGN</div><h3>We assess the whole journey</h3><p>We compare the sensible options and explain the differences that actually matter.</p></div>
+                <div class="process-step"><div class="step-no">03 · MANAGE</div><h3>We coordinate and stay involved</h3><p>Once approved, we manage the booking details and assist as the journey approaches and changes arise.</p></div>
             </div>
         </div>
     </section>
 
     <section class="section">
-        <div class="container split">
+        <div class="container editorial-split">
             <div>
-                <div class="eyebrow">Groups & Delegations</div>
-                <h2>One group. One travel plan. One accountable coordinator.</h2>
-                <p>Group travel is not simply a collection of tickets. It requires accurate names, suitable flights, domestic connections, payment control, document management and consistent communication.</p>
-                <p>D.A.K coordinates the arrangement from the first enquiry through departure and return.</p>
-                <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Request a Group Proposal</a>
+                <div class="eyebrow">Groups &amp; Delegations</div>
+                <h2>One organiser should not have to manage thirteen separate journeys.</h2>
+                <p class="lead">D.A.K consolidates travellers, routes, deadlines and changes into one coordinated movement — particularly valuable when passengers begin in different cities or return differently.</p>
+                <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Plan a Group Journey</a>
             </div>
-            <div class="card">
-                <h3>Designed for complexity</h3>
-                <p>Multi-origin planning • group flight requests • passenger and passport tracking • ticketing deadlines • domestic feeder flights • accommodation • transfers • special requests • travel insurance • traveller-ready itineraries • change and disruption assistance.</p>
+            <div class="editorial-panel">
+                <div class="case-study-label">Recent type of work</div>
+                <h3>Multi-origin international delegation</h3>
+                <p>Passengers coordinated from Johannesburg, Durban, George, East London and Mthatha, including domestic feeder flights, international connections, passenger information and differing return requirements.</p>
+                <div class="case-study">
+                    <span class="case-study-label">What D.A.K managed</span>
+                    <strong>One clear travel picture from many moving parts.</strong>
+                    <span>Flight coordination · passenger lists · booking deadlines · routing checks · client-ready itineraries</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section section--soft">
-        <div class="container split">
-            <div class="card">
-                <h3>A travel desk that knows your organisation</h3>
-                <p>Named consultant • approval-based booking • traveller profiles • project references • fare comparisons • reporting • domestic and international arrangements • change and cancellation support.</p>
+    <section class="section section--ivory">
+        <div class="container editorial-split">
+            <div class="editorial-panel">
+                <div class="case-study-label">Specialist desk</div>
+                <h3>South Africa–Israel travel</h3>
+                <p>Schedules and routings change. D.A.K does not rely on static route promises; we assess the options available for your actual dates and priorities.</p>
+                <a class="text-link" href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Speak to the Israel travel desk</a>
             </div>
             <div>
-                <div class="eyebrow">Business Travel</div>
-                <h2>Managed travel without the bureaucracy.</h2>
-                <p>D.A.K provides responsive, human travel management for organisations that need reliable bookings, approval control, clear invoicing and assistance when plans change.</p>
-                <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Discuss a Travel Account</a>
+                <div class="eyebrow">Specialist Experience</div>
+                <h2>Deep experience where the market is complicated.</h2>
+                <p class="lead">For families, groups, students, organisations and elderly travellers, the right connection and fare conditions can matter as much as the headline price.</p>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">How D.A.K works</div>
-            <h2>Clear advice before you commit.</h2>
-            <div class="steps">
-                <div class="step"><h3>Tell us the journey</h3><p>Destinations, dates, travellers and important requirements.</p></div>
-                <div class="step"><h3>We assess the whole trip</h3><p>Availability, routing, timing, baggage and relevant fare conditions.</p></div>
-                <div class="step"><h3>You receive clear options</h3><p>Where useful: lowest cost, best overall and greater flexibility.</p></div>
-                <div class="step"><h3>We coordinate</h3><p>Names, deadlines and the selected travel services are checked and managed.</p></div>
-                <div class="step"><h3>We remain available</h3><p>Pre-departure questions, changes and disruption are handled within the agreed service.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section--soft">
-        <div class="container split">
+    <section class="final-cta">
+        <div class="container final-cta-inner">
             <div>
-                <div class="eyebrow">Israel Travel</div>
-                <h2>Specialist South Africa–Israel travel expertise.</h2>
-                <p>Routes, schedules and airline operations change. D.A.K assesses what is currently available and recommends an itinerary suited to your dates, budget and need for flexibility.</p>
-                <p>We assist individuals, families, groups, students, organisations and elderly travellers with the complete journey.</p>
-                <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Plan Israel Travel</a>
+                <div class="eyebrow">Begin your journey</div>
+                <h2>Tell us what needs to happen. We will help you find the right way to do it.</h2>
+                <p>New journey, group movement or organisational travel requirement — start with D.A.K.</p>
             </div>
-            <div class="feature-panel">
-                <h3>Current options, not outdated schedules</h3>
-                <p>We deliberately avoid hard-coding airline schedules into the main website. Contact us for the currently available and most suitable itinerary for your actual dates.</p>
+            <div class="final-cta-actions">
+                <a class="btn btn--light" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>">Start Planning</a>
+                <a class="btn" style="border-color:rgba(255,255,255,.4);color:#fff;" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance planning a journey.' ) ); ?>">WhatsApp Us</a>
             </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">Client Experience</div>
-            <h2>Trusted when the details matter.</h2>
-            <p>Only genuine, approved testimonials will be published. The completed site will feature verified reviews and anonymised case studies demonstrating D.A.K’s work on complex travel arrangements.</p>
-            <a class="btn btn--secondary" href="<?php echo esc_url( home_url( '/reviews-case-studies/' ) ); ?>">View Client Experiences</a>
-        </div>
-    </section>
-
-    <section class="section section--soft">
-        <div class="container split">
-            <div>
-                <div class="eyebrow">About D.A.K</div>
-                <h2>Experienced travel professionals. Personal responsibility.</h2>
-                <p>D.A.K Travel is a Johannesburg-based agency providing domestic and international arrangements for individuals, families, groups and organisations.</p>
-                <p>Our clients are not passed between anonymous departments. A D.A.K consultant understands the booking, communicates clearly and takes responsibility for progressing the arrangement.</p>
-                <a class="btn btn--secondary" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">Meet D.A.K Travel</a>
-            </div>
-            <div class="hero-placeholder"><div><strong>Team photography</strong><br>Premium portraiture of the real D.A.K team will replace this placeholder.</div></div>
-        </div>
-    </section>
-
-    <section class="section luxury-cta">
-        <div class="container">
-            <div class="eyebrow">Start a conversation</div>
-            <h2>Tell us where you need to go. We’ll take care of the complexity.</h2>
-            <p>Send us the essential details and a D.A.K travel specialist will review the journey.</p>
-            <a class="btn" style="background:#fff;color:var(--dak-ink);" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>">Request a Quote</a>
-            <a class="btn" style="border:1px solid rgba(255,255,255,.45);color:#fff;" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a new travel enquiry.' ) ); ?>">WhatsApp +27 82 440 6144</a>
         </div>
     </section>
 </main>
