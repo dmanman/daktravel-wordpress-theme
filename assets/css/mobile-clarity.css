@@ -1,0 +1,236 @@
+/* D.A.K Travel — mobile clarity layer
+   Goal: a busy assistant should understand the site in seconds, with no cramped layouts
+   and no unnecessary long-scroll duplication. */
+
+html, body { overflow-x: clip; }
+.mobile-menu { display: none; }
+.contact-phone span { color: #7a838c; }
+
+@media (max-width: 980px) {
+  .container { width: min(calc(100% - 36px), var(--max)); }
+
+  .site-header { position: sticky; top: 0; }
+  .header-inner { position: relative; min-height: 72px; }
+  .site-nav,
+  .header-cta { display: none !important; }
+
+  .mobile-menu {
+    display: block;
+    margin-left: auto;
+  }
+  .mobile-menu summary {
+    list-style: none;
+    cursor: pointer;
+    min-width: 70px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #aeb6bd;
+    color: #0a1723;
+    background: #fff;
+    font-size: .84rem;
+    font-weight: 750;
+  }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu[open] summary { background: #f4f5f6; }
+  .mobile-menu-panel {
+    position: absolute;
+    z-index: 200;
+    top: calc(100% + 1px);
+    right: 0;
+    width: min(360px, calc(100vw - 36px));
+    padding: 10px 22px 18px;
+    background: #fff;
+    border: 1px solid #b8bfc5;
+    box-shadow: 0 24px 65px rgba(10,23,35,.18);
+  }
+  .mobile-menu-panel a {
+    display: block;
+    padding: 14px 2px;
+    border-bottom: 1px solid rgba(10,23,35,.10);
+    color: #0a1723;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 650;
+  }
+  .mobile-menu-panel .mobile-menu-primary { color: #8b683a; }
+  .mobile-menu-divider { height: 8px; border-bottom: 1px solid #aeb6bd; margin-bottom: 4px; }
+  .mobile-menu-panel .mobile-menu-whatsapp {
+    margin-top: 10px;
+    padding: 13px 15px;
+    border: 0;
+    background: #1f6f5e;
+    color: #fff;
+    text-align: center;
+  }
+
+  .hero-grid,
+  .dak-page-hero-grid { gap: 38px; }
+  .hero-media,
+  .dak-media-slot,
+  .dak-media-image { min-height: 360px; }
+  .section,
+  .trust-section,
+  .dak-intro-section,
+  .dak-dark-band,
+  .dak-quiet-cta { padding-top: 66px; padding-bottom: 66px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 680px) {
+  body { padding-bottom: 58px; }
+  .container { width: min(calc(100% - 28px), var(--max)); }
+
+  /* Top strip shows only what matters on a phone. */
+  .utility-inner {
+    min-height: 36px;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0 !important;
+    gap: 12px;
+  }
+  .utility-proof { max-width: none !important; font-size: .72rem !important; }
+  .utility-proof strong { white-space: nowrap; }
+  .utility-proof span { display: none !important; }
+  .utility-links { margin: 0 !important; font-size: .72rem !important; }
+  .utility-links .utility-specialist { display: none !important; }
+  .utility-links a { white-space: nowrap; }
+
+  .header-inner { min-height: 66px; }
+  .site-branding .custom-logo { max-width: 155px; max-height: 48px; }
+  .brand-wordmark strong { font-size: .92rem; }
+  .brand-wordmark span { font-size: .48rem; }
+
+  /* Home hero: enough impact without eating the whole screen. */
+  .hero { padding: 42px 0 52px; }
+  .hero h1,
+  .dak-page-hero-copy h1 {
+    font-size: clamp(2.55rem, 12vw, 3.65rem);
+    line-height: 1.01;
+    margin-bottom: 18px;
+  }
+  .hero-copy p,
+  .dak-page-hero-copy .lead { font-size: 1rem; line-height: 1.6; }
+  .hero-copy .hero-subline { margin-top: 6px; }
+  .hero-actions,
+  .dak-page-actions { display: grid; grid-template-columns: 1fr; gap: 9px; margin-top: 22px; }
+  .hero-actions .btn,
+  .dak-page-actions .btn { width: 100%; min-height: 48px; }
+  .hero-tags { display: none; }
+  .hero-media-wrap { margin-top: 2px; }
+  .hero-media,
+  .dak-media-slot,
+  .dak-media-image { min-height: 300px; }
+  .hero-media { padding: 30px 26px; }
+  .hero-media-kicker { margin-bottom: 16px; font-size: .62rem; }
+  .advisory-card h3 { font-size: 1.65rem !important; margin: 10px 0 18px; }
+  .advisory-list { grid-template-columns: 1fr !important; gap: 7px !important; font-size: .79rem !important; }
+  .advisory-list span:nth-child(n+4) { display: none; }
+  .contact-note { display: none; }
+
+  /* Compact proof and trust without losing credibility. */
+  .confidence-item { padding: 18px 0 !important; }
+  .confidence-item .proof-no { margin-bottom: 4px; }
+  .confidence-item strong { font-size: .94rem; }
+  .confidence-item span:last-child { display: none; }
+
+  .trust-section,
+  .confidentiality-section,
+  .section,
+  .dak-intro-section,
+  .dak-dark-band,
+  .dak-quiet-cta { padding-top: 50px; padding-bottom: 50px; }
+  .trust-grid,
+  .confidentiality-grid { gap: 30px !important; }
+  .trust-copy p:not(.lead) { display: none; }
+  .trust-panel { padding: 25px 22px 20px; }
+  .trust-panel-title { margin-bottom: 12px; }
+  .credential-row { grid-template-columns: 52px 1fr; gap: 13px; padding: 13px 0; }
+  .credential-mark { min-height: 38px; }
+  .credential-row small { font-size: .72rem; }
+  .trust-signoff { padding-top: 14px; }
+
+  .confidentiality-copy .lead { margin-bottom: 12px; }
+  .confidentiality-points { display: none; }
+
+  /* Services are concise rows, not tall cards. */
+  .service-grid { grid-template-columns: 1fr !important; gap: 0; }
+  .service-card { min-height: 0 !important; padding: 25px 22px 26px !important; }
+  .service-card h3 { margin: 10px 0 8px; font-size: 1.45rem; }
+  .service-card p { margin-bottom: 28px; font-size: .92rem; line-height: 1.55; }
+  .service-card .text-link { position: static !important; }
+
+  .written-contact-panel { margin-top: 28px; padding: 24px 20px; gap: 20px; }
+  .written-contact-panel strong { font-size: 1.28rem; }
+
+  .dark-feature { gap: 24px !important; }
+  .home .dark-feature .feature-points { display: none; }
+
+  /* Detailed process and case-study sections duplicate linked service pages on phones. */
+  .home main > section:nth-of-type(8),
+  .home main > section:nth-of-type(9) { display: none; }
+
+  /* Interior pages are deliberately short. */
+  .dak-page-hero { padding: 44px 0 50px; }
+  .dak-page-hero-grid { gap: 28px; }
+  .dak-media-slot,
+  .dak-media-image { min-height: 270px; }
+  .dak-intro-section .lead { margin-bottom: 22px; }
+  .dak-feature-list { margin-top: 24px; }
+  .dak-feature-row {
+    grid-template-columns: 34px 1fr;
+    gap: 8px 13px;
+    padding: 18px 0;
+  }
+  .dak-feature-row strong { font-size: 1.08rem; }
+  .dak-feature-row p { grid-column: 2; font-size: .9rem; line-height: 1.5; }
+  .dak-dark-band p { line-height: 1.6; }
+
+  /* Form stays easy to tap and is not needlessly tall. */
+  .dak-enquiry-form { padding: 24px 18px; }
+  .form-grid { gap: 16px; }
+  .dak-enquiry-form input,
+  .dak-enquiry-form select,
+  .dak-enquiry-form textarea { min-height: 46px; padding: 11px 12px; }
+  .dak-enquiry-form textarea { min-height: 120px; }
+  .form-full { margin-top: 17px; }
+  .form-submit { margin-top: 18px; }
+  .form-submit .btn { width: 100%; }
+  .contact-phone { font-size: .86rem; }
+  .contact-phone span { display: block; margin-top: 3px; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .site-footer { padding: 48px 0 78px; }
+  .site-footer h2 { font-size: 2rem; }
+  .site-footer h3 { margin-bottom: 8px; }
+  .site-footer p { font-size: .86rem; line-height: 1.7; }
+
+  .mobile-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    min-height: 56px;
+    background: #07131e;
+    border-top: 1px solid rgba(255,255,255,.18);
+  }
+  .mobile-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: .76rem;
+    font-weight: 750;
+    border-right: 1px solid rgba(255,255,255,.13);
+  }
+  .mobile-actions a:first-child { background: #1f6f5e; }
+  .mobile-actions a:last-child { border-right: 0; }
+}

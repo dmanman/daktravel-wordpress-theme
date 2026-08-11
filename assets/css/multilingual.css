@@ -1,0 +1,75 @@
+/* D.A.K Travel — English/Hebrew top-bar selector and Hebrew RTL support */
+
+.utility-language-slot {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 12px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255,255,255,.22);
+}
+
+.dak-language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  font-size: .69rem;
+  line-height: 1;
+  letter-spacing: .025em;
+}
+.dak-language-switcher a {
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+  font-weight: 650;
+}
+.dak-language-switcher a:hover,
+.dak-language-switcher a:focus {
+  color: #f3d9a8;
+}
+.dak-language-switcher > span {
+  color: rgba(255,255,255,.38);
+}
+
+/* TranslatePress adds a Hebrew body class. Mirror the reading direction while
+   keeping machine-readable contact details left-to-right. */
+body[class*="translatepress-he"] {
+  direction: rtl;
+  text-align: right;
+}
+
+body[class*="translatepress-he"] .site-nav ul,
+body[class*="translatepress-he"] .utility-inner,
+body[class*="translatepress-he"] .utility-links,
+body[class*="translatepress-he"] .hero-actions,
+body[class*="translatepress-he"] .dak-page-actions {
+  direction: rtl;
+}
+
+body[class*="translatepress-he"] .dak-enquiry-form input,
+body[class*="translatepress-he"] .dak-enquiry-form select,
+body[class*="translatepress-he"] .dak-enquiry-form textarea {
+  text-align: right;
+}
+
+body[class*="translatepress-he"] a[href^="tel:"],
+body[class*="translatepress-he"] a[href^="mailto:"],
+body[class*="translatepress-he"] .contact-phone,
+body[class*="translatepress-he"] .credential-row small {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+body[class*="translatepress-he"] .text-link::after {
+  content: "←";
+}
+
+@media (max-width: 680px) {
+  .utility-language-slot {
+    margin-left: 8px;
+    padding-left: 9px;
+  }
+  .dak-language-switcher {
+    gap: 5px;
+    font-size: .63rem;
+  }
+}

@@ -1,0 +1,362 @@
+/* D.A.K Travel — premium typography system
+   Editorial display serif + clean modern sans. Luxury through proportion,
+   restraint, optical spacing and hierarchy rather than decorative effects. */
+
+:root {
+  --dak-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --dak-sans: "Manrope", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--dak-sans);
+}
+
+body {
+  font-size: 16.5px;
+  line-height: 1.72;
+  letter-spacing: -.008em;
+}
+
+p {
+  max-width: 72ch;
+}
+
+h1,
+h2,
+h3,
+.service-card h3,
+.process-step h3,
+.feature-point strong,
+.credential-row strong,
+.confidentiality-point strong,
+.dak-feature-row strong,
+.advisory-card h3,
+.trust-copy h2,
+.dak-page-hero-copy h1,
+.dak-dark-band h2,
+.dak-quiet-cta h2,
+.final-cta h2 {
+  font-family: var(--dak-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+h1,
+.hero h1,
+.dak-page-hero-copy h1 {
+  font-size: clamp(4.5rem, 6.4vw, 6.8rem);
+  line-height: .91;
+  letter-spacing: -.045em;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+h2,
+.trust-copy h2,
+.dak-dark-band h2,
+.dak-quiet-cta h2,
+.final-cta h2 {
+  font-size: clamp(3rem, 4.45vw, 4.7rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+  font-weight: 500;
+}
+
+h3,
+.service-card h3,
+.process-step h3,
+.advisory-card h3 {
+  font-size: clamp(1.75rem, 2.1vw, 2.25rem);
+  line-height: 1.04;
+  letter-spacing: -.025em;
+}
+
+.hero-copy > p:first-of-type,
+.lead,
+.dak-page-hero-copy .lead,
+.section-intro .lead,
+.trust-copy .lead,
+.confidentiality-copy .lead {
+  font-family: var(--dak-sans);
+  font-size: 1.12rem;
+  line-height: 1.68;
+  letter-spacing: -.012em;
+  font-weight: 430;
+}
+
+.hero-copy > p:first-of-type {
+  font-size: 1.17rem;
+  line-height: 1.7;
+}
+
+.hero-subline,
+.dak-dark-band p,
+.dak-quiet-cta p,
+.final-cta p,
+.service-card p,
+.dak-feature-row p {
+  line-height: 1.68;
+}
+
+/* Small editorial labels should feel precise, not loud. */
+.eyebrow,
+.service-no,
+.step-no,
+.proof-no,
+.case-study-label,
+.hero-media-kicker,
+.advisory-label,
+.trust-panel-title {
+  font-family: var(--dak-sans);
+  font-size: .68rem;
+  line-height: 1.25;
+  letter-spacing: .205em;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+/* Navigation and utility copy: quiet, tailored and compact. */
+.site-nav a,
+.header-email,
+.utility-proof,
+.utility-links,
+.mobile-menu-panel a {
+  font-family: var(--dak-sans);
+}
+
+.site-nav a {
+  font-size: .76rem;
+  font-weight: 650;
+  letter-spacing: .045em;
+}
+
+.header-email {
+  font-size: .77rem;
+  font-weight: 650;
+  letter-spacing: .03em;
+}
+
+.utility-proof,
+.utility-links {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .025em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Buttons should feel tailored rather than oversized. */
+.btn {
+  min-height: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: var(--dak-sans);
+  font-size: .79rem;
+  line-height: 1;
+  font-weight: 720;
+  letter-spacing: .045em;
+}
+
+.btn--compact {
+  min-height: 43px;
+  padding-left: 19px;
+  padding-right: 19px;
+  font-size: .75rem;
+}
+
+.text-link {
+  font-family: var(--dak-sans);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .025em;
+}
+
+/* Credentials read more like a private-club membership plate. */
+.credential-row strong {
+  font-size: 1.22rem;
+  line-height: 1.05;
+  letter-spacing: -.018em;
+}
+
+.credential-row small {
+  font-family: var(--dak-sans);
+  font-size: .72rem;
+  line-height: 1.55;
+  letter-spacing: .01em;
+}
+
+.credential-mark--logo {
+  padding: 7px 8px;
+  background: #ffffff;
+  border-color: rgba(232,235,237,.48);
+}
+
+.credential-logo-image {
+  display: block;
+  width: 100%;
+  max-width: 64px;
+  max-height: 38px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.feature-point strong,
+.confidentiality-point strong,
+.dak-feature-row strong {
+  font-size: 1.36rem;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+}
+
+/* Refined effects: no text shadows, no fake metallic gradients. */
+.hero h1,
+.dak-page-hero-copy h1,
+.section-intro h2,
+.trust-copy h2 {
+  text-shadow: none;
+}
+
+.site-nav a,
+.header-email,
+.text-link,
+.btn {
+  transition: color .22s ease, border-color .22s ease, background-color .22s ease, transform .22s ease, letter-spacing .22s ease;
+}
+
+.site-nav a:hover {
+  letter-spacing: .06em;
+}
+
+.text-link:hover {
+  letter-spacing: .035em;
+}
+
+/* Form typography should resemble correspondence rather than a software UI. */
+.dak-enquiry-form label {
+  font-size: .73rem;
+  line-height: 1.3;
+  letter-spacing: .045em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.dak-enquiry-form input,
+.dak-enquiry-form select,
+.dak-enquiry-form textarea {
+  font-family: var(--dak-sans);
+  font-size: .94rem;
+  line-height: 1.5;
+  letter-spacing: -.005em;
+}
+
+/* Footer becomes quieter so the page ends elegantly. */
+.site-footer h2,
+.site-footer h3 {
+  font-family: var(--dak-display);
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+
+.site-footer h2 {
+  font-size: 2.45rem;
+  line-height: 1;
+}
+
+.site-footer h3 {
+  font-size: 1.3rem;
+  line-height: 1.1;
+}
+
+.site-footer p,
+.site-footer a {
+  font-family: var(--dak-sans);
+  font-size: .79rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 1180px) {
+  h1,
+  .hero h1,
+  .dak-page-hero-copy h1 {
+    font-size: clamp(4rem, 6.2vw, 5.6rem);
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  h1,
+  .hero h1,
+  .dak-page-hero-copy h1 {
+    font-size: clamp(3.05rem, 14vw, 4.15rem);
+    line-height: .94;
+    letter-spacing: -.038em;
+    margin-bottom: 20px;
+  }
+
+  h2,
+  .trust-copy h2,
+  .dak-dark-band h2,
+  .dak-quiet-cta h2,
+  .final-cta h2 {
+    font-size: clamp(2.35rem, 10.2vw, 3.25rem);
+    line-height: .99;
+    letter-spacing: -.03em;
+  }
+
+  h3,
+  .service-card h3,
+  .process-step h3,
+  .advisory-card h3 {
+    font-size: 1.75rem;
+  }
+
+  .hero-copy > p:first-of-type,
+  .lead,
+  .dak-page-hero-copy .lead,
+  .section-intro .lead,
+  .trust-copy .lead,
+  .confidentiality-copy .lead {
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
+  .eyebrow,
+  .service-no,
+  .step-no,
+  .proof-no,
+  .case-study-label,
+  .hero-media-kicker,
+  .advisory-label,
+  .trust-panel-title {
+    font-size: .62rem;
+    letter-spacing: .17em;
+  }
+
+  .btn {
+    font-size: .78rem;
+    letter-spacing: .03em;
+  }
+
+  .credential-logo-image {
+    max-width: 50px;
+    max-height: 31px;
+  }
+
+  .site-footer h2 {
+    font-size: 2.15rem;
+  }
+}

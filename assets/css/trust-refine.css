@@ -1,0 +1,322 @@
+/* D.A.K Travel trust, experience and premium-positioning layer */
+
+/* High-contrast utility bar: short, readable and deliberately secondary. */
+.utility-bar {
+  background: #07131f;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.utility-inner {
+  min-height: 44px;
+  gap: 30px;
+}
+.utility-proof,
+.utility-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: .83rem;
+  line-height: 1.4;
+  letter-spacing: .01em;
+  font-weight: 650;
+  opacity: 1;
+}
+.utility-proof strong {
+  color: #f3d9a8;
+  font-weight: 800;
+}
+.utility-proof span,
+.utility-links > * {
+  color: #f6f8fa;
+}
+.utility-proof span::before,
+.utility-links > * + *::before {
+  content: "·";
+  color: rgba(255,255,255,.52);
+  margin: 0 11px;
+}
+.utility-links a {
+  color: #ffffff;
+  font-weight: 750;
+  text-decoration: none;
+}
+.utility-links a:hover { color: #f3d9a8; }
+.utility-specialist {
+  color: #f3d9a8 !important;
+  font-weight: 800;
+}
+
+.trust-section {
+  position: relative;
+  padding: 92px 0 98px;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(178,138,80,.10), transparent 25%),
+    linear-gradient(180deg, #fffdf9 0%, #f8f4ed 100%);
+  border-bottom: 1px solid rgba(11,23,36,.08);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.08fr) minmax(390px,.92fr);
+  gap: 82px;
+  align-items: center;
+}
+
+.trust-copy h2 { max-width: 760px; }
+.trust-copy p:not(.lead) { max-width: 720px; color: #64707b; }
+
+.trust-panel {
+  position: relative;
+  padding: 42px 42px 34px;
+  background: #0c1b29;
+  color: #fff;
+  border: 1px solid rgba(178,138,80,.24);
+  box-shadow: 0 30px 85px rgba(11,23,36,.18);
+  overflow: hidden;
+}
+.trust-panel::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  pointer-events: none;
+}
+.trust-panel::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -95px;
+  top: -100px;
+  border: 1px solid rgba(215,194,160,.22);
+  border-radius: 50%;
+}
+.trust-panel-title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+  color: var(--gold-soft);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.credential-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 21px 0;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.credential-mark {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  border: 1px solid rgba(215,194,160,.42);
+  color: var(--gold-soft);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+.credential-row strong { display: block; margin-bottom: 3px; color: #fff; font-size: .98rem; }
+.credential-row small { display: block; color: rgba(255,255,255,.68); font-size: .8rem; line-height: 1.45; }
+.trust-signoff {
+  position: relative;
+  z-index: 1;
+  padding-top: 21px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.76);
+  font-size: .7rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+/* Confidentiality is part of the premium service, not hidden legal copy. */
+.confidentiality-section {
+  padding: 88px 0;
+  background: #0b1927;
+  color: #d9e1e7;
+  border-top: 1px solid rgba(255,255,255,.05);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.confidentiality-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(420px,.9fr);
+  gap: 72px;
+  align-items: center;
+}
+.confidentiality-section .eyebrow { color: #e2c796; }
+.confidentiality-section h2 {
+  color: #ffffff;
+  max-width: 720px;
+}
+.confidentiality-section .lead {
+  color: #e4e9ed;
+  max-width: 690px;
+}
+.confidentiality-copy p:not(.lead) {
+  color: #b8c2ca;
+  max-width: 680px;
+}
+.confidentiality-section .text-link {
+  color: #ffffff;
+  border-color: rgba(255,255,255,.35);
+}
+.confidentiality-points {
+  background: #ffffff;
+  color: #25313d;
+  box-shadow: 0 28px 80px rgba(0,0,0,.24);
+  border-top: 3px solid #b28a50;
+}
+.confidentiality-point {
+  padding: 25px 30px;
+  border-bottom: 1px solid rgba(11,23,36,.09);
+}
+.confidentiality-point:last-child { border-bottom: 0; }
+.confidentiality-point strong {
+  display: block;
+  color: #0b1724;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.confidentiality-point span {
+  display: block;
+  color: #64707b;
+  font-size: .9rem;
+  line-height: 1.55;
+}
+
+/* Premium, simple form-to-email component. */
+.dak-enquiry-form {
+  background: #fff;
+  padding: 38px 40px;
+  border: 1px solid rgba(11,23,36,.08);
+  box-shadow: 0 24px 70px rgba(11,23,36,.08);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 22px;
+}
+.dak-enquiry-form label {
+  display: grid;
+  gap: 7px;
+  color: #0b1724;
+  font-size: .85rem;
+  font-weight: 750;
+}
+.dak-enquiry-form label span { color: #9b733c; }
+.dak-enquiry-form input,
+.dak-enquiry-form select,
+.dak-enquiry-form textarea {
+  width: 100%;
+  border: 1px solid rgba(11,23,36,.16);
+  background: #fffdf9;
+  color: #273441;
+  border-radius: 0;
+  padding: 13px 14px;
+  font: inherit;
+  font-weight: 450;
+  outline: none;
+}
+.dak-enquiry-form input:focus,
+.dak-enquiry-form select:focus,
+.dak-enquiry-form textarea:focus {
+  border-color: #b28a50;
+  box-shadow: 0 0 0 3px rgba(178,138,80,.10);
+}
+.form-full { margin-top: 22px; }
+.form-submit {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 22px;
+}
+.form-submit span { color: #6b7680; font-size: .82rem; }
+.form-message { padding: 14px 16px; margin-bottom: 20px; border-left: 3px solid; background: #fff; }
+.form-message--success { border-color: #1f6f5e; color: #18594c; }
+.form-message--error { border-color: #9d4b43; color: #843c35; }
+.dak-honeypot { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+
+.confidence-item .proof-no { color: #9b733c; }
+.feature-point { box-shadow: inset 0 1px 0 rgba(255,255,255,.035); }
+.feature-point strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+  font-weight: 500;
+}
+.editorial-panel,
+.written-contact-panel,
+.process-step,
+.service-card,
+.confidence-item { border-color: rgba(11,23,36,.075); }
+.editorial-panel { box-shadow: 0 24px 70px rgba(11,23,36,.085); }
+.final-cta { position: relative; overflow: hidden; }
+.final-cta::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -170px;
+  top: -220px;
+  border: 1px solid rgba(215,194,160,.17);
+  border-radius: 50%;
+}
+.final-cta-inner { position: relative; z-index: 1; }
+
+/* Hidden email-disclaimer utility page. It is intentionally not in the main navigation. */
+.utility-page { background: #f7f4ee; min-height: 60vh; }
+.utility-page-hero { padding: 68px 0 34px; }
+.utility-page-shell { max-width: 900px; }
+.utility-page-hero h1 { margin-bottom: 12px; font-size: clamp(2.6rem,5vw,4.2rem); }
+.utility-page-hero p { max-width: 680px; color: #68737e; }
+.utility-page-content { padding: 0 0 86px; }
+.legal-card {
+  background: #fff;
+  padding: 42px 46px;
+  border: 1px solid rgba(11,23,36,.08);
+  box-shadow: 0 20px 60px rgba(11,23,36,.07);
+  color: #46515d;
+}
+.legal-card h2,
+.legal-card h3 { font-family: Georgia, "Times New Roman", serif; }
+.legal-card p:last-child { margin-bottom: 0; }
+.utility-page-back { margin-top: 24px; }
+.utility-page-back a { color: var(--ink); font-weight: 700; text-decoration: none; }
+
+@media (max-width: 980px) {
+  .utility-inner { align-items: flex-start; padding: 10px 0; }
+  .utility-proof { max-width: 65%; }
+  .utility-specialist { display: none; }
+  .trust-grid,
+  .confidentiality-grid { grid-template-columns: 1fr; gap: 48px; }
+  .trust-panel,
+  .confidentiality-points { max-width: 720px; }
+}
+
+@media (max-width: 680px) {
+  .utility-bar { display: block !important; }
+  .utility-inner { min-height: auto; display: block; padding: 10px 0; }
+  .utility-proof { max-width: none; font-size: .76rem; }
+  .utility-proof span:nth-of-type(1) { display: none; }
+  .utility-links { margin-top: 5px; font-size: .75rem; }
+  .utility-specialist { display: none; }
+  .trust-section,
+  .confidentiality-section { padding: 68px 0 72px; }
+  .trust-panel { padding: 32px 26px 28px; }
+  .credential-row { grid-template-columns: 62px 1fr; gap: 16px; }
+  .confidentiality-point { padding: 22px 24px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .dak-enquiry-form { padding: 28px 24px; }
+  .form-submit { align-items: flex-start; flex-direction: column; }
+  .utility-page-hero { padding: 48px 0 24px; }
+  .utility-page-content { padding-bottom: 60px; }
+  .legal-card { padding: 28px 24px; }
+}

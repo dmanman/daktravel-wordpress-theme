@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">D.A.K Travel consultation overlooking the Mediterranean</title>
+  <desc id="desc">A refined illustrated travel consultation setting with a large window, sea horizon, Tel Aviv-inspired coastline, desk and two consultation chairs.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfeaf0"/>
+      <stop offset="1" stop-color="#f8f3e9"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7da1b5"/>
+      <stop offset="1" stop-color="#aac3cf"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f0e7"/>
+      <stop offset="1" stop-color="#e8e0d5"/>
+    </linearGradient>
+    <linearGradient id="desk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9b7650"/>
+      <stop offset="1" stop-color="#6f5136"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#0b1724" flood-opacity=".18"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1100" fill="url(#wall)"/>
+
+  <!-- Window -->
+  <rect x="530" y="95" width="910" height="650" rx="8" fill="#d7d2c8"/>
+  <rect x="558" y="122" width="854" height="596" fill="url(#sky)"/>
+  <rect x="558" y="403" width="854" height="315" fill="url(#sea)"/>
+  <path d="M558 520 C760 500 940 535 1112 500 C1238 474 1334 492 1412 472 L1412 718 L558 718Z" fill="#6f94a9" opacity=".42"/>
+  <path d="M1110 475 L1412 455 L1412 718 L1210 718 C1185 652 1160 592 1110 475Z" fill="#d7c6a5" opacity=".92"/>
+
+  <!-- Tel Aviv-inspired skyline -->
+  <g fill="#9c9b93" opacity=".85">
+    <rect x="1180" y="375" width="44" height="108"/>
+    <rect x="1232" y="348" width="34" height="132"/>
+    <rect x="1276" y="392" width="50" height="90"/>
+    <rect x="1334" y="330" width="48" height="146"/>
+  </g>
+  <g fill="#b28a50" opacity=".7">
+    <rect x="1190" y="394" width="5" height="8"/>
+    <rect x="1205" y="394" width="5" height="8"/>
+    <rect x="1243" y="368" width="5" height="8"/>
+    <rect x="1351" y="355" width="5" height="8"/>
+    <rect x="1367" y="355" width="5" height="8"/>
+  </g>
+
+  <!-- Window mullions -->
+  <rect x="978" y="122" width="10" height="596" fill="#d3cec5"/>
+  <rect x="558" y="395" width="854" height="10" fill="#d3cec5"/>
+
+  <!-- Side wall art -->
+  <rect x="115" y="170" width="270" height="330" rx="2" fill="#f9f7f2" stroke="#d6cdbf" stroke-width="10"/>
+  <path d="M165 416 C215 336 292 302 337 230" stroke="#b28a50" stroke-width="9" fill="none"/>
+  <circle cx="188" cy="378" r="18" fill="#10263d"/>
+  <circle cx="282" cy="286" r="14" fill="#10263d"/>
+  <circle cx="337" cy="230" r="12" fill="#10263d"/>
+
+  <!-- Console -->
+  <rect x="100" y="565" width="340" height="34" rx="3" fill="#6f5136"/>
+  <rect x="125" y="595" width="22" height="205" fill="#5c432f"/>
+  <rect x="392" y="595" width="22" height="205" fill="#5c432f"/>
+  <ellipse cx="192" cy="540" rx="54" ry="22" fill="#c7b08d"/>
+  <rect x="181" y="502" width="22" height="42" fill="#b28a50"/>
+  <path d="M192 501 C165 462 170 425 192 399 C214 425 220 462 192 501Z" fill="#7f9075"/>
+
+  <!-- Desk -->
+  <g filter="url(#shadow)">
+    <path d="M420 730 C650 664 1017 655 1228 737 L1170 870 C916 818 672 820 458 877Z" fill="url(#desk)"/>
+    <path d="M458 877 C682 821 922 821 1170 870 L1158 913 C916 866 679 868 472 920Z" fill="#5f432d"/>
+  </g>
+
+  <!-- Laptop and documents -->
+  <g transform="translate(710 646)">
+    <rect x="0" y="0" width="210" height="132" rx="7" fill="#d9dde0" stroke="#8b9298" stroke-width="5"/>
+    <rect x="16" y="16" width="178" height="100" rx="2" fill="#112a43"/>
+    <path d="M32 92 C66 62 90 78 116 49 C136 27 156 44 181 28" stroke="#b28a50" stroke-width="5" fill="none"/>
+    <rect x="76" y="129" width="58" height="8" rx="4" fill="#8b9298"/>
+  </g>
+  <g transform="translate(965 742) rotate(5)">
+    <rect width="150" height="90" rx="3" fill="#fbfaf6"/>
+    <rect x="16" y="18" width="75" height="7" fill="#a6adb4"/>
+    <rect x="16" y="36" width="118" height="5" fill="#d0d4d7"/>
+    <rect x="16" y="50" width="103" height="5" fill="#d0d4d7"/>
+    <circle cx="120" cy="70" r="10" fill="#b28a50"/>
+  </g>
+
+  <!-- Consultant chair -->
+  <g transform="translate(255 700)">
+    <path d="M60 15 C135 -5 202 23 210 91 L225 242 L44 242 L30 90 C25 52 35 26 60 15Z" fill="#14283d"/>
+    <rect x="78" y="235" width="94" height="20" rx="8" fill="#0b1724"/>
+    <rect x="116" y="250" width="16" height="95" fill="#0b1724"/>
+    <path d="M68 345 H180" stroke="#0b1724" stroke-width="16" stroke-linecap="round"/>
+  </g>
+
+  <!-- Client chair -->
+  <g transform="translate(1208 722) scale(-1 1)">
+    <path d="M60 15 C135 -5 202 23 210 91 L225 242 L44 242 L30 90 C25 52 35 26 60 15Z" fill="#b7aa98"/>
+    <rect x="78" y="235" width="94" height="20" rx="8" fill="#8d7e6d"/>
+    <rect x="116" y="250" width="16" height="95" fill="#8d7e6d"/>
+    <path d="M68 345 H180" stroke="#8d7e6d" stroke-width="16" stroke-linecap="round"/>
+  </g>
+
+  <!-- Soft foreground -->
+  <ellipse cx="830" cy="1090" rx="710" ry="120" fill="#0b1724" opacity=".07"/>
+</svg>
