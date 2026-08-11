@@ -1,5 +1,11 @@
 <?php
+$form_status = '';
+if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) ) {
+    $form_status = daktravel_process_enquiry_submission();
+}
+
 get_header();
+
 $requested_type = isset( $_GET['type'] ) ? sanitize_key( wp_unslash( $_GET['type'] ) ) : '';
 $type_map = array(
     'israel'   => 'Israel travel',
@@ -9,7 +15,7 @@ $type_map = array(
     'existing' => 'Existing booking',
     'general'  => 'General travel enquiry',
 );
-$prefill_type = isset( $type_map[ $requested_type ] ) ? $type_map[ $requested_type ] : 'Israel travel';
+$prefill_type = isset( $type_map[ $requested_type ] ) ? $type_map[ $requested_type ] : 'General travel enquiry';
 
 if ( 'Group or delegation' === $prefill_type ) {
     $prefill_mode = 'group';
@@ -17,8 +23,19 @@ if ( 'Group or delegation' === $prefill_type ) {
     $prefill_mode = 'business';
 } elseif ( 'Existing booking' === $prefill_type ) {
     $prefill_mode = 'existing';
+} elseif ( 'General travel enquiry' === $prefill_type ) {
+    $prefill_mode = 'general';
 } else {
     $prefill_mode = 'travel';
+}
+
+if ( ! $form_status && isset( $_GET['sent'] ) ) {
+    $legacy_status = sanitize_text_field( wp_unslash( $_GET['sent'] ) );
+    if ( '1' === $legacy_status ) {
+        $form_status = 'success';
+    } elseif ( in_array( $legacy_status, array( '0', 'error' ), true ) ) {
+        $form_status = 'error';
+    }
 }
 ?>
 <main>
@@ -34,7 +51,7 @@ if ( 'Group or delegation' === $prefill_type ) {
                 <p class="lead">For something quick, use WhatsApp. For a quotation or a longer request, send the short form below.</p>
             <?php endif; ?>
             <div class="dak-page-actions">
-                <a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a>
+                <a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a>
                 <a class="btn btn--outline" href="#enquiry">Email Enquiry</a>
             </div>
             <p class="contact-phone"><strong>Telephone:</strong> <a href="tel:+27114405980">+27 11 440 5980</a> <span>if you prefer to call</span></p>
@@ -51,14 +68,16 @@ if ( 'Group or delegation' === $prefill_type ) {
             <p class="lead">Start with the basics. Extra fields only appear when they are useful for that type of enquiry.</p>
         </div>
 
-        <?php if ( isset( $_GET['sent'] ) && '1' === sanitize_text_field( wp_unslash( $_GET['sent'] ) ) ) : ?>
+        <?php if ( 'success' === $form_status ) : ?>
             <div class="form-message form-message--success">Thank you. Your enquiry has been sent to D.A.K Travel.</div>
-        <?php elseif ( isset( $_GET['sent'] ) && in_array( sanitize_text_field( wp_unslash( $_GET['sent'] ) ), array( '0', 'error' ), true ) ) : ?>
+        <?php elseif ( 'invalid' === $form_status ) : ?>
+            <div class="form-message form-message--error">Please complete your name, a valid email address and your message.</div>
+        <?php elseif ( 'error' === $form_status ) : ?>
             <div class="form-message form-message--error">We could not send your enquiry. Please try again or use WhatsApp D.A.K.</div>
         <?php endif; ?>
 
-        <form class="dak-enquiry-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-            <input type="hidden" name="action" value="daktravel_enquiry">
+        <form class="dak-enquiry-form" method="post" action="">
+            <input type="hidden" name="daktravel_enquiry_submit" value="1">
             <?php wp_nonce_field( 'daktravel_enquiry', 'daktravel_enquiry_nonce' ); ?>
             <div class="dak-honeypot" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
@@ -68,12 +87,12 @@ if ( 'Group or delegation' === $prefill_type ) {
                 <label>Mobile / WhatsApp<input type="tel" name="mobile" autocomplete="tel"></label>
                 <label>Enquiry type
                     <select name="enquiry_type">
+                        <option value="General travel enquiry" <?php selected( $prefill_type, 'General travel enquiry' ); ?>>General travel enquiry</option>
                         <option value="Israel travel" <?php selected( $prefill_type, 'Israel travel' ); ?>>Israel travel</option>
                         <option value="Group or delegation" <?php selected( $prefill_type, 'Group or delegation' ); ?>>Group or delegation</option>
                         <option value="Business travel" <?php selected( $prefill_type, 'Business travel' ); ?>>Business travel</option>
                         <option value="Complex personal travel" <?php selected( $prefill_type, 'Complex personal travel' ); ?>>Complex personal travel</option>
                         <option value="Existing booking" <?php selected( $prefill_type, 'Existing booking' ); ?>>Existing booking</option>
-                        <option value="General travel enquiry" <?php selected( $prefill_type, 'General travel enquiry' ); ?>>General travel enquiry</option>
                     </select>
                 </label>
             </div>
@@ -112,7 +131,6 @@ if ( 'Group or delegation' === $prefill_type ) {
             </div>
 
             <label class="form-full">Tell us what you need<span>*</span><textarea name="message" rows="5" required></textarea></label>
-            <div class="form-live-status" role="status" aria-live="polite" hidden></div>
             <div class="form-submit">
                 <button class="btn btn--primary" type="submit">Send Enquiry</button>
                 <span>Sent directly to D.A.K Travel.</span>
