@@ -8,7 +8,10 @@
             <p class="lead">D.A.K Travel helps travellers compare Tel Aviv–Johannesburg options and onward connections to Cape Town, Durban and regional cities where required.</p>
             <div class="dak-page-actions"><a class="btn btn--primary" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Start a Return Travel Enquiry</a></div>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_telaviv_image', 'Tel Aviv skyline, Israel', 'Israel to South Africa travel', 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
+        <figure class="dak-media-slot has-image dak-south-africa-waterfront">
+            <img class="dak-media-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/V%26A_waterfront%2C_Cape_Town_1.jpg/1280px-V%26A_waterfront%2C_Cape_Town_1.jpg" alt="V&A Waterfront in Cape Town, South Africa" width="1280" height="853" loading="eager" fetchpriority="high">
+            <figcaption class="image-credit">V&amp;A Waterfront, Cape Town · Photo: Mike Peel / CC BY-SA 4.0</figcaption>
+        </figure>
     </div>
 </section>
 
