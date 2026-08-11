@@ -58,17 +58,44 @@ function daktravel_enqueue_assets() {
     $interactions_path = get_template_directory() . '/assets/js/site-interactions.js';
     wp_enqueue_script( 'daktravel-site-interactions', get_template_directory_uri() . '/assets/js/site-interactions.js', array(), file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version, true );
 
-    /*
-     * Homepage specialist panel image.
-     * This is intentionally hard-coded to Israel imagery so no Customizer or
-     * media-library setting can reintroduce the About portrait on the homepage.
-     */
+    /* Homepage specialist panel: Israel imagery only. */
     $specialist_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
 
     $inline_css  = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.91),rgba(16,38,61,.74)),url("' . esc_url_raw( $specialist_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
-    $inline_css .= '.home img[src*="photo.small_.yk_"],.home img[src*="photo.small.yk"],.home img[src*="yochee"],.home img[src*="photo-small-yk"],.front-page img[src*="photo.small_.yk_"],.front-page img[src*="photo.small.yk"],.front-page img[src*="yochee"],.front-page img[src*="photo-small-yk"]{display:none!important;}';
+    $inline_css .= '.home img[src*="photo.small_.yk_"],.home img[src*="photo.small.yk"],.home img[src*="yochee" i],.home img[srcset*="photo.small"],.home img[srcset*="yochee" i],.home img[data-src*="photo.small"],.home img[data-src*="yochee" i],.home img[alt*="Yochee" i],.home img[title*="Yochee" i]{display:none!important;}';
 
     wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
+
+    if ( is_front_page() ) {
+        $remove_home_portrait = <<<'JS'
+document.addEventListener('DOMContentLoaded', function () {
+    var terms = ['yochee', 'mrs yochee katz', 'photo.small_.yk_', 'photo.small.yk', 'photo-small-yk'];
+
+    document.querySelectorAll('img').forEach(function (img) {
+        var haystack = [
+            img.getAttribute('src') || '',
+            img.getAttribute('srcset') || '',
+            img.getAttribute('data-src') || '',
+            img.getAttribute('data-lazy-src') || '',
+            img.getAttribute('alt') || '',
+            img.getAttribute('title') || ''
+        ].join(' ').toLowerCase();
+
+        if (terms.some(function (term) { return haystack.indexOf(term) !== -1; })) {
+            img.remove();
+        }
+    });
+
+    document.querySelectorAll('[style]').forEach(function (el) {
+        var styleText = (el.getAttribute('style') || '').toLowerCase();
+        if (terms.some(function (term) { return styleText.indexOf(term) !== -1; })) {
+            el.style.backgroundImage = 'none';
+        }
+    });
+});
+JS;
+        wp_add_inline_script( 'daktravel-site-interactions', $remove_home_portrait, 'after' );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
