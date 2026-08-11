@@ -17,6 +17,18 @@ function daktravel_required_pages() {
             'title'   => 'Israel Travel',
             'content' => '',
         ),
+        'flights-to-israel-from-johannesburg' => array(
+            'title'   => 'Flights to Israel from Johannesburg',
+            'content' => '',
+        ),
+        'flights-from-israel-to-south-africa' => array(
+            'title'   => 'Flights from Israel to South Africa',
+            'content' => '',
+        ),
+        'south-africa-israel-flight-routes' => array(
+            'title'   => 'South Africa–Israel Flight Routes',
+            'content' => '',
+        ),
         'groups-delegations' => array(
             'title'   => 'Groups & Delegations',
             'content' => '',
