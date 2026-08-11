@@ -1,10 +1,25 @@
 (function () {
   'use strict';
 
-  function setWhatsAppTargets() {
-    document.querySelectorAll('a.btn--whatsapp, a.mobile-menu-whatsapp, .mobile-actions a[href*="whatsapp.com"], .mobile-actions a[href*="wa.me"]').forEach(function (link) {
+  function setupWhatsAppLinks() {
+    var selector = 'a[href*="wa.me"], a[href*="api.whatsapp.com"]';
+
+    document.querySelectorAll(selector).forEach(function (link) {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
+
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var href = link.getAttribute('href');
+        if (!href) return;
+
+        var popup = window.open(href, '_blank', 'noopener,noreferrer');
+        if (!popup) {
+          window.location.assign(href);
+        }
+      });
     });
   }
 
@@ -38,7 +53,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    setWhatsAppTargets();
+    setupWhatsAppLinks();
     document.querySelectorAll('.dak-enquiry-form').forEach(function (form) {
       setupConditionalForm(form);
     });
