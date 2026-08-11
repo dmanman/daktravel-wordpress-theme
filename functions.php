@@ -26,9 +26,16 @@ function daktravel_enqueue_assets() {
     $theme_version = wp_get_theme()->get( 'Version' );
 
     wp_enqueue_style(
+        'daktravel-fonts',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap',
+        array(),
+        null
+    );
+
+    wp_enqueue_style(
         'daktravel-style',
         get_stylesheet_uri(),
-        array(),
+        array( 'daktravel-fonts' ),
         $theme_version
     );
 
@@ -77,12 +84,21 @@ function daktravel_enqueue_assets() {
         $atelier_css_ver
     );
 
+    $typography_css_path = get_template_directory() . '/assets/css/typography-premium.css';
+    $typography_css_ver  = file_exists( $typography_css_path ) ? (string) filemtime( $typography_css_path ) : $theme_version;
+    wp_enqueue_style(
+        'daktravel-typography-premium',
+        get_template_directory_uri() . '/assets/css/typography-premium.css',
+        array( 'daktravel-atelier-premium', 'daktravel-fonts' ),
+        $typography_css_ver
+    );
+
     $mobile_css_path = get_template_directory() . '/assets/css/mobile-clarity.css';
     $mobile_css_ver  = file_exists( $mobile_css_path ) ? (string) filemtime( $mobile_css_path ) : $theme_version;
     wp_enqueue_style(
         'daktravel-mobile-clarity',
         get_template_directory_uri() . '/assets/css/mobile-clarity.css',
-        array( 'daktravel-atelier-premium' ),
+        array( 'daktravel-typography-premium' ),
         $mobile_css_ver
     );
 
