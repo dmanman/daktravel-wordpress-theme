@@ -2,8 +2,9 @@
 /**
  * Lightweight SEO layer for D.A.K Travel.
  *
- * Provides sensible defaults, editable per-page overrides, social metadata,
- * and TravelAgency structured data when a dedicated SEO plugin is not active.
+ * Provides page-specific titles/descriptions, canonical URLs, social metadata,
+ * image metadata and TravelAgency/WebPage structured data when a dedicated SEO
+ * plugin is not active.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,36 +21,44 @@ function daktravel_has_seo_plugin() {
 function daktravel_seo_defaults() {
     $defaults = array(
         'home' => array(
-            'title'       => 'South Africa to Israel Travel Specialists | D.A.K Travel',
-            'description' => 'Established in Johannesburg in 2006, D.A.K Travel specialises in South Africa–Israel travel, complex flights, groups, delegations and business travel.',
+            'title'       => 'Israel Travel from South Africa | D.A.K Travel Johannesburg',
+            'description' => 'D.A.K Travel is an established Johannesburg travel agency specialising in travel from South Africa to Israel, groups, business travel and complex international journeys.',
         ),
         'israel-travel' => array(
-            'title'       => 'South Africa to Israel Flights & Travel | D.A.K Travel',
-            'description' => 'Specialist South Africa–Israel travel planning from D.A.K Travel, established in 2006. We compare current routings, connections, baggage and fare flexibility.',
+            'title'       => 'Flights to Israel from South Africa | D.A.K Travel',
+            'description' => 'Planning travel from South Africa to Israel? D.A.K compares current flight options, connections, baggage and fare flexibility for individuals, families, groups and organisations.',
         ),
         'groups-delegations' => array(
             'title'       => 'Group & Delegation Travel South Africa | D.A.K Travel',
-            'description' => 'D.A.K Travel coordinates group and delegation journeys from South Africa, including multi-origin flights, passenger lists, deadlines, feeder sectors and international connections.',
+            'description' => 'D.A.K Travel coordinates group and delegation travel from South Africa, including multi-origin flights, passenger details, deadlines, feeder flights and international connections.',
         ),
         'business-travel' => array(
-            'title'       => 'Business & Organisational Travel Johannesburg | D.A.K Travel',
-            'description' => 'Responsive business travel management for South African organisations that need clear approvals, reliable itineraries, reporting and experienced human support.',
+            'title'       => 'Business Travel Management Johannesburg | D.A.K Travel',
+            'description' => 'Personal business travel support for South African companies and organisations, with clear approvals, reliable bookings and experienced help when plans change.',
         ),
         'complex-travel' => array(
             'title'       => 'Complex International Travel Planning | D.A.K Travel',
-            'description' => 'Multi-city, family, premium and complicated international travel planned by experienced D.A.K Travel consultants in Johannesburg.',
+            'description' => 'Multi-city, family, premium and complex international travel planned by experienced D.A.K Travel consultants in Johannesburg.',
         ),
         'about' => array(
-            'title'       => 'About D.A.K Travel | Established Johannesburg Travel Agency',
-            'description' => 'D.A.K Travel is an established Johannesburg travel agency serving travellers since 2006, with specialist expertise in South Africa–Israel and complex international travel.',
+            'title'       => 'About D.A.K Travel | Johannesburg Travel Agency Since 2006',
+            'description' => 'D.A.K Travel is an established Johannesburg travel agency serving travellers since 2006, with specialist experience in South Africa–Israel and complex international travel.',
         ),
         'contact' => array(
-            'title'       => 'Contact D.A.K Travel | WhatsApp or Email Our Team',
-            'description' => 'Contact D.A.K Travel by WhatsApp or email for South Africa–Israel travel, international flights, groups, delegations, business travel and existing booking assistance.',
+            'title'       => 'Contact D.A.K Travel | WhatsApp or Email',
+            'description' => 'Contact D.A.K Travel for South Africa–Israel travel, international flights, groups, delegations, business travel and help with an existing booking.',
         ),
-        'request-a-quote' => array(
-            'title'       => 'Send a Travel Enquiry | D.A.K Travel Johannesburg',
-            'description' => 'Send D.A.K Travel your dates, route and traveller requirements. Our Johannesburg team will review the journey and respond with suitable travel options.',
+        'travel-updates' => array(
+            'title'       => 'Travel Updates | D.A.K Travel South Africa',
+            'description' => 'Useful travel updates and practical information from D.A.K Travel for clients travelling from South Africa, including Israel and international journeys.',
+        ),
+        'privacy-notice' => array(
+            'title'       => 'Privacy & Confidentiality | D.A.K Travel',
+            'description' => 'How D.A.K Travel handles personal and booking information supplied for travel enquiries and travel arrangements.',
+        ),
+        'booking-terms' => array(
+            'title'       => 'Booking Terms | D.A.K Travel',
+            'description' => 'Important D.A.K Travel booking terms and information about supplier conditions, availability, prices and schedules.',
         ),
         'email-disclaimer' => array(
             'title'       => 'Email Disclaimer | D.A.K Travel',
@@ -88,6 +97,46 @@ function daktravel_get_seo_meta() {
     return $meta;
 }
 
+function daktravel_seo_primary_image() {
+    $setting = '';
+
+    if ( is_front_page() ) {
+        $setting = 'daktravel_hero_image';
+    } elseif ( is_page( 'israel-travel' ) ) {
+        $setting = 'daktravel_israel_image';
+    } elseif ( is_page( 'groups-delegations' ) ) {
+        $setting = 'daktravel_group_image';
+    } elseif ( is_page( 'business-travel' ) ) {
+        $setting = 'daktravel_business_image';
+    } elseif ( is_page( 'complex-travel' ) ) {
+        $setting = 'daktravel_complex_image';
+    } elseif ( is_page( 'about' ) ) {
+        $setting = 'daktravel_team_image';
+    } elseif ( is_page( 'contact' ) ) {
+        $setting = 'daktravel_contact_image';
+    }
+
+    if ( $setting ) {
+        $custom = daktravel_media_url( $setting, 'full' );
+        if ( $custom ) {
+            return $custom;
+        }
+    }
+
+    if ( is_page( 'israel-travel' ) ) {
+        return 'https://images.unsplash.com/photo-1703460755794-13248f18ccca?auto=format&fit=crop&fm=jpg&q=82&w=1800';
+    }
+
+    if ( is_singular() && has_post_thumbnail() ) {
+        $image = wp_get_attachment_image_url( get_post_thumbnail_id(), 'full' );
+        if ( $image ) {
+            return $image;
+        }
+    }
+
+    return '';
+}
+
 function daktravel_seo_document_title( $title ) {
     if ( daktravel_has_seo_plugin() || is_admin() ) {
         return $title;
@@ -107,9 +156,13 @@ function daktravel_output_seo_meta() {
         return;
     }
 
-    $url = is_singular() ? get_permalink() : home_url( '/' );
+    $url   = is_singular() ? get_permalink() : home_url( '/' );
+    $image = daktravel_seo_primary_image();
+
+    printf( "\n<link rel=\"canonical\" href=\"%s\">\n", esc_url( $url ) );
+
     if ( ! empty( $meta['description'] ) ) {
-        printf( "\n<meta name=\"description\" content=\"%s\">\n", esc_attr( $meta['description'] ) );
+        printf( "<meta name=\"description\" content=\"%s\">\n", esc_attr( $meta['description'] ) );
     }
     if ( ! empty( $meta['title'] ) ) {
         printf( "<meta property=\"og:title\" content=\"%s\">\n", esc_attr( $meta['title'] ) );
@@ -124,72 +177,104 @@ function daktravel_output_seo_meta() {
     echo "<meta property=\"og:site_name\" content=\"D.A.K Travel\">\n";
     echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
 
-    if ( is_singular() && has_post_thumbnail() ) {
-        $image = wp_get_attachment_image_url( get_post_thumbnail_id(), 'full' );
-        if ( $image ) {
-            printf( "<meta property=\"og:image\" content=\"%s\">\n", esc_url( $image ) );
-            printf( "<meta name=\"twitter:image\" content=\"%s\">\n", esc_url( $image ) );
-        }
+    if ( $image ) {
+        printf( "<meta property=\"og:image\" content=\"%s\">\n", esc_url( $image ) );
+        printf( "<meta name=\"twitter:image\" content=\"%s\">\n", esc_url( $image ) );
     }
 }
 add_action( 'wp_head', 'daktravel_output_seo_meta', 2 );
 
 function daktravel_output_schema() {
-    if ( daktravel_has_seo_plugin() || ! is_front_page() ) {
+    if ( daktravel_has_seo_plugin() || is_admin() || is_404() || is_search() ) {
         return;
     }
 
     $business = array(
-        '@type'        => 'TravelAgency',
-        '@id'          => home_url( '/#travelagency' ),
-        'name'         => 'D.A.K Travel',
-        'url'          => home_url( '/' ),
-        'telephone'    => '+27 11 440 5980',
-        'foundingDate' => '2006',
-        'description'  => 'Established in Johannesburg in 2006, D.A.K Travel specialises in travel between South Africa and Israel, complex international journeys, groups, delegations and organisational travel.',
-        'areaServed'   => array(
+        '@type'         => 'TravelAgency',
+        '@id'           => home_url( '/#travelagency' ),
+        'name'          => 'D.A.K Travel',
+        'alternateName' => 'DAK Travel',
+        'url'           => home_url( '/' ),
+        'telephone'     => '+27 11 440 5980',
+        'foundingDate'  => '2006',
+        'description'   => 'Established in Johannesburg in 2006, D.A.K Travel specialises in travel between South Africa and Israel, complex international journeys, groups, delegations and organisational travel.',
+        'areaServed'    => array(
             array( '@type' => 'Country', 'name' => 'South Africa' ),
             array( '@type' => 'Country', 'name' => 'Israel' ),
         ),
-        'identifier'   => array( '@type' => 'PropertyValue', 'name' => 'IATA Number', 'value' => '772 1572-5' ),
+        'identifier'    => array( '@type' => 'PropertyValue', 'name' => 'IATA Number', 'value' => '772 1572-5' ),
+        'knowsAbout'    => array(
+            'Travel from South Africa to Israel',
+            'Group travel',
+            'Delegation travel',
+            'Business travel',
+            'Complex international travel',
+        ),
     );
 
     $custom_logo_id = get_theme_mod( 'custom_logo' );
     if ( $custom_logo_id ) {
         $logo = wp_get_attachment_image_url( $custom_logo_id, 'full' );
         if ( $logo ) {
-            $business['logo']  = $logo;
-            $business['image'] = $logo;
+            $business['logo'] = $logo;
         }
+    }
+
+    $graph = array( $business );
+
+    $graph[] = array(
+        '@type'     => 'WebSite',
+        '@id'       => home_url( '/#website' ),
+        'url'       => home_url( '/' ),
+        'name'      => 'D.A.K Travel',
+        'publisher' => array( '@id' => home_url( '/#travelagency' ) ),
+    );
+
+    if ( is_front_page() || is_page() ) {
+        $meta       = daktravel_get_seo_meta();
+        $page_url   = is_front_page() ? home_url( '/' ) : get_permalink();
+        $page_image = daktravel_seo_primary_image();
+        $webpage    = array(
+            '@type'      => 'WebPage',
+            '@id'        => trailingslashit( $page_url ) . '#webpage',
+            'url'        => $page_url,
+            'name'       => $meta['title'],
+            'isPartOf'   => array( '@id' => home_url( '/#website' ) ),
+            'about'      => array( '@id' => home_url( '/#travelagency' ) ),
+            'publisher'  => array( '@id' => home_url( '/#travelagency' ) ),
+        );
+        if ( ! empty( $meta['description'] ) ) {
+            $webpage['description'] = $meta['description'];
+        }
+        if ( $page_image ) {
+            $webpage['primaryImageOfPage'] = array(
+                '@type' => 'ImageObject',
+                'url'   => $page_image,
+            );
+        }
+        $graph[] = $webpage;
     }
 
     $schema = array(
         '@context' => 'https://schema.org',
-        '@graph'   => array(
-            $business,
-            array(
-                '@type'     => 'WebSite',
-                '@id'       => home_url( '/#website' ),
-                'url'       => home_url( '/' ),
-                'name'      => 'D.A.K Travel',
-                'publisher' => array( '@id' => home_url( '/#travelagency' ) ),
-            ),
-        ),
+        '@graph'   => $graph,
     );
 
     echo "\n<script type=\"application/ld+json\">" . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
 }
 add_action( 'wp_head', 'daktravel_output_schema', 30 );
 
-/** Keep the email disclaimer accessible from signatures but out of search results. */
-function daktravel_robots_for_utility_pages( $robots ) {
+function daktravel_robots_for_pages( $robots ) {
+    $robots['max-image-preview'] = 'large';
+
+    // Linked from existing email signatures, but not intended as a search landing page.
     if ( is_page( 'email-disclaimer' ) ) {
         $robots['noindex'] = true;
         $robots['follow']  = true;
     }
     return $robots;
 }
-add_filter( 'wp_robots', 'daktravel_robots_for_utility_pages' );
+add_filter( 'wp_robots', 'daktravel_robots_for_pages' );
 
 function daktravel_add_seo_meta_box() {
     if ( daktravel_has_seo_plugin() ) { return; }
@@ -205,7 +290,7 @@ function daktravel_render_seo_meta_box( $post ) {
     $desc  = get_post_meta( $post->ID, '_dak_seo_description', true );
     ?>
     <p><strong><?php esc_html_e( 'Search title', 'daktravel' ); ?></strong></p>
-    <input type="text" name="dak_seo_title" value="<?php echo esc_attr( $title ); ?>" class="widefat" placeholder="e.g. South Africa to Israel Flights & Travel | D.A.K Travel">
+    <input type="text" name="dak_seo_title" value="<?php echo esc_attr( $title ); ?>" class="widefat" placeholder="e.g. Flights to Israel from South Africa | D.A.K Travel">
     <p><strong><?php esc_html_e( 'Meta description', 'daktravel' ); ?></strong></p>
     <textarea name="dak_seo_description" rows="3" class="widefat" placeholder="A clear, useful summary of this page for search users."><?php echo esc_textarea( $desc ); ?></textarea>
     <p class="description"><?php esc_html_e( 'Leave blank to use the D.A.K theme default. These fields are ignored automatically if Yoast, Rank Math or AIOSEO is active.', 'daktravel' ); ?></p>
