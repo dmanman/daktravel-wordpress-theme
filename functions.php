@@ -91,7 +91,7 @@ function daktravel_register_post_types() {
 add_action( 'init', 'daktravel_register_post_types' );
 
 function daktravel_whatsapp_url( $message = '' ) {
-    $base = 'https://api.whatsapp.com/send/?phone=27824406144&type=phone_number&app_absent=0';
+    $base = 'https://api.whatsapp.com/send?phone=27824406144';
     return $message ? $base . '&text=' . rawurlencode( $message ) : $base;
 }
 
