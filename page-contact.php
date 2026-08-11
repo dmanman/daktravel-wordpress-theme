@@ -1,13 +1,22 @@
-<?php get_header(); ?>
+<?php
+get_header();
+$requested_type = isset( $_GET['type'] ) ? sanitize_key( wp_unslash( $_GET['type'] ) ) : '';
+$prefill_type   = 'existing' === $requested_type ? 'Existing booking' : 'Israel travel';
+?>
 <main>
 <section class="dak-page-hero">
     <div class="container dak-page-hero-grid">
         <div class="dak-page-hero-copy">
             <div class="eyebrow">Contact D.A.K Travel</div>
-            <h1>Send us your travel details.</h1>
-            <p class="lead">WhatsApp is best for quick enquiries and screenshots. Use the form for longer requests, group lists and formal quotations.</p>
+            <?php if ( 'Existing booking' === $prefill_type ) : ?>
+                <h1>Need help with an existing booking?</h1>
+                <p class="lead">Send us the booking details and tell us what you need changed or checked.</p>
+            <?php else : ?>
+                <h1>Send us your travel details.</h1>
+                <p class="lead">WhatsApp is best for quick enquiries and screenshots. Use the form for longer requests, group lists and formal quotations.</p>
+            <?php endif; ?>
             <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp +27 82 440 6144</a><a class="btn btn--outline" href="#enquiry">Email Enquiry</a></div>
-            <p style="margin-top:24px;"><strong>Telephone:</strong> <a href="tel:+27114405980">+27 11 440 5980</a> <span style="color:#7a838c;">for clients who prefer to call</span></p>
+            <p class="contact-phone"><strong>Telephone:</strong> <a href="tel:+27114405980">+27 11 440 5980</a> <span>for clients who prefer to call</span></p>
         </div>
         <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_contact_image', 'D.A.K Travel', 'Personal travel service' ) ); ?>
     </div>
@@ -25,13 +34,13 @@
                 <label>Full name<span>*</span><input type="text" name="name" required autocomplete="name"></label>
                 <label>Email<span>*</span><input type="email" name="email" required autocomplete="email"></label>
                 <label>Mobile / WhatsApp<input type="tel" name="mobile" autocomplete="tel"></label>
-                <label>Enquiry type<select name="enquiry_type"><option value="Israel travel">Israel travel</option><option value="Group or delegation">Group or delegation</option><option value="Business travel">Business travel</option><option value="Complex personal travel">Complex personal travel</option><option value="Existing booking">Existing booking</option><option value="General travel enquiry">General travel enquiry</option></select></label>
+                <label>Enquiry type<select name="enquiry_type"><option value="Israel travel" <?php selected( $prefill_type, 'Israel travel' ); ?>>Israel travel</option><option value="Group or delegation" <?php selected( $prefill_type, 'Group or delegation' ); ?>>Group or delegation</option><option value="Business travel" <?php selected( $prefill_type, 'Business travel' ); ?>>Business travel</option><option value="Complex personal travel" <?php selected( $prefill_type, 'Complex personal travel' ); ?>>Complex personal travel</option><option value="Existing booking" <?php selected( $prefill_type, 'Existing booking' ); ?>>Existing booking</option><option value="General travel enquiry" <?php selected( $prefill_type, 'General travel enquiry' ); ?>>General travel enquiry</option></select></label>
                 <label>Departure city<input type="text" name="departure"></label>
                 <label>Destination<input type="text" name="destination"></label>
                 <label>Travel dates<input type="text" name="dates" placeholder="e.g. 12–20 October 2026"></label>
                 <label>Number of travellers<input type="text" name="travellers"></label>
             </div>
-            <label class="form-full">Tell us what you need<span>*</span><textarea name="message" rows="6" required></textarea></label>
+            <label class="form-full">Tell us what you need<span>*</span><textarea name="message" rows="5" required></textarea></label>
             <div class="form-submit"><button class="btn btn--primary" type="submit">Send Enquiry</button><span>Your message is sent directly to D.A.K Travel.</span></div>
         </form>
     </div>
