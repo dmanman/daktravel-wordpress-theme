@@ -97,9 +97,9 @@
   content: "" !important;
   display: block !important;
   position: absolute;
-  inset: 20px;
+  inset: 22px;
   z-index: 2;
-  border: 1px solid rgba(232,235,237,.52);
+  border: 1px solid rgba(255,255,255,.28);
   border-radius: 0;
   pointer-events: none;
 }
