@@ -68,12 +68,21 @@ function daktravel_enqueue_assets() {
         $silver_css_ver
     );
 
+    $atelier_css_path = get_template_directory() . '/assets/css/atelier-premium.css';
+    $atelier_css_ver  = file_exists( $atelier_css_path ) ? (string) filemtime( $atelier_css_path ) : $theme_version;
+    wp_enqueue_style(
+        'daktravel-atelier-premium',
+        get_template_directory_uri() . '/assets/css/atelier-premium.css',
+        array( 'daktravel-silver-refine' ),
+        $atelier_css_ver
+    );
+
     $mobile_css_path = get_template_directory() . '/assets/css/mobile-clarity.css';
     $mobile_css_ver  = file_exists( $mobile_css_path ) ? (string) filemtime( $mobile_css_path ) : $theme_version;
     wp_enqueue_style(
         'daktravel-mobile-clarity',
         get_template_directory_uri() . '/assets/css/mobile-clarity.css',
-        array( 'daktravel-silver-refine' ),
+        array( 'daktravel-atelier-premium' ),
         $mobile_css_ver
     );
 
