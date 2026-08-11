@@ -1,0 +1,231 @@
+/* D.A.K Travel — editorial luxury refinement
+   Premium through restraint: typography, proportion, imagery and fine detail. */
+
+:root {
+  --dak-metal: #b9c0c6;
+  --dak-metal-soft: #e8ebed;
+  --dak-warm-metal: #b28a50;
+}
+
+/* Global rhythm */
+body {
+  letter-spacing: -.003em;
+}
+.eyebrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: .16em;
+}
+.eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg,var(--dak-warm-metal),var(--dak-metal));
+}
+
+/* Header: quieter and more architectural */
+.site-header {
+  background: rgba(255,253,249,.985);
+  box-shadow: none !important;
+}
+.header-inner {
+  min-height: 92px;
+}
+.site-nav a {
+  font-size: .8rem;
+  letter-spacing: .025em;
+}
+.site-nav .nav-israel::after {
+  height: 1px;
+  background: linear-gradient(90deg,var(--dak-warm-metal),var(--dak-metal));
+}
+
+/* Hero: editorial rather than card-based */
+.hero {
+  padding-top: 92px;
+  padding-bottom: 104px;
+}
+.hero-grid {
+  gap: 94px;
+}
+.hero h1 {
+  max-width: 590px;
+  letter-spacing: -.035em;
+}
+.hero-copy p {
+  max-width: 570px;
+}
+.hero-media {
+  min-height: 555px;
+  box-shadow: 0 38px 100px rgba(10,23,35,.16);
+}
+.hero-media::before {
+  inset: 22px;
+  border-color: rgba(232,235,237,.50);
+}
+.advisory-card h3 {
+  max-width: 500px;
+  letter-spacing: -.018em;
+}
+.hero-tag {
+  letter-spacing: .1em;
+  color: #656c72;
+}
+
+/* Proof strip: understated, almost like stationery */
+.confidence-bar {
+  background: #fffdf9;
+}
+.confidence-item {
+  padding-top: 31px;
+  padding-bottom: 31px;
+}
+.confidence-item strong {
+  font-family: Georgia,"Times New Roman",serif;
+  font-size: 1.03rem;
+  font-weight: 500;
+}
+
+/* Trust section: institutional, calm and established */
+.trust-section {
+  background: #faf8f4;
+}
+.trust-panel {
+  background: linear-gradient(150deg,#081724,#102b42);
+  border: 1px solid rgba(185,192,198,.34);
+  box-shadow: 0 38px 100px rgba(10,23,35,.14);
+}
+.trust-panel::before {
+  border-color: rgba(232,235,237,.13);
+}
+.trust-panel-title {
+  color: #eef1f3;
+}
+.credential-mark {
+  color: #eef1f3;
+  border-color: rgba(185,192,198,.56);
+}
+.trust-signoff {
+  color: rgba(238,241,243,.72);
+}
+
+/* Privacy reassurance remains quiet and concise */
+.confidentiality-section {
+  background: #fff;
+}
+.confidentiality-copy h2 {
+  max-width: 650px;
+}
+
+/* Services: editorial tiles with no ecommerce-card feel */
+.service-grid {
+  border-top: 1px solid rgba(185,192,198,.48);
+  border-bottom: 1px solid rgba(185,192,198,.48);
+  background: transparent !important;
+}
+.service-card {
+  background: transparent;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-right: 1px solid rgba(185,192,198,.36) !important;
+  border-bottom: 1px solid rgba(185,192,198,.36) !important;
+}
+.service-card:nth-child(2n) {
+  border-right: 0 !important;
+}
+.service-card h3 {
+  letter-spacing: -.025em;
+}
+.service-card p {
+  max-width: 470px;
+}
+
+/* Interior page hero: more magazine-like */
+.dak-page-hero {
+  position: relative;
+  background: linear-gradient(135deg,#fbfaf7 0%,#f3f0eb 100%);
+  border-top: 1px solid rgba(185,192,198,.30);
+}
+.dak-page-hero::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,var(--dak-metal),var(--dak-warm-metal),transparent);
+}
+.dak-page-hero-grid {
+  gap: 96px;
+}
+.dak-page-hero-copy h1 {
+  max-width: 680px;
+  letter-spacing: -.038em;
+}
+.dak-media-slot {
+  box-shadow: 0 36px 100px rgba(10,23,35,.15);
+}
+.dak-media-slot::after {
+  inset: 20px;
+  border-color: rgba(232,235,237,.52);
+}
+
+/* Feature rows: fine editorial dividers */
+.dak-feature-row {
+  padding-top: 29px;
+  padding-bottom: 29px;
+}
+.dak-feature-row .num {
+  color: #89939b;
+}
+.dak-feature-row strong {
+  font-size: 1.24rem;
+}
+
+/* Dark bands become a single luxurious pause */
+.dak-dark-band,
+.section--ink {
+  background: linear-gradient(140deg,#071521,#10283c);
+}
+.dak-dark-band h2,
+.section--ink h2 {
+  letter-spacing: -.03em;
+}
+
+/* Form: premium correspondence rather than plugin UI */
+.dak-enquiry-form {
+  box-shadow: none;
+  border-top: 2px solid var(--dak-metal);
+}
+.dak-enquiry-form input,
+.dak-enquiry-form select,
+.dak-enquiry-form textarea {
+  background: #fffdf9;
+}
+.form-submit .btn--primary {
+  min-width: 180px;
+}
+
+/* Footer */
+.site-footer {
+  background: #06111b;
+}
+
+@media (max-width: 980px) {
+  .header-inner { min-height: 74px; }
+  .hero-grid,
+  .dak-page-hero-grid { gap: 42px; }
+}
+
+@media (max-width: 680px) {
+  .eyebrow::before { width: 22px; }
+  .hero { padding-top: 44px; padding-bottom: 54px; }
+  .service-card,
+  .service-card:nth-child(2n) {
+    border-right: 0 !important;
+  }
+  .dak-page-hero-grid { gap: 28px; }
+  .dak-media-slot { box-shadow: 0 22px 58px rgba(10,23,35,.13); }
+}
