@@ -1,4 +1,44 @@
-<?php get_header(); ?>
+<?php
+$route_slideshow_css_path = get_template_directory() . '/assets/css/route-slideshow.css';
+wp_enqueue_style(
+    'daktravel-route-slideshow',
+    get_template_directory_uri() . '/assets/css/route-slideshow.css',
+    array( 'daktravel-multilingual' ),
+    file_exists( $route_slideshow_css_path ) ? (string) filemtime( $route_slideshow_css_path ) : wp_get_theme()->get( 'Version' )
+);
+
+$israel_primary_image  = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_israel_image', 'large' ) : '';
+$israel_primary_credit = '';
+if ( ! $israel_primary_image ) {
+    $israel_primary_image  = 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Azriely_Center.jpg';
+    $israel_primary_credit = 'Azrieli Center, Tel Aviv · Photo: Rastaman3000 / CC BY-SA 3.0';
+}
+
+$israel_hero_images = array(
+    array(
+        'url'    => $israel_primary_image,
+        'alt'    => 'Tel Aviv, Israel for South Africa to Israel travel',
+        'credit' => $israel_primary_credit,
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/17291323/pexels-photo-17291323.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of the Tel Aviv skyline and Mediterranean coastline',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/30284228/pexels-photo-30284228.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of Jerusalem and the Old City skyline',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/30645989/pexels-photo-30645989.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of the Dead Sea shoreline and turquoise water',
+        'credit' => '',
+    ),
+);
+
+get_header();
+?>
 <main>
 <section class="dak-page-hero">
     <div class="container dak-page-hero-grid">
@@ -11,17 +51,24 @@
                 <a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Email / Enquire</a>
             </div>
         </div>
-        <?php
-        $israel_image = daktravel_media_image( 'daktravel_israel_image', 'large', 'dak-media-image', 'Tel Aviv, Israel for South Africa to Israel travel' );
-        if ( $israel_image ) :
-            echo '<div class="dak-media-slot has-image">' . wp_kses_post( $israel_image ) . '</div>';
-        else :
-            ?>
-            <figure class="dak-media-slot has-image dak-israel-architecture">
-                <img class="dak-media-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Azriely_Center.jpg" alt="Tel Aviv, Israel for South Africa to Israel travel" width="1600" height="1200" loading="eager" fetchpriority="high">
-                <figcaption class="image-credit">Azrieli Center, Tel Aviv · Photo: Rastaman3000 / CC BY-SA 3.0</figcaption>
-            </figure>
-        <?php endif; ?>
+        <figure class="dak-media-slot has-image dak-route-slideshow-frame">
+            <div class="dak-route-slideshow" aria-hidden="true">
+                <?php foreach ( $israel_hero_images as $index => $image ) : ?>
+                    <span class="dak-route-slide dak-route-slide--<?php echo esc_attr( $index + 1 ); ?>">
+                        <img
+                            class="dak-media-image"
+                            src="<?php echo esc_url( $image['url'] ); ?>"
+                            alt="<?php echo esc_attr( $image['alt'] ); ?>"
+                            <?php echo 0 === $index ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; ?>
+                            decoding="async"
+                        >
+                        <?php if ( ! empty( $image['credit'] ) ) : ?>
+                            <span class="dak-route-slide-credit"><?php echo esc_html( $image['credit'] ); ?></span>
+                        <?php endif; ?>
+                    </span>
+                <?php endforeach; ?>
+            </div>
+        </figure>
     </div>
 </section>
 
