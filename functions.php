@@ -77,5 +77,8 @@ function daktravel_whatsapp_url( $message = '' ) {
     return $message ? $base . '?text=' . rawurlencode( $message ) : $base;
 }
 
+// Editable real photography and approved organisation logos.
+require_once get_template_directory() . '/inc/customizer.php';
+
 // Lightweight SEO defaults, social metadata and TravelAgency structured data.
 require_once get_template_directory() . '/inc/seo.php';
