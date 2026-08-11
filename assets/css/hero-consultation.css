@@ -71,24 +71,36 @@
   padding: 0;
 }
 
+/* Match the full-bleed image treatment used on the interior pages. */
 .hero--consultation .hero-media.hero-media--clean-photo {
   position: relative;
   min-height: 0;
   margin: 0;
+  padding: 0 !important;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 10px;
-  background: #fff !important;
+  border-radius: 0;
+  background: #e9ecee !important;
   background-image: none !important;
-  box-shadow: 0 26px 70px rgba(11,23,36,.14);
-  border: 1px solid rgba(11,23,36,.06);
+  box-shadow: 0 36px 100px rgba(10,23,35,.15);
+  border: 0;
   isolation: isolate;
 }
 
-.hero--consultation .hero-media.hero-media--clean-photo::before,
-.hero--consultation .hero-media.hero-media--clean-photo::after {
+.hero--consultation .hero-media.hero-media--clean-photo::before {
   display: none !important;
   content: none !important;
+}
+
+.hero--consultation .hero-media.hero-media--clean-photo::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  inset: 20px;
+  z-index: 2;
+  border: 1px solid rgba(232,235,237,.52);
+  border-radius: 0;
+  pointer-events: none;
 }
 
 .hero-terminal-photo {
@@ -193,7 +205,10 @@
 
   .hero--consultation .hero-media.hero-media--clean-photo {
     aspect-ratio: 4 / 3;
-    border-radius: 7px;
+  }
+
+  .hero--consultation .hero-media.hero-media--clean-photo::after {
+    inset: 12px;
   }
 
   .hero-photo-meta {
