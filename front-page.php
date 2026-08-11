@@ -9,7 +9,7 @@ wp_enqueue_style(
 
 $hero_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_hero_image', 'full' ) : '';
 if ( ! $hero_image ) {
-    $hero_image = 'https://images.pexels.com/photos/13315324/pexels-photo-13315324.jpeg?auto=compress&cs=tinysrgb&w=2000';
+    $hero_image = 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200';
 }
 
 get_header();
@@ -35,10 +35,10 @@ get_header();
 
             <div class="hero-media-wrap">
                 <figure class="hero-media hero-media--clean-photo">
-                    <img class="hero-terminal-photo" src="<?php echo esc_url( $hero_image ); ?>" alt="Bright modern airport terminal with large glass windows and an aircraft outside" fetchpriority="high" decoding="async">
+                    <img class="hero-terminal-photo" src="<?php echo esc_url( $hero_image ); ?>" alt="Bright view from an airplane window showing the aircraft wing against a clear blue sky" fetchpriority="high" decoding="async">
                 </figure>
                 <div class="hero-photo-meta" aria-hidden="true">
-                    <span>International travel, personally managed.</span>
+                    <span>The world, within reach.</span>
                     <span>Flights · Groups · Business · Complex journeys</span>
                 </div>
             </div>
