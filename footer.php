@@ -3,7 +3,7 @@
         <div>
             <h2 style="color:#fff;">D.A.K Travel</h2>
             <p>Established in Johannesburg in 2006. Specialist South Africa–Israel travel, groups, business travel and complex international journeys.</p>
-            <p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a><br>
+            <p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp Us</a><br>
             <a href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Email / Send an enquiry</a><br>
             <span>Telephone: +27 11 440 5980</span></p>
         </div>
@@ -31,7 +31,7 @@
     </div>
 </footer>
 <div class="mobile-actions">
-    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a new travel enquiry.' ) ); ?>">WhatsApp</a>
+    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a new travel enquiry.' ) ); ?>">WhatsApp Us</a>
     <a href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Email</a>
     <a href="<?php echo esc_url( home_url( '/contact/?type=existing#enquiry' ) ); ?>">Existing booking</a>
 </div>
