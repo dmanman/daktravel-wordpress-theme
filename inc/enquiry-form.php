@@ -8,21 +8,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function daktravel_enquiry_recipient() {
-    return apply_filters( 'daktravel_enquiry_recipient', 'info@daktravel.co.za' );
+    $recipient = sanitize_email( get_option( 'admin_email' ) );
+    return apply_filters( 'daktravel_enquiry_recipient', $recipient );
 }
 
 function daktravel_post_text( $key ) {
     return isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
 }
 
-function daktravel_handle_enquiry() {
-    if ( ! isset( $_POST['daktravel_enquiry_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['daktravel_enquiry_nonce'] ) ), 'daktravel_enquiry' ) ) {
-        wp_die( esc_html__( 'We could not verify this enquiry. Please go back and try again.', 'daktravel' ) );
+/**
+ * Process an enquiry and return one of: success, error, invalid.
+ * This is intentionally callable from the Contact page itself so the form works
+ * inside WordPress Live Preview as well as after the theme is activated.
+ */
+function daktravel_process_enquiry_submission() {
+    if ( ! isset( $_POST['daktravel_enquiry_submit'] ) ) {
+        return '';
     }
 
+    if ( ! isset( $_POST['daktravel_enquiry_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['daktravel_enquiry_nonce'] ) ), 'daktravel_enquiry' ) ) {
+        return 'invalid';
+    }
+
+    // Honeypot: genuine visitors should leave this field blank.
     if ( ! empty( $_POST['website'] ) ) {
-        wp_safe_redirect( add_query_arg( 'sent', '1', home_url( '/contact/' ) ) . '#enquiry' );
-        exit;
+        return 'success';
     }
 
     $name              = daktravel_post_text( 'name' );
@@ -41,8 +51,7 @@ function daktravel_handle_enquiry() {
     $message           = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
 
     if ( '' === $name || ! is_email( $email ) || '' === $message ) {
-        wp_safe_redirect( add_query_arg( 'sent', 'error', home_url( '/contact/' ) ) . '#enquiry' );
-        exit;
+        return 'invalid';
     }
 
     $subject = sprintf( 'D.A.K Website Enquiry: %s — %s', $type ? $type : 'Travel enquiry', $name );
@@ -77,12 +86,25 @@ function daktravel_handle_enquiry() {
     $lines[] = 'Message:';
     $lines[] = $message;
 
+    $recipient = daktravel_enquiry_recipient();
+    if ( ! is_email( $recipient ) ) {
+        return 'error';
+    }
+
     $headers   = array( 'Content-Type: text/plain; charset=UTF-8' );
     $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
 
-    $sent = wp_mail( daktravel_enquiry_recipient(), $subject, implode( "\n", $lines ), $headers );
+    return wp_mail( $recipient, $subject, implode( "\n", $lines ), $headers ) ? 'success' : 'error';
+}
 
-    wp_safe_redirect( add_query_arg( 'sent', $sent ? '1' : '0', home_url( '/contact/' ) ) . '#enquiry' );
+/**
+ * Keep the admin-post endpoint as a fallback for integrations/bookmarks, even
+ * though the visible form submits to the Contact page itself.
+ */
+function daktravel_handle_enquiry() {
+    $status = daktravel_process_enquiry_submission();
+    $sent   = 'success' === $status ? '1' : ( 'invalid' === $status ? 'error' : '0' );
+    wp_safe_redirect( add_query_arg( 'sent', $sent, home_url( '/contact/' ) ) . '#enquiry' );
     exit;
 }
 add_action( 'admin_post_nopriv_daktravel_enquiry', 'daktravel_handle_enquiry' );
