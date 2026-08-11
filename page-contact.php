@@ -56,7 +56,7 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
             </div>
             <p class="contact-phone"><strong>Telephone:</strong> <a href="tel:+27114405980">+27 11 440 5980</a> <span>if you prefer to call</span></p>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_contact_image', 'D.A.K Travel', 'Personal travel service' ) ); ?>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_contact_image', 'Aircraft wing above the clouds', 'Personal travel service', 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
 </section>
 
