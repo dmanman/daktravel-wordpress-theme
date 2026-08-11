@@ -4,7 +4,7 @@
  *
  * Keeps page titles/descriptions concise and distinct, adds breadcrumb and
  * article structured data, provides sensible post-description fallbacks and
- * advertises the WordPress sitemap in the virtual robots.txt output.
+ * advertises the appropriate sitemap in robots.txt.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -144,7 +144,10 @@ function daktravel_breadcrumb_items() {
     } elseif ( is_singular( 'post' ) ) {
         $items[] = array( 'name' => 'Travel Updates', 'url' => home_url( '/travel-updates/' ) );
     } elseif ( is_singular( 'dak_case_study' ) ) {
-        $items[] = array( 'name' => 'Case Studies', 'url' => home_url( '/case-studies/' ) );
+        $archive = get_post_type_archive_link( 'dak_case_study' );
+        if ( $archive ) {
+            $items[] = array( 'name' => 'Case Studies', 'url' => $archive );
+        }
     }
 
     if ( is_singular() || is_page() ) {
@@ -196,6 +199,7 @@ function daktravel_output_additional_schema() {
             'dateModified'     => get_the_modified_date( DATE_W3C, $post_id ),
             'author'           => array( '@type' => 'Organization', 'name' => 'D.A.K Travel' ),
             'publisher'        => array( '@id' => home_url( '/#travelagency' ) ),
+            'inLanguage'       => 'en-ZA',
         );
 
         if ( ! empty( $meta['description'] ) ) {
@@ -222,15 +226,40 @@ function daktravel_output_additional_schema() {
 add_action( 'wp_head', 'daktravel_output_additional_schema', 31 );
 
 /**
- * Advertise WordPress core's XML sitemap in the virtual robots.txt file.
+ * Keep pages intentionally marked noindex out of WordPress core's page sitemap.
+ */
+function daktravel_sitemap_exclude_noindex_pages( $args, $post_type ) {
+    if ( 'page' !== $post_type ) {
+        return $args;
+    }
+
+    $email_disclaimer = get_page_by_path( 'email-disclaimer', OBJECT, 'page' );
+    if ( $email_disclaimer instanceof WP_Post ) {
+        if ( empty( $args['post__not_in'] ) || ! is_array( $args['post__not_in'] ) ) {
+            $args['post__not_in'] = array();
+        }
+        $args['post__not_in'][] = $email_disclaimer->ID;
+        $args['post__not_in']   = array_values( array_unique( array_map( 'absint', $args['post__not_in'] ) ) );
+    }
+
+    return $args;
+}
+add_filter( 'wp_sitemaps_posts_query_args', 'daktravel_sitemap_exclude_noindex_pages', 10, 2 );
+
+/**
+ * Advertise WordPress core's XML sitemap only when the theme itself owns SEO.
+ * Dedicated SEO plugins should advertise their own sitemap format.
  */
 function daktravel_robots_txt_sitemap( $output, $public ) {
-    if ( $public ) {
-        $sitemap = home_url( '/wp-sitemap.xml' );
-        if ( false === strpos( $output, $sitemap ) ) {
-            $output .= "\nSitemap: " . esc_url_raw( $sitemap ) . "\n";
-        }
+    if ( ! $public || daktravel_has_seo_plugin() ) {
+        return $output;
     }
+
+    $sitemap = home_url( '/wp-sitemap.xml' );
+    if ( false === strpos( $output, $sitemap ) ) {
+        $output .= "\nSitemap: " . esc_url_raw( $sitemap ) . "\n";
+    }
+
     return $output;
 }
 add_filter( 'robots_txt', 'daktravel_robots_txt_sitemap', 20, 2 );
