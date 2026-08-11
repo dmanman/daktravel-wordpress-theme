@@ -23,7 +23,21 @@ function daktravel_setup() {
 add_action( 'after_setup_theme', 'daktravel_setup' );
 
 function daktravel_enqueue_assets() {
-    wp_enqueue_style( 'daktravel-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+    $theme_version = wp_get_theme()->get( 'Version' );
+
+    wp_enqueue_style(
+        'daktravel-style',
+        get_stylesheet_uri(),
+        array(),
+        $theme_version
+    );
+
+    wp_enqueue_style(
+        'daktravel-premium-refine',
+        get_template_directory_uri() . '/assets/css/premium-refine.css',
+        array( 'daktravel-style' ),
+        $theme_version . '-premium-1'
+    );
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
