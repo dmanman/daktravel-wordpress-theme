@@ -95,6 +95,43 @@
   color: rgba(237,240,242,.72);
 }
 
+/* Make the original-site photography visibly part of the homepage trust story.
+   This is intentionally desktop/tablet only so mobile remains short. */
+.home .trust-copy {
+  position: relative;
+  min-height: 330px;
+  padding-right: 205px;
+}
+.home .trust-copy::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 8px;
+  width: 160px;
+  height: 228px;
+  background:
+    linear-gradient(180deg, rgba(7,19,30,.02), rgba(7,19,30,.12)),
+    url('/wp-content/uploads/2022/08/photo.small_.yk_.jpg') center 20% / cover no-repeat,
+    #d9dde0;
+  border: 7px solid #fff;
+  outline: 1px solid rgba(174,182,189,.55);
+  box-shadow: 0 22px 50px rgba(10,23,35,.14);
+}
+.home .trust-copy::before {
+  content: "PERSONAL SERVICE · SINCE 2006";
+  position: absolute;
+  z-index: 2;
+  right: 8px;
+  top: 250px;
+  width: 176px;
+  color: #6f7880;
+  font-size: .63rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  line-height: 1.4;
+  text-align: center;
+}
+
 /* Dark bands get a quiet silver architectural edge. */
 .dak-dark-band,
 .section--ink,
@@ -126,6 +163,31 @@
 }
 .site-footer a:hover {
   color: var(--dak-silver-light);
+}
+
+@media (max-width: 1120px) {
+  .home .trust-copy {
+    padding-right: 180px;
+  }
+  .home .trust-copy::after {
+    width: 140px;
+    height: 205px;
+  }
+  .home .trust-copy::before {
+    width: 150px;
+    top: 227px;
+  }
+}
+
+@media (max-width: 980px) {
+  .home .trust-copy {
+    min-height: 0;
+    padding-right: 0;
+  }
+  .home .trust-copy::before,
+  .home .trust-copy::after {
+    display: none;
+  }
 }
 
 @media (max-width: 680px) {
