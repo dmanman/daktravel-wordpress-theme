@@ -1,0 +1,126 @@
+/* D.A.K Travel — restrained silver accent layer
+   Silver supports the navy/ivory/gold palette; it should read as refined metal,
+   not chrome or decorative clutter. */
+
+:root {
+  --dak-silver: #c8cdd2;
+  --dak-silver-light: #edf0f2;
+  --dak-silver-mid: #aeb6bd;
+  --dak-silver-dark: #7f8992;
+  --dak-silver-line: rgba(174,182,189,.42);
+}
+
+/* Fine silver rules create structure without adding more boxes. */
+.site-header {
+  border-bottom-color: rgba(174,182,189,.32);
+}
+.utility-proof span::before,
+.utility-links > * + *::before {
+  color: var(--dak-silver-mid);
+}
+
+/* Gold remains the warm accent; silver supports secondary actions. */
+.btn--outline {
+  border-color: var(--dak-silver-mid);
+  color: var(--dak-ink);
+}
+.btn--outline:hover {
+  background: var(--dak-silver-light);
+  border-color: var(--dak-silver-dark);
+  box-shadow: none;
+}
+.header-email {
+  border-bottom-color: var(--dak-silver-mid);
+}
+
+/* Hero and image framing: subtle silver edge, no shiny gradients. */
+.hero-media::before,
+.dak-media-slot::after {
+  border-color: rgba(216,222,227,.48);
+}
+.hero-media,
+.dak-media-slot {
+  outline: 1px solid rgba(174,182,189,.18);
+  outline-offset: 7px;
+}
+.contact-note {
+  border-top-color: var(--dak-silver-dark);
+}
+
+/* Proof and editorial separators. */
+.confidence-bar,
+.dak-page-hero,
+.dak-quiet-cta,
+.confidentiality-section {
+  border-color: var(--dak-silver-line);
+}
+.confidence-item {
+  border-right-color: var(--dak-silver-line) !important;
+}
+.dak-feature-list,
+.dak-feature-row,
+.confidentiality-points,
+.confidentiality-point {
+  border-color: var(--dak-silver-line);
+}
+
+/* Credentials should feel institutional and established. */
+.trust-panel {
+  border-color: rgba(200,205,210,.38);
+}
+.trust-panel::before,
+.credential-row,
+.trust-signoff {
+  border-color: rgba(200,205,210,.22);
+}
+.credential-mark {
+  border-color: rgba(200,205,210,.58);
+  color: var(--dak-silver-light);
+}
+.credential-row small {
+  color: rgba(237,240,242,.72);
+}
+
+/* Dark bands get a quiet silver architectural edge. */
+.dak-dark-band,
+.section--ink,
+.final-cta {
+  border-top: 1px solid rgba(200,205,210,.16);
+  border-bottom: 1px solid rgba(200,205,210,.10);
+}
+.dak-dark-band .eyebrow,
+.section--ink .eyebrow {
+  color: #d5dadd;
+}
+
+/* Forms: cleaner, cooler fine lines while gold remains the focus state. */
+.dak-enquiry-form,
+.legal-card,
+.editorial-panel,
+.written-contact-panel {
+  border-color: rgba(174,182,189,.38);
+}
+.dak-enquiry-form input,
+.dak-enquiry-form select,
+.dak-enquiry-form textarea {
+  border-color: rgba(127,137,146,.34);
+}
+
+/* Footer and small detail work. */
+.site-footer {
+  border-top: 1px solid rgba(200,205,210,.18);
+}
+.site-footer a:hover {
+  color: var(--dak-silver-light);
+}
+
+@media (max-width: 680px) {
+  .hero-media,
+  .dak-media-slot {
+    outline-offset: 4px;
+  }
+  .confidence-item {
+    border-right: 0 !important;
+    border-bottom-color: var(--dak-silver-line) !important;
+  }
+}
