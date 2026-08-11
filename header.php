@@ -10,7 +10,7 @@
 
 <div class="utility-bar">
     <div class="container utility-inner">
-        <div class="utility-proof">Johannesburg · South Africa–Israel specialists · IATA accredited · ASATA member</div>
+        <div class="utility-proof">Established Johannesburg travel agency · IATA accredited · ASATA member · South Africa–Israel specialists</div>
         <div class="utility-links">
             <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking help</a>
             <span aria-hidden="true">•</span>
