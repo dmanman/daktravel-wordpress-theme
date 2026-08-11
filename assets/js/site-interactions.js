@@ -12,6 +12,7 @@
     if (value === 'Group or delegation') return 'group';
     if (value === 'Business travel') return 'business';
     if (value === 'Existing booking') return 'existing';
+    if (value === 'General travel enquiry') return 'general';
     return 'travel';
   }
 
@@ -36,57 +37,10 @@
     updateFields();
   }
 
-  function setupAjaxForm(form) {
-    var submit = form.querySelector('button[type="submit"]');
-    var status = form.querySelector('.form-live-status');
-    if (!submit || !status || !window.fetch) return;
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      var original = submit.textContent;
-      submit.disabled = true;
-      submit.textContent = 'Sending…';
-      status.hidden = true;
-      status.className = 'form-live-status';
-
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        credentials: 'same-origin'
-      }).then(function (response) {
-        var finalUrl = new URL(response.url, window.location.href);
-        var sent = finalUrl.searchParams.get('sent');
-        if (sent === '1') {
-          status.textContent = 'Thank you. Your enquiry has been sent to D.A.K Travel.';
-          status.classList.add('form-live-status--success');
-          status.hidden = false;
-          form.reset();
-          var select = form.querySelector('[name="enquiry_type"]');
-          if (select) select.dispatchEvent(new Event('change'));
-        } else {
-          throw new Error('send-failed');
-        }
-      }).catch(function () {
-        status.textContent = 'We could not send the enquiry. Please try again or use WhatsApp D.A.K.';
-        status.classList.add('form-live-status--error');
-        status.hidden = false;
-      }).finally(function () {
-        submit.disabled = false;
-        submit.textContent = original;
-      });
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     setWhatsAppTargets();
     document.querySelectorAll('.dak-enquiry-form').forEach(function (form) {
       setupConditionalForm(form);
-      setupAjaxForm(form);
     });
   });
 }());
