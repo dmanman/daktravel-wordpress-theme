@@ -7,27 +7,23 @@ wp_enqueue_style(
     file_exists( $route_slideshow_css_path ) ? (string) filemtime( $route_slideshow_css_path ) : wp_get_theme()->get( 'Version' )
 );
 
-$israel_primary_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_israel_image', 'large' ) : '';
-if ( ! $israel_primary_image ) {
-    $israel_primary_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
-}
-
+/* Keep this Johannesburg-specific slideshow visually distinct from the main Israel Travel page. */
 $israel_hero_images = array(
     array(
-        'url' => $israel_primary_image,
-        'alt' => 'Tel Aviv, Israel for Johannesburg to Israel travel',
+        'url' => 'https://images.pexels.com/photos/17291340/pexels-photo-17291340.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt' => 'Aerial view of Haifa and the Bahai Gardens on Israel Mediterranean coast',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/17291323/pexels-photo-17291323.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        'alt' => 'Aerial view of the Tel Aviv skyline and Mediterranean coastline',
+        'url' => 'https://images.pexels.com/photos/30113408/pexels-photo-30113408.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt' => 'Aerial view of ancient Caesarea ruins and the Mediterranean coastline in Israel',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/30284228/pexels-photo-30284228.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        'alt' => 'Aerial view of Jerusalem and the Old City skyline',
+        'url' => 'https://images.pexels.com/photos/30428821/pexels-photo-30428821.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt' => 'Dramatic aerial view of the Negev Desert in southern Israel',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/30645989/pexels-photo-30645989.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        'alt' => 'Aerial view of the Dead Sea shoreline and turquoise water',
+        'url' => 'https://images.pexels.com/photos/13554691/pexels-photo-13554691.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt' => 'Drone view of the old city and Mediterranean harbour of Acre in northern Israel',
     ),
 );
 
