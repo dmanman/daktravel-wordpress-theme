@@ -63,6 +63,12 @@ function daktravel_enqueue_assets() {
 
     $inline_css  = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.91),rgba(16,38,61,.74)),url("' . esc_url_raw( $specialist_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
     $inline_css .= '.home img[src*="photo.small_.yk_"],.home img[src*="photo.small.yk"],.home img[src*="yochee" i],.home img[srcset*="photo.small"],.home img[srcset*="yochee" i],.home img[data-src*="photo.small"],.home img[data-src*="yochee" i],.home img[alt*="Yochee" i],.home img[title*="Yochee" i]{display:none!important;}';
+    /* No photography is permitted beside the homepage trust copy. */
+    $inline_css .= '.home .trust-section img{display:none!important;}';
+    $inline_css .= '.home .trust-section .credential-mark--logo{font-size:0!important;}';
+    $inline_css .= '.home .trust-section .credential-row:nth-of-type(2) .credential-mark--logo::after{content:"IATA";font-size:.72rem;}';
+    $inline_css .= '.home .trust-section .credential-row:nth-of-type(3) .credential-mark--logo::after{content:"ASATA";font-size:.72rem;}';
+    $inline_css .= '.home .trust-section .credential-row:nth-of-type(4) .credential-mark--logo::after{content:"CT";font-size:.72rem;}';
 
     wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
 
