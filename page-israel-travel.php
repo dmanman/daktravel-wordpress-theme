@@ -38,6 +38,20 @@
     </div>
 </section>
 
+<?php
+$tel_aviv   = daktravel_media_image( 'daktravel_telaviv_image', 'large', 'dak-israel-strip-image', 'Tel Aviv, Israel' );
+$jerusalem  = daktravel_media_image( 'daktravel_jerusalem_image', 'large', 'dak-israel-strip-image', 'Jerusalem, Israel' );
+$dead_sea   = daktravel_media_image( 'daktravel_deadsea_image', 'large', 'dak-israel-strip-image', 'The Dead Sea, Israel' );
+if ( $tel_aviv || $jerusalem || $dead_sea ) : ?>
+<section class="dak-israel-strip" aria-label="Israel destination imagery">
+    <div class="container dak-israel-strip-grid">
+        <?php if ( $tel_aviv ) : ?><figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $tel_aviv ); ?></div><figcaption>Tel Aviv</figcaption></figure><?php endif; ?>
+        <?php if ( $jerusalem ) : ?><figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $jerusalem ); ?></div><figcaption>Jerusalem</figcaption></figure><?php endif; ?>
+        <?php if ( $dead_sea ) : ?><figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $dead_sea ); ?></div><figcaption>Dead Sea</figcaption></figure><?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>
+
 <section class="dak-dark-band">
     <div class="container dak-narrow">
         <div class="eyebrow">South Africa–Israel specialists</div>
