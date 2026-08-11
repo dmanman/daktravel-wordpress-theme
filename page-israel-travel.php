@@ -36,6 +36,7 @@
             <div class="dak-feature-row"><span class="num">03</span><strong>Return &amp; flexible journeys</strong><p>Round trips, different departure and return cities, family travel and flexible fare options can be considered as one complete itinerary.</p></div>
             <div class="dak-feature-row"><span class="num">04</span><strong>Help when plans change</strong><p>You have a real consultant who already understands the booking and can help when schedules or travel plans move.</p></div>
         </div>
+        <p style="margin-top:30px;"><strong>Route guides:</strong> <a href="<?php echo esc_url( home_url('/flights-to-israel-from-johannesburg/') ); ?>">Johannesburg to Israel flights</a> · <a href="<?php echo esc_url( home_url('/flights-from-israel-to-south-africa/') ); ?>">Israel to South Africa flights</a> · <a href="<?php echo esc_url( home_url('/south-africa-israel-flight-routes/') ); ?>">South Africa–Israel flight routes</a></p>
     </div>
 </section>
 
