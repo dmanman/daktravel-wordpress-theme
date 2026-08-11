@@ -51,6 +51,29 @@ function daktravel_enqueue_assets() {
         array( 'daktravel-premium-refine' ),
         $trust_css_ver
     );
+
+    /* Apply uploaded real photography and approved affiliation logos. */
+    $inline_css = '';
+    $hero_image = daktravel_media_url( 'daktravel_hero_image', 'full' );
+    if ( $hero_image ) {
+        $inline_css .= '.hero-media{background-image:linear-gradient(145deg,rgba(8,20,31,.82),rgba(16,38,61,.62)),url("' . esc_url_raw( $hero_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+    }
+
+    $logo_settings = array(
+        'daktravel_iata_logo'       => 1,
+        'daktravel_asata_logo'      => 2,
+        'daktravel_clubtravel_logo' => 3,
+    );
+    foreach ( $logo_settings as $setting_id => $row_number ) {
+        $logo_url = daktravel_media_url( $setting_id, 'medium' );
+        if ( $logo_url ) {
+            $inline_css .= '.trust-panel .credential-row:nth-of-type(' . ( $row_number + 1 ) . ') .credential-mark{font-size:0;background:#fff url("' . esc_url_raw( $logo_url ) . '") center/80% auto no-repeat;border-color:rgba(255,255,255,.3);}';
+        }
+    }
+
+    if ( $inline_css ) {
+        wp_add_inline_style( 'daktravel-trust-refine', $inline_css );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
