@@ -24,7 +24,23 @@
     </div>
 </section>
 
-<section class="section section--ivory" aria-labelledby="latest-travel-updates">
+<section class="section section--ivory" aria-labelledby="israel-travel-guides">
+    <div class="container">
+        <div class="section-intro">
+            <div class="eyebrow">South Africa–Israel travel</div>
+            <h2 id="israel-travel-guides">Planning guides for flights between South Africa and Israel</h2>
+            <p class="lead">For route planning that remains useful even when schedules change, start with these city and direction-specific guides.</p>
+        </div>
+        <div class="service-grid">
+            <article class="service-card"><div class="service-no">MAIN GUIDE</div><h3>South Africa–Israel Travel</h3><p>Our main specialist page covering flights, connections, baggage, fare flexibility and return travel.</p><a class="text-link" href="<?php echo esc_url( home_url('/israel-travel/') ); ?>">South Africa–Israel travel</a></article>
+            <article class="service-card"><div class="service-no">ROUTE PLANNING</div><h3>South Africa–Israel Flight Routes</h3><p>Compare how Johannesburg, Cape Town, Durban and regional-city journeys can differ.</p><a class="text-link" href="<?php echo esc_url( home_url('/south-africa-israel-flight-routes/') ); ?>">Compare flight routes</a></article>
+            <article class="service-card"><div class="service-no">OUTBOUND</div><h3>Flights to Israel from South Africa</h3><p>Choose the guide for Johannesburg, Cape Town or Durban and see the practical issues we compare.</p><a class="text-link" href="<?php echo esc_url( home_url('/flights-to-israel-from-johannesburg/') ); ?>">Start with Johannesburg</a></article>
+            <article class="service-card"><div class="service-no">RETURN</div><h3>Flights from Israel to South Africa</h3><p>Plan the journey back from Tel Aviv through to your final South African city.</p><a class="text-link" href="<?php echo esc_url( home_url('/flights-from-israel-to-south-africa/') ); ?>">Israel to South Africa</a></article>
+        </div>
+    </div>
+</section>
+
+<section class="section" aria-labelledby="latest-travel-updates">
     <div class="container">
         <div class="section-intro">
             <div class="eyebrow">Latest guidance</div>
