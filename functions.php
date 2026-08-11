@@ -32,97 +32,42 @@ function daktravel_enqueue_assets() {
         null
     );
 
-    wp_enqueue_style(
-        'daktravel-style',
-        get_stylesheet_uri(),
-        array( 'daktravel-fonts' ),
-        $theme_version
-    );
+    wp_enqueue_style( 'daktravel-style', get_stylesheet_uri(), array( 'daktravel-fonts' ), $theme_version );
 
     $premium_css_path = get_template_directory() . '/assets/css/premium-refine.css';
-    $premium_css_ver  = file_exists( $premium_css_path ) ? (string) filemtime( $premium_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-premium-refine',
-        get_template_directory_uri() . '/assets/css/premium-refine.css',
-        array( 'daktravel-style' ),
-        $premium_css_ver
-    );
+    wp_enqueue_style( 'daktravel-premium-refine', get_template_directory_uri() . '/assets/css/premium-refine.css', array( 'daktravel-style' ), file_exists( $premium_css_path ) ? (string) filemtime( $premium_css_path ) : $theme_version );
 
     $trust_css_path = get_template_directory() . '/assets/css/trust-refine.css';
-    $trust_css_ver  = file_exists( $trust_css_path ) ? (string) filemtime( $trust_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-trust-refine',
-        get_template_directory_uri() . '/assets/css/trust-refine.css',
-        array( 'daktravel-premium-refine' ),
-        $trust_css_ver
-    );
+    wp_enqueue_style( 'daktravel-trust-refine', get_template_directory_uri() . '/assets/css/trust-refine.css', array( 'daktravel-premium-refine' ), file_exists( $trust_css_path ) ? (string) filemtime( $trust_css_path ) : $theme_version );
 
     $luxury_css_path = get_template_directory() . '/assets/css/luxury-simple.css';
-    $luxury_css_ver  = file_exists( $luxury_css_path ) ? (string) filemtime( $luxury_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-luxury-simple',
-        get_template_directory_uri() . '/assets/css/luxury-simple.css',
-        array( 'daktravel-trust-refine' ),
-        $luxury_css_ver
-    );
+    wp_enqueue_style( 'daktravel-luxury-simple', get_template_directory_uri() . '/assets/css/luxury-simple.css', array( 'daktravel-trust-refine' ), file_exists( $luxury_css_path ) ? (string) filemtime( $luxury_css_path ) : $theme_version );
 
     $silver_css_path = get_template_directory() . '/assets/css/silver-refine.css';
-    $silver_css_ver  = file_exists( $silver_css_path ) ? (string) filemtime( $silver_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-silver-refine',
-        get_template_directory_uri() . '/assets/css/silver-refine.css',
-        array( 'daktravel-luxury-simple' ),
-        $silver_css_ver
-    );
+    wp_enqueue_style( 'daktravel-silver-refine', get_template_directory_uri() . '/assets/css/silver-refine.css', array( 'daktravel-luxury-simple' ), file_exists( $silver_css_path ) ? (string) filemtime( $silver_css_path ) : $theme_version );
 
     $atelier_css_path = get_template_directory() . '/assets/css/atelier-premium.css';
-    $atelier_css_ver  = file_exists( $atelier_css_path ) ? (string) filemtime( $atelier_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-atelier-premium',
-        get_template_directory_uri() . '/assets/css/atelier-premium.css',
-        array( 'daktravel-silver-refine' ),
-        $atelier_css_ver
-    );
+    wp_enqueue_style( 'daktravel-atelier-premium', get_template_directory_uri() . '/assets/css/atelier-premium.css', array( 'daktravel-silver-refine' ), file_exists( $atelier_css_path ) ? (string) filemtime( $atelier_css_path ) : $theme_version );
 
     $typography_css_path = get_template_directory() . '/assets/css/typography-premium.css';
-    $typography_css_ver  = file_exists( $typography_css_path ) ? (string) filemtime( $typography_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-typography-premium',
-        get_template_directory_uri() . '/assets/css/typography-premium.css',
-        array( 'daktravel-atelier-premium', 'daktravel-fonts' ),
-        $typography_css_ver
-    );
+    wp_enqueue_style( 'daktravel-typography-premium', get_template_directory_uri() . '/assets/css/typography-premium.css', array( 'daktravel-atelier-premium', 'daktravel-fonts' ), file_exists( $typography_css_path ) ? (string) filemtime( $typography_css_path ) : $theme_version );
 
     $mobile_css_path = get_template_directory() . '/assets/css/mobile-clarity.css';
-    $mobile_css_ver  = file_exists( $mobile_css_path ) ? (string) filemtime( $mobile_css_path ) : $theme_version;
-    wp_enqueue_style(
-        'daktravel-mobile-clarity',
-        get_template_directory_uri() . '/assets/css/mobile-clarity.css',
-        array( 'daktravel-typography-premium' ),
-        $mobile_css_ver
-    );
+    wp_enqueue_style( 'daktravel-mobile-clarity', get_template_directory_uri() . '/assets/css/mobile-clarity.css', array( 'daktravel-typography-premium' ), file_exists( $mobile_css_path ) ? (string) filemtime( $mobile_css_path ) : $theme_version );
 
     $interactions_path = get_template_directory() . '/assets/js/site-interactions.js';
-    $interactions_ver  = file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version;
-    wp_enqueue_script(
-        'daktravel-site-interactions',
-        get_template_directory_uri() . '/assets/js/site-interactions.js',
-        array(),
-        $interactions_ver,
-        true
-    );
+    wp_enqueue_script( 'daktravel-site-interactions', get_template_directory_uri() . '/assets/js/site-interactions.js', array(), file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version, true );
 
-    /* Apply the selected real homepage photography. Credential logos are rendered
-       as real <img> elements in the templates for better clarity and accessibility. */
-    $inline_css = '';
+    /* Subtle real-world imagery behind the homepage specialist panel. A selected
+       image wins; otherwise use a restrained Tel Aviv fallback with a strong
+       navy overlay so the copy always remains readable. */
     $hero_image = daktravel_media_url( 'daktravel_hero_image', 'full' );
-    if ( $hero_image ) {
-        $inline_css .= '.hero-media{background-image:linear-gradient(145deg,rgba(8,20,31,.72),rgba(16,38,61,.46)),url("' . esc_url_raw( $hero_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+    if ( ! $hero_image ) {
+        $hero_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
     }
 
-    if ( $inline_css ) {
-        wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
-    }
+    $inline_css = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.90),rgba(16,38,61,.72)),url("' . esc_url_raw( $hero_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+    wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
