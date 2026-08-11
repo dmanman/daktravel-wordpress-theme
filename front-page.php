@@ -76,14 +76,12 @@
             <div class="confidentiality-copy">
                 <div class="eyebrow">Privacy &amp; confidentiality</div>
                 <h2>Your travel details are handled with discretion.</h2>
-                <p class="lead">Travel bookings often involve personal information. We only ask for what we need to deal with your enquiry and booking.</p>
-                <p>Sensitive documents should only be sent when requested. We will tell you what is needed and why.</p>
+                <p class="lead">Travel is personal. Information you share with D.A.K is handled carefully and used to assist with your enquiry and booking.</p>
                 <a class="text-link" href="<?php echo esc_url( home_url( '/privacy-notice/' ) ); ?>">Privacy &amp; Confidentiality</a>
             </div>
             <div class="confidentiality-points">
-                <div class="confidentiality-point"><strong>Only what we need</strong><span>For a first enquiry, dates, routes and basic traveller details are usually enough.</span></div>
-                <div class="confidentiality-point"><strong>Private handling</strong><span>Passenger and booking information is used only where needed to arrange and service the trip.</span></div>
-                <div class="confidentiality-point"><strong>Sensitive documents later</strong><span>Do not send passport copies with an initial enquiry unless a D.A.K consultant asks for them.</span></div>
+                <div class="confidentiality-point"><strong>Private handling</strong><span>Your passenger and booking information is treated with discretion.</span></div>
+                <div class="confidentiality-point"><strong>Clear purpose</strong><span>We use the information you provide to arrange and service your travel.</span></div>
             </div>
         </div>
     </section>
@@ -154,7 +152,7 @@
             <div class="written-contact-panel">
                 <div>
                     <strong>Send us the details.</strong>
-                    <span>WhatsApp is ideal for dates and screenshots. Email is better for longer requests and group lists. Please do not send passport copies with your first enquiry.</span>
+                    <span>WhatsApp is ideal for dates and screenshots. Email is better for longer requests and group lists.</span>
                 </div>
                 <div class="written-actions">
                     <a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp D.A.K</a>
@@ -176,7 +174,7 @@
                 <div class="feature-point"><strong>Experienced advice</strong><span>We look at the whole trip, not just the cheapest fare.</span></div>
                 <div class="feature-point"><strong>Trusted credentials</strong><span>IATA accredited, ASATA member and established since 2006.</span></div>
                 <div class="feature-point"><strong>One point of contact</strong><span>A real consultant who understands your booking.</span></div>
-                <div class="feature-point"><strong>Confidential handling</strong><span>Your travel details are treated with discretion and only requested when needed.</span></div>
+                <div class="feature-point"><strong>Confidential handling</strong><span>Your travel details are treated with discretion.</span></div>
             </div>
         </div>
     </section>
