@@ -1,10 +1,17 @@
-/* D.A.K Travel — multilingual top-bar selector and RTL support */
+/* D.A.K Travel — English/Hebrew top-bar selector and Hebrew RTL support */
+
+.utility-language-slot {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 12px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255,255,255,.22);
+}
 
 .dak-language-switcher {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-left: 2px;
   white-space: nowrap;
   font-size: .69rem;
   line-height: 1;
@@ -23,59 +30,46 @@
   color: rgba(255,255,255,.38);
 }
 
-/* TranslatePress adds language-specific body classes. Hebrew and Arabic mirror
-   the reading direction while keeping machine-readable contact details LTR. */
-body[class*="translatepress-he"],
-body[class*="translatepress-ar"] {
+/* TranslatePress adds a Hebrew body class. Mirror the reading direction while
+   keeping machine-readable contact details left-to-right. */
+body[class*="translatepress-he"] {
   direction: rtl;
   text-align: right;
 }
 
 body[class*="translatepress-he"] .site-nav ul,
-body[class*="translatepress-ar"] .site-nav ul,
 body[class*="translatepress-he"] .utility-inner,
-body[class*="translatepress-ar"] .utility-inner,
 body[class*="translatepress-he"] .utility-links,
-body[class*="translatepress-ar"] .utility-links,
 body[class*="translatepress-he"] .hero-actions,
-body[class*="translatepress-ar"] .hero-actions,
-body[class*="translatepress-he"] .dak-page-actions,
-body[class*="translatepress-ar"] .dak-page-actions {
+body[class*="translatepress-he"] .dak-page-actions {
   direction: rtl;
 }
 
 body[class*="translatepress-he"] .dak-enquiry-form input,
 body[class*="translatepress-he"] .dak-enquiry-form select,
-body[class*="translatepress-he"] .dak-enquiry-form textarea,
-body[class*="translatepress-ar"] .dak-enquiry-form input,
-body[class*="translatepress-ar"] .dak-enquiry-form select,
-body[class*="translatepress-ar"] .dak-enquiry-form textarea {
+body[class*="translatepress-he"] .dak-enquiry-form textarea {
   text-align: right;
 }
 
 body[class*="translatepress-he"] a[href^="tel:"],
 body[class*="translatepress-he"] a[href^="mailto:"],
-body[class*="translatepress-ar"] a[href^="tel:"],
-body[class*="translatepress-ar"] a[href^="mailto:"],
 body[class*="translatepress-he"] .contact-phone,
-body[class*="translatepress-ar"] .contact-phone,
-body[class*="translatepress-he"] .credential-row small,
-body[class*="translatepress-ar"] .credential-row small {
+body[class*="translatepress-he"] .credential-row small {
   direction: ltr;
   unicode-bidi: isolate;
 }
 
-body[class*="translatepress-he"] .text-link::after,
-body[class*="translatepress-ar"] .text-link::after {
+body[class*="translatepress-he"] .text-link::after {
   content: "←";
 }
 
 @media (max-width: 680px) {
+  .utility-language-slot {
+    margin-left: 8px;
+    padding-left: 9px;
+  }
   .dak-language-switcher {
     gap: 5px;
     font-size: .63rem;
-  }
-  .utility-links .dak-language-switcher {
-    display: inline-flex;
   }
 }
