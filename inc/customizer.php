@@ -86,8 +86,71 @@ function daktravel_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'daktravel_customize_register' );
 
+/**
+ * Match the new theme slots to assets already stored in the existing WordPress
+ * media library. A manually selected Customizer image always takes priority.
+ */
+function daktravel_media_search_terms() {
+    return array(
+        'daktravel_iata_logo'       => array( 'iata' ),
+        'daktravel_asata_logo'      => array( 'asata' ),
+        'daktravel_clubtravel_logo' => array( 'club travel', 'clubtravel', 'club-travel' ),
+        'daktravel_team_image'      => array( 'yochee', 'photo.small.yk', 'photo-small-yk' ),
+    );
+}
+
+function daktravel_find_existing_attachment( $terms ) {
+    global $wpdb;
+
+    if ( empty( $terms ) || ! is_array( $terms ) ) {
+        return 0;
+    }
+
+    foreach ( $terms as $term ) {
+        $like = '%' . $wpdb->esc_like( $term ) . '%';
+        $attachment_id = (int) $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT ID
+                 FROM {$wpdb->posts}
+                 WHERE post_type = 'attachment'
+                   AND post_status = 'inherit'
+                   AND (LOWER(post_title) LIKE LOWER(%s) OR LOWER(guid) LIKE LOWER(%s))
+                 ORDER BY ID DESC
+                 LIMIT 1",
+                $like,
+                $like
+            )
+        );
+
+        if ( $attachment_id ) {
+            return $attachment_id;
+        }
+    }
+
+    return 0;
+}
+
+function daktravel_media_attachment_id( $setting_id ) {
+    $selected = absint( get_theme_mod( $setting_id ) );
+    if ( $selected ) {
+        return $selected;
+    }
+
+    static $cache = array();
+    if ( array_key_exists( $setting_id, $cache ) ) {
+        return $cache[ $setting_id ];
+    }
+
+    $map = daktravel_media_search_terms();
+    $cache[ $setting_id ] = isset( $map[ $setting_id ] )
+        ? daktravel_find_existing_attachment( $map[ $setting_id ] )
+        : 0;
+
+    return $cache[ $setting_id ];
+}
+
 function daktravel_media_url( $setting_id, $size = 'full' ) {
-    $attachment_id = absint( get_theme_mod( $setting_id ) );
+    $attachment_id = daktravel_media_attachment_id( $setting_id );
     if ( ! $attachment_id ) {
         return '';
     }
@@ -97,7 +160,7 @@ function daktravel_media_url( $setting_id, $size = 'full' ) {
 }
 
 function daktravel_media_image( $setting_id, $size = 'full', $class = '', $alt = '' ) {
-    $attachment_id = absint( get_theme_mod( $setting_id ) );
+    $attachment_id = daktravel_media_attachment_id( $setting_id );
     if ( ! $attachment_id ) {
         return '';
     }
@@ -124,9 +187,9 @@ function daktravel_existing_upload_url( $relative_path ) {
 }
 
 /**
- * Reusable premium image slot. A selected Customizer image always wins. Where a
- * verified existing-site image is supplied, it is used as a fallback instead of
- * an empty placeholder.
+ * Reusable premium image slot. A selected or auto-discovered media-library image
+ * always wins. Where a verified existing-site path is supplied, it is used as a
+ * final fallback instead of an empty placeholder.
  */
 function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback_relative = '' ) {
     $image = daktravel_media_image( $setting_id, 'large', 'dak-media-image', $alt );
@@ -145,8 +208,9 @@ function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback_re
 }
 
 /**
- * Credential mark used in the homepage and About page. When an approved logo has
- * been uploaded, render the actual image; otherwise retain a clean text fallback.
+ * Credential mark used in the homepage and About page. When an approved logo is
+ * selected or already exists in the old site's media library, render that image;
+ * otherwise retain a clean text fallback.
  */
 function daktravel_credential_mark( $setting_id, $fallback_label, $alt ) {
     $image = daktravel_media_image( $setting_id, 'medium', 'credential-logo-image', $alt );
