@@ -15,11 +15,6 @@ function daktravel_post_text( $key ) {
     return isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
 }
 
-/**
- * Process an enquiry and return one of: success, error, invalid.
- * This is intentionally callable from the Contact page itself so the form works
- * inside WordPress Live Preview as well as after the theme is activated.
- */
 function daktravel_process_enquiry_submission() {
     if ( ! isset( $_POST['daktravel_enquiry_submit'] ) ) {
         return '';
@@ -41,6 +36,9 @@ function daktravel_process_enquiry_submission() {
     $to                = daktravel_post_text( 'destination' );
     $dates             = daktravel_post_text( 'dates' );
     $travellers        = daktravel_post_text( 'travellers' );
+    $group_travellers  = daktravel_post_text( 'group_travellers' );
+    $group_destination = daktravel_post_text( 'group_destination' );
+    $group_dates       = daktravel_post_text( 'group_dates' );
     $organisation      = daktravel_post_text( 'organisation' );
     $origins           = daktravel_post_text( 'origins' );
     $trip_detail       = daktravel_post_text( 'trip_detail' );
@@ -48,11 +46,23 @@ function daktravel_process_enquiry_submission() {
     $passenger_surname = daktravel_post_text( 'passenger_surname' );
     $message           = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
 
+    $allowed_types = array(
+        'General travel enquiry',
+        'Israel travel',
+        'Group or delegation',
+        'Business travel',
+        'Complex personal travel',
+        'Existing booking',
+    );
+    if ( ! in_array( $type, $allowed_types, true ) ) {
+        $type = 'General travel enquiry';
+    }
+
     if ( '' === $name || ! is_email( $email ) || '' === $message ) {
         return 'invalid';
     }
 
-    $subject = sprintf( 'D.A.K Website Enquiry: %s — %s', $type ? $type : 'Travel enquiry', $name );
+    $subject = sprintf( 'D.A.K Website Enquiry: %s — %s', $type, $name );
     $lines   = array(
         'New enquiry from daktravel.co.za',
         '',
@@ -68,9 +78,9 @@ function daktravel_process_enquiry_submission() {
         'Passenger surname'              => $passenger_surname,
         'Departure city'                 => $from,
         'Departure city or cities'       => $origins,
-        'Destination'                    => $to,
-        'Travel dates'                   => $dates,
-        'Number of travellers'           => $travellers,
+        'Destination'                    => $group_destination ? $group_destination : $to,
+        'Travel dates'                   => $group_dates ? $group_dates : $dates,
+        'Number of travellers'           => $group_travellers ? $group_travellers : $travellers,
         'Typical trip / destination'     => $trip_detail,
     );
 
@@ -89,16 +99,32 @@ function daktravel_process_enquiry_submission() {
         return 'error';
     }
 
-    $headers   = array( 'Content-Type: text/plain; charset=UTF-8' );
-    $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: D.A.K Travel Website <info@daktravel.co.za>',
+        'Reply-To: ' . $name . ' <' . $email . '>',
+    );
 
     return wp_mail( $recipient, $subject, implode( "\n", $lines ), $headers ) ? 'success' : 'error';
 }
 
 function daktravel_handle_enquiry() {
     $status = daktravel_process_enquiry_submission();
-    $sent   = 'success' === $status ? '1' : ( 'invalid' === $status ? 'error' : '0' );
-    wp_safe_redirect( add_query_arg( 'sent', $sent, home_url( '/contact/' ) ) . '#enquiry' );
+    if ( 'success' === $status ) {
+        $sent = '1';
+    } elseif ( 'invalid' === $status ) {
+        $sent = 'invalid';
+    } else {
+        $sent = '0';
+    }
+
+    $args = array( 'sent' => $sent );
+    $return_type = daktravel_post_text( 'return_type' );
+    if ( in_array( $return_type, array( 'israel', 'group', 'business', 'complex', 'existing', 'general' ), true ) ) {
+        $args['type'] = $return_type;
+    }
+
+    wp_safe_redirect( add_query_arg( $args, home_url( '/contact/' ) ) . '#enquiry' );
     exit;
 }
 add_action( 'admin_post_nopriv_daktravel_enquiry', 'daktravel_handle_enquiry' );
