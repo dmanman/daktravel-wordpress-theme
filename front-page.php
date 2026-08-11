@@ -1,39 +1,47 @@
-<?php get_header(); ?>
+<?php
+$home_css_path = get_template_directory() . '/assets/css/hero-consultation.css';
+wp_enqueue_style(
+    'daktravel-hero-consultation',
+    get_template_directory_uri() . '/assets/css/hero-consultation.css',
+    array( 'daktravel-multilingual' ),
+    file_exists( $home_css_path ) ? (string) filemtime( $home_css_path ) : wp_get_theme()->get( 'Version' )
+);
+
+$hero_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_hero_image', 'full' ) : '';
+if ( ! $hero_image ) {
+    $hero_image = get_template_directory_uri() . '/assets/images/hero-consultation.svg';
+}
+$hero_style = "background-image:linear-gradient(145deg,rgba(8,20,32,.08),rgba(8,20,32,.04)),url('" . esc_url( $hero_image ) . "') !important;";
+
+get_header();
+?>
 <main>
-    <section class="hero">
+    <section class="hero hero--consultation">
         <div class="container hero-grid">
             <div class="hero-copy">
-                <div class="eyebrow">Established 2006 · Johannesburg · South Africa–Israel specialists</div>
-                <h1>Travel, expertly managed.</h1>
-                <p>D.A.K Travel specialises in South Africa–Israel travel, groups, business travel and complex international journeys.</p>
-                <p class="hero-subline">We compare routes, fares and connections, then stay with you if plans change.</p>
+                <div class="eyebrow">Johannesburg Travel Specialists</div>
+                <h1>Complex travel, handled properly.</h1>
+                <p class="hero-lead">D.A.K Travel manages international flights, groups, delegations, organisational travel and complicated journeys from South Africa. You receive experienced advice, clear options and a real person who remains accountable when plans change.</p>
                 <div class="hero-actions">
-                    <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Start an Enquiry</a>
-                    <a class="text-link" href="<?php echo esc_url( home_url( '/israel-travel/' ) ); ?>">Explore Israel travel</a>
+                    <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Request a Travel Quote</a>
+                    <a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a new travel enquiry.' ) ); ?>" target="_blank" rel="noopener">WhatsApp a Travel Specialist</a>
                 </div>
-                <div class="hero-tags">
-                    <span class="hero-tag">South Africa–Israel</span>
-                    <span class="hero-tag">Groups &amp; Delegations</span>
-                    <span class="hero-tag">Business Travel</span>
-                    <span class="hero-tag">Complex Journeys</span>
+                <div class="hero-trust-line" aria-label="D.A.K Travel credentials">
+                    <span>Johannesburg-based</span>
+                    <span>IATA accredited</span>
+                    <span>ASATA member</span>
+                    <span>Club Travel affiliate</span>
                 </div>
             </div>
 
             <div class="hero-media-wrap">
-                <div class="hero-media" aria-label="South Africa to Israel specialist travel support">
-                    <div class="hero-media-kicker">South Africa–Israel Travel</div>
-                    <div class="hero-media-accent"></div>
-                    <div class="advisory-card">
-                        <div class="advisory-label">Specialist support</div>
-                        <h3>Practical flight options, clear advice and help when plans change.</h3>
-                        <div class="advisory-list">
-                            <span>Current flight options</span>
-                            <span>Domestic connections</span>
-                            <span>Families &amp; elderly travellers</span>
-                            <span>Groups &amp; youth programmes</span>
-                            <span>Flexible fare options</span>
-                            <span>Help with changes</span>
-                        </div>
+                <div class="hero-media" role="img" aria-label="Professional travel consultation overlooking the Tel Aviv coastline" style="<?php echo esc_attr( $hero_style ); ?>">
+                    <div class="hero-photo-overlay" aria-hidden="true"></div>
+                    <div class="hero-photo-label">Human travel expertise</div>
+                    <div class="hero-photo-card">
+                        <span class="hero-card-kicker">From South Africa to the world</span>
+                        <strong>One experienced travel desk.</strong>
+                        <p>Groups · Business travel · Israel travel · Complex journeys</p>
                     </div>
                 </div>
             </div>
