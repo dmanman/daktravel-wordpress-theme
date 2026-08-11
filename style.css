@@ -3,7 +3,7 @@ Theme Name: D.A.K Travel
 Theme URI: https://daktravel.co.za/
 Author: D.A.K Travel
 Description: Premium enquiry-led WordPress theme for D.A.K Travel — groups, delegations, business travel, Israel travel and complex international journeys.
-Version: 0.2.0
+Version: 0.3.0
 Text Domain: daktravel
 */
 
@@ -279,32 +279,49 @@ p { margin-top: 0; }
   .hero-grid, .dark-feature, .editorial-split { grid-template-columns:1fr; }
   .hero-media-wrap { padding-left:0; max-width:720px; }
   .hero-media { min-height:460px; }
-  .hero-note { right:18px; }
-  .confidence-grid { grid-template-columns:1fr; }
-  .confidence-item { border-right:0; border-bottom:1px solid var(--line); padding:18px 0; }
-  .confidence-item:last-child { border-bottom:0; }
+  .hero-note { right:16px; }
+  .confidence-grid, .process-grid { grid-template-columns:1fr 1fr 1fr; }
   .service-grid { grid-template-columns:1fr; }
-  .feature-points, .process-grid { grid-template-columns:1fr; }
   .final-cta-inner { align-items:flex-start; flex-direction:column; }
-  .section { padding:78px 0; }
-  .mobile-actions { position:fixed; display:grid; grid-template-columns:repeat(3,1fr); bottom:0; left:0; right:0; z-index:60; background:#fff; border-top:1px solid var(--line); box-shadow:0 -8px 25px rgba(11,23,36,.10); }
-  .mobile-actions a { padding:12px 6px; text-align:center; text-decoration:none; font-size:.8rem; font-weight:750; }
-  body { padding-bottom:50px; }
 }
 
-@media (max-width: 640px) {
-  .container { width:min(calc(100% - 30px), var(--max)); }
-  h1 { font-size:clamp(3.1rem,14vw,4rem); }
-  h2 { font-size:clamp(2.25rem,11vw,3rem); }
-  .hero-copy p { font-size:1.02rem; }
-  .hero-actions { align-items:flex-start; flex-direction:column; gap:17px; }
-  .hero-media { min-height:390px; }
-  .hero-media-message { left:30px; right:30px; bottom:34px; }
-  .hero-media-message strong { font-size:1.6rem; }
-  .hero-media-kicker { top:34px; left:30px; }
-  .hero-note { position:relative; right:auto; bottom:auto; width:calc(100% - 34px); margin:-26px auto 0; z-index:2; }
-  .service-card { min-height:330px; padding:32px 28px; }
-  .service-card .text-link { left:28px; }
+@media (max-width: 680px) {
+  body { font-size:16px; }
+  .container { width:min(calc(100% - 32px), var(--max)); }
+  .section { padding:76px 0; }
+  h1 { font-size:clamp(3rem,13vw,4.4rem); }
+  h2 { font-size:clamp(2.25rem,10vw,3.4rem); }
+  .lead { font-size:1.06rem; }
+  .hero { padding:52px 0 70px; }
+  .hero-copy p { font-size:1.03rem; line-height:1.7; }
+  .hero-actions { align-items:stretch; flex-direction:column; gap:12px; }
+  .hero-actions .btn { width:100%; }
+  .hero-tags { gap:8px 12px; font-size:.68rem; }
+  .hero-media { min-height:420px; }
+  .hero-media-kicker { left:28px; top:30px; }
+  .hero-media-message { left:28px; right:28px; bottom:34px; }
+  .hero-media-message strong { font-size:1.65rem; }
+  .hero-note { position:relative; right:auto; bottom:auto; width:auto; margin:-18px 14px 0; }
+  .confidence-grid, .process-grid, .feature-points { grid-template-columns:1fr; }
+  .confidence-item { border-right:0; border-bottom:1px solid var(--line); padding:20px 0; }
+  .confidence-item:first-child { padding-left:0; }
+  .service-card { min-height:280px; padding:30px 26px; }
+  .service-card h3 { font-size:1.7rem; }
+  .service-card .text-link { left:26px; }
+  .process-step { padding:28px 26px; }
   .editorial-panel { padding:34px 28px; }
+  .final-cta { padding:66px 0; }
   .footer-grid { grid-template-columns:1fr; }
+  .mobile-actions {
+    display:grid;
+    position:fixed;
+    z-index:99;
+    bottom:0;
+    left:0;
+    right:0;
+    grid-template-columns:1fr 1fr 1fr;
+    background:#fff;
+    box-shadow:0 -8px 28px rgba(11,23,36,.14);
+  }
+  .mobile-actions a { text-align:center; padding:14px 8px; font-size:.74rem; font-weight:800; text-decoration:none; border-right:1px solid var(--line); }
 }
