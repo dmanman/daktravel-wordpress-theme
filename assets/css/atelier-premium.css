@@ -36,8 +36,26 @@ body { letter-spacing: -.003em; }
 .credential-mark { color: #eef1f3; border-color: rgba(185,192,198,.56); }
 .trust-signoff { color: rgba(238,241,243,.72); }
 
-.confidentiality-section { background: #fff; }
-.confidentiality-copy h2 { max-width: 650px; }
+/* Light privacy section: explicitly reset colours inherited from the older dark version. */
+.confidentiality-section {
+  background: #fff;
+  color: #3a4653;
+}
+.confidentiality-section .eyebrow { color: var(--dak-warm-metal); }
+.confidentiality-copy h2,
+.confidentiality-section h2 {
+  max-width: 650px;
+  color: #0b1724;
+}
+.confidentiality-section .lead,
+.confidentiality-copy .lead {
+  color: #4b5968;
+}
+.confidentiality-copy p:not(.lead) { color: #64707b; }
+.confidentiality-section .text-link {
+  color: #0b1724;
+  border-color: rgba(11,23,36,.28);
+}
 
 .service-grid { border-top: 1px solid rgba(185,192,198,.48); border-bottom: 1px solid rgba(185,192,198,.48); background: transparent !important; }
 .service-card { background: transparent; box-shadow: none !important; border: 0 !important; border-right: 1px solid rgba(185,192,198,.36) !important; border-bottom: 1px solid rgba(185,192,198,.36) !important; }
