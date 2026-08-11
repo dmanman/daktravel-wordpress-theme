@@ -7,7 +7,7 @@
             <h1>Travel from South Africa to Israel, expertly managed.</h1>
             <p class="lead">We help individuals, families, students, groups and organisations choose the right flights, connections and fare options for Israel.</p>
             <div class="dak-page-actions">
-                <a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with travel between South Africa and Israel.' ) ); ?>">WhatsApp D.A.K</a>
+                <a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with travel between South Africa and Israel.' ) ); ?>">WhatsApp Us</a>
                 <a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Email / Enquire</a>
             </div>
         </div>
@@ -74,7 +74,7 @@ if ( ! $dead_sea ) {
 <section class="dak-quiet-cta">
     <div class="container dak-quiet-cta-inner">
         <div><div class="eyebrow">Start here</div><h2>Send us your Israel travel dates.</h2><p>WhatsApp or email the basics and we will check the sensible options.</p></div>
-        <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with Israel travel.' ) ); ?>">WhatsApp D.A.K</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Send Enquiry</a></div>
+        <div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with Israel travel.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Send Enquiry</a></div>
     </div>
 </section>
 </main>
