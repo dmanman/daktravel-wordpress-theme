@@ -1,0 +1,84 @@
+/* Lightweight crossfade slideshow for the two directional Israel / South Africa route pages. */
+
+.dak-route-slideshow-frame {
+  isolation: isolate;
+}
+
+.dak-route-slideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.dak-route-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.dak-route-slide:first-child {
+  opacity: 1;
+}
+
+.dak-route-slide .dak-media-image {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.dak-route-slide-credit {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+  z-index: 3;
+  max-width: calc(100% - 56px);
+  color: rgba(255,255,255,.82);
+  font-size: .63rem;
+  line-height: 1.35;
+  text-shadow: 0 1px 8px rgba(0,0,0,.6);
+}
+
+@keyframes dak-route-crossfade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 681px) and (prefers-reduced-motion: no-preference) {
+  .dak-route-slide {
+    animation: dak-route-crossfade 24s linear infinite;
+    will-change: opacity;
+  }
+
+  .dak-route-slide--1 { animation-delay: -1.2s; }
+  .dak-route-slide--2 { animation-delay: 4.8s; }
+  .dak-route-slide--3 { animation-delay: 10.8s; }
+  .dak-route-slide--4 { animation-delay: 16.8s; }
+}
+
+@media (max-width: 1120px) {
+  .dak-route-slide .dak-media-image { min-height: 450px; }
+}
+
+@media (max-width: 680px), (prefers-reduced-motion: reduce) {
+  .dak-route-slide {
+    animation: none !important;
+  }
+
+  .dak-route-slide:not(.dak-route-slide--1) {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .dak-route-slide .dak-media-image { min-height: 400px; }
+  .dak-route-slide-credit {
+    right: 22px;
+    bottom: 20px;
+    max-width: calc(100% - 44px);
+    font-size: .58rem;
+  }
+}
