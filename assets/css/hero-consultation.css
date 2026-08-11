@@ -68,10 +68,11 @@
 }
 
 .hero--consultation .hero-media-wrap {
+  position: relative;
   padding: 0;
 }
 
-/* Match the full-bleed image treatment used on the interior pages. */
+/* Homepage photo uses the same image-frame treatment as .dak-media-slot on interior pages. */
 .hero--consultation .hero-media.hero-media--clean-photo {
   position: relative;
   min-height: 0;
@@ -82,23 +83,30 @@
   border-radius: 0;
   background: #e9ecee !important;
   background-image: none !important;
-  box-shadow: 0 36px 100px rgba(10,23,35,.15);
+  box-shadow: var(--dak-deep-shadow);
   border: 0;
   isolation: isolate;
 }
 
+/* Exact interior-page image overlay. */
 .hero--consultation .hero-media.hero-media--clean-photo::before {
-  display: none !important;
-  content: none !important;
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg,rgba(6,17,27,.04),rgba(6,17,27,.13));
+  pointer-events: none;
 }
 
+/* Exact interior-page thin white frame: 18px inset, 17% white. */
 .hero--consultation .hero-media.hero-media--clean-photo::after {
   content: "" !important;
   display: block !important;
   position: absolute;
-  inset: 20px;
+  inset: 18px;
   z-index: 2;
-  border: 1px solid rgba(232,235,237,.52);
+  border: 1px solid rgba(255,255,255,.17);
   border-radius: 0;
   pointer-events: none;
 }
@@ -114,19 +122,34 @@
 }
 
 .hero-photo-meta {
+  position: absolute;
+  left: 42px;
+  right: 42px;
+  bottom: 38px;
+  z-index: 4;
   display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 14px 3px 0;
-  color: #6a7178;
-  font-size: .74rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 0;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(6,18,30,.62);
+  pointer-events: none;
+}
+
+.hero-photo-meta span:first-child {
+  font-size: clamp(1.45rem,2vw,2rem);
   font-weight: 700;
-  letter-spacing: .025em;
+  line-height: 1.1;
+  letter-spacing: -.02em;
 }
 
 .hero-photo-meta span:last-child {
-  text-align: right;
-  color: #8a7352;
+  text-align: left;
+  color: rgba(255,255,255,.94);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .055em;
 }
 
 /* Legacy overlay elements are deliberately disabled so the photograph stays unobstructed. */
@@ -207,21 +230,19 @@
     aspect-ratio: 4 / 3;
   }
 
-  .hero--consultation .hero-media.hero-media--clean-photo::after {
-    inset: 12px;
-  }
-
   .hero-photo-meta {
-    display: block;
-    line-height: 1.5;
+    left: 27px;
+    right: 27px;
+    bottom: 25px;
+    gap: 4px;
   }
 
-  .hero-photo-meta span {
-    display: block;
+  .hero-photo-meta span:first-child {
+    font-size: clamp(1.22rem,6.5vw,1.65rem);
   }
 
   .hero-photo-meta span:last-child {
-    margin-top: 3px;
-    text-align: left;
+    font-size: .68rem;
+    line-height: 1.45;
   }
 }
