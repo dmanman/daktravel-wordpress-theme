@@ -172,6 +172,52 @@ body {
   border-color: rgba(232,235,237,.52);
 }
 
+/* Compact Israel destination imagery: visual richness without a long page. */
+.dak-israel-strip {
+  padding: 0 0 84px;
+  background: #fffdf9;
+}
+.dak-israel-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 16px;
+}
+.dak-israel-strip figure {
+  margin: 0;
+}
+.dak-israel-strip-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e9ecee;
+}
+.dak-israel-strip-media::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255,255,255,.55);
+  pointer-events: none;
+}
+.dak-israel-strip-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+.dak-israel-strip figure:hover .dak-israel-strip-image {
+  transform: scale(1.018);
+}
+.dak-israel-strip figcaption {
+  padding-top: 10px;
+  color: #707980;
+  font-family: var(--dak-sans, sans-serif);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
 /* Feature rows: fine editorial dividers */
 .dak-feature-row {
   padding-top: 29px;
@@ -217,6 +263,8 @@ body {
   .header-inner { min-height: 74px; }
   .hero-grid,
   .dak-page-hero-grid { gap: 42px; }
+  .dak-israel-strip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .dak-israel-strip figure:nth-child(n+3) { display: none; }
 }
 
 @media (max-width: 680px) {
@@ -228,4 +276,7 @@ body {
   }
   .dak-page-hero-grid { gap: 28px; }
   .dak-media-slot { box-shadow: 0 22px 58px rgba(10,23,35,.13); }
+  .dak-israel-strip { padding-bottom: 48px; }
+  .dak-israel-strip-grid { grid-template-columns: 1fr; }
+  .dak-israel-strip figure:nth-child(n+2) { display: none; }
 }
