@@ -13,7 +13,7 @@ function daktravel_customize_register( $wp_customize ) {
         'daktravel_media',
         array(
             'title'       => __( 'D.A.K Site Images & Logos', 'daktravel' ),
-            'description' => __( 'Upload real D.A.K photography and approved organisation logos used across the site.', 'daktravel' ),
+            'description' => __( 'Upload real D.A.K photography, licensed destination photography and approved organisation logos used across the site.', 'daktravel' ),
             'priority'    => 35,
         )
     );
@@ -21,19 +21,31 @@ function daktravel_customize_register( $wp_customize ) {
     $images = array(
         'daktravel_hero_image' => array(
             'label'       => __( 'Homepage hero image', 'daktravel' ),
-            'description' => __( 'Use a premium real photograph relevant to D.A.K or South Africa–Israel travel.', 'daktravel' ),
+            'description' => __( 'Use a strong, premium real photograph relevant to D.A.K or international travel.', 'daktravel' ),
         ),
         'daktravel_israel_image' => array(
             'label'       => __( 'Israel travel image', 'daktravel' ),
-            'description' => __( 'A strong Israel image for the specialist travel section.', 'daktravel' ),
+            'description' => __( 'A strong licensed or original image for South Africa–Israel travel.', 'daktravel' ),
         ),
         'daktravel_group_image' => array(
             'label'       => __( 'Groups & delegations image', 'daktravel' ),
             'description' => __( 'Use a genuine group/delegation or relevant professional travel image.', 'daktravel' ),
         ),
+        'daktravel_business_image' => array(
+            'label'       => __( 'Business travel image', 'daktravel' ),
+            'description' => __( 'A refined business or airport travel image.', 'daktravel' ),
+        ),
+        'daktravel_complex_image' => array(
+            'label'       => __( 'Complex personal travel image', 'daktravel' ),
+            'description' => __( 'A refined international travel image suited to multi-city or premium personal travel.', 'daktravel' ),
+        ),
         'daktravel_team_image' => array(
-            'label'       => __( 'D.A.K team image', 'daktravel' ),
+            'label'       => __( 'D.A.K team / About image', 'daktravel' ),
             'description' => __( 'Prefer a real photograph of the D.A.K team or consultants.', 'daktravel' ),
+        ),
+        'daktravel_contact_image' => array(
+            'label'       => __( 'Contact page image', 'daktravel' ),
+            'description' => __( 'A calm, professional D.A.K or travel image for the contact page.', 'daktravel' ),
         ),
         'daktravel_iata_logo' => array(
             'label'       => __( 'IATA logo', 'daktravel' ),
@@ -99,4 +111,19 @@ function daktravel_media_image( $setting_id, $size = 'full', $class = '', $alt =
     }
 
     return wp_get_attachment_image( $attachment_id, $size, false, $attrs );
+}
+
+/**
+ * Reusable premium image slot. If no image has been uploaded yet, the design
+ * remains intentional rather than showing a broken or generic stock image.
+ */
+function daktravel_media_slot( $setting_id, $alt = '', $label = '' ) {
+    $image = daktravel_media_image( $setting_id, 'large', 'dak-media-image', $alt );
+
+    if ( $image ) {
+        return '<div class="dak-media-slot has-image">' . $image . '</div>';
+    }
+
+    $label_html = $label ? '<span>' . esc_html( $label ) . '</span>' : '';
+    return '<div class="dak-media-slot dak-media-placeholder" aria-hidden="true">' . $label_html . '</div>';
 }
