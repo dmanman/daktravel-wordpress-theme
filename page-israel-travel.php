@@ -12,13 +12,14 @@
             </div>
         </div>
         <?php
-        $israel_image = daktravel_media_image( 'daktravel_israel_image', 'large', 'dak-media-image', 'Modern architecture in Tel Aviv, Israel' );
+        $israel_image = daktravel_media_image( 'daktravel_israel_image', 'large', 'dak-media-image', 'Azrieli Center towers in Tel Aviv, Israel' );
         if ( $israel_image ) :
             echo '<div class="dak-media-slot has-image">' . wp_kses_post( $israel_image ) . '</div>';
         else :
             ?>
             <figure class="dak-media-slot has-image dak-israel-architecture">
-                <img class="dak-media-image" src="https://images.unsplash.com/photo-1652917071141-28db9af40b72?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=82&amp;w=1800" alt="Contemporary architecture in Tel Aviv, Israel" width="1800" height="1200" loading="eager" fetchpriority="high">
+                <img class="dak-media-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Azriely_Center.jpg" alt="Azrieli Center towers in Tel Aviv, Israel" width="1600" height="1200" loading="eager" fetchpriority="high">
+                <figcaption class="image-credit">Azrieli Center, Tel Aviv · Photo: Rastaman3000 / CC BY-SA 3.0</figcaption>
             </figure>
         <?php endif; ?>
     </div>
