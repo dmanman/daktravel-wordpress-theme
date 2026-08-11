@@ -127,8 +127,9 @@ if ( isset( $_GET['sent'] ) ) {
             </div>
 
             <label class="form-full">Tell us what you need<span>*</span><textarea name="message" rows="5" required></textarea></label>
+            <div class="form-live-status" role="status" aria-live="polite" hidden></div>
             <div class="form-submit">
-                <button class="btn btn--primary" type="submit">Send Enquiry</button>
+                <button class="btn btn--primary" type="submit" data-normal-label="Send Enquiry">Send Enquiry</button>
                 <span>Sent directly to D.A.K Travel.</span>
             </div>
         </form>
