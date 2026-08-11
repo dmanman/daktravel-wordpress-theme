@@ -32,6 +32,19 @@
   font-weight: 720;
   letter-spacing: .005em;
 }
+.site-nav .nav-israel {
+  color: var(--ink);
+  position: relative;
+}
+.site-nav .nav-israel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 2px;
+  background: var(--gold);
+}
 .header-cta { gap: 14px; }
 .header-email {
   color: var(--ink);
