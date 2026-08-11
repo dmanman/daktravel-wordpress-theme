@@ -24,8 +24,8 @@ function daktravel_customize_register( $wp_customize ) {
             'description' => __( 'Use a strong, premium real photograph relevant to D.A.K or international travel.', 'daktravel' ),
         ),
         'daktravel_israel_image' => array(
-            'label'       => __( 'Israel travel image', 'daktravel' ),
-            'description' => __( 'A strong licensed or original image for South Africa–Israel travel.', 'daktravel' ),
+            'label'       => __( 'Israel luxury architecture image', 'daktravel' ),
+            'description' => __( 'Use a strong licensed or original Israeli architecture / Tel Aviv image for the Israel page.', 'daktravel' ),
         ),
         'daktravel_group_image' => array(
             'label'       => __( 'Groups & delegations image', 'daktravel' ),
@@ -41,23 +41,23 @@ function daktravel_customize_register( $wp_customize ) {
         ),
         'daktravel_team_image' => array(
             'label'       => __( 'D.A.K team / About image', 'daktravel' ),
-            'description' => __( 'Prefer a real photograph of the D.A.K team or consultants.', 'daktravel' ),
+            'description' => __( 'Prefer a real photograph of the D.A.K team or consultants. This is displayed as a small portrait, not a large hero image.', 'daktravel' ),
         ),
         'daktravel_contact_image' => array(
             'label'       => __( 'Contact page image', 'daktravel' ),
             'description' => __( 'A calm, professional D.A.K or travel image for the contact page.', 'daktravel' ),
         ),
         'daktravel_iata_logo' => array(
-            'label'       => __( 'IATA logo', 'daktravel' ),
-            'description' => __( 'Upload only an approved logo that D.A.K is permitted to display.', 'daktravel' ),
+            'label'       => __( 'IATA Accredited Agent logo', 'daktravel' ),
+            'description' => __( 'Upload the approved IATA Accredited Agent logo used by D.A.K.', 'daktravel' ),
         ),
         'daktravel_asata_logo' => array(
             'label'       => __( 'ASATA logo', 'daktravel' ),
-            'description' => __( 'Upload only an approved logo that D.A.K is permitted to display.', 'daktravel' ),
+            'description' => __( 'Upload the approved ASATA member logo used by D.A.K.', 'daktravel' ),
         ),
         'daktravel_clubtravel_logo' => array(
             'label'       => __( 'Club Travel logo', 'daktravel' ),
-            'description' => __( 'Upload only an approved affiliate logo that D.A.K is permitted to display.', 'daktravel' ),
+            'description' => __( 'Upload the approved Club Travel affiliate logo used by D.A.K.', 'daktravel' ),
         ),
     );
 
@@ -142,4 +142,18 @@ function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback_re
 
     $label_html = $label ? '<span>' . esc_html( $label ) . '</span>' : '';
     return '<div class="dak-media-slot dak-media-placeholder" aria-hidden="true">' . $label_html . '</div>';
+}
+
+/**
+ * Credential mark used in the homepage and About page. When an approved logo has
+ * been uploaded, render the actual image; otherwise retain a clean text fallback.
+ */
+function daktravel_credential_mark( $setting_id, $fallback_label, $alt ) {
+    $image = daktravel_media_image( $setting_id, 'medium', 'credential-logo-image', $alt );
+
+    if ( $image ) {
+        return '<span class="credential-mark credential-mark--logo">' . $image . '</span>';
+    }
+
+    return '<span class="credential-mark">' . esc_html( $fallback_label ) . '</span>';
 }
