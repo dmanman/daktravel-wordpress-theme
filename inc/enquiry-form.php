@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function daktravel_enquiry_recipient() {
-    return apply_filters( 'daktravel_enquiry_recipient', get_option( 'admin_email' ) );
+    return apply_filters( 'daktravel_enquiry_recipient', 'info@daktravel.co.za' );
 }
 
 function daktravel_handle_enquiry() {
@@ -49,7 +49,7 @@ function daktravel_handle_enquiry() {
     $body   .= "Travellers: {$travellers}\n\n";
     $body   .= "Message:\n{$message}\n";
 
-    $headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+    $headers   = array( 'Content-Type: text/plain; charset=UTF-8' );
     $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
 
     $sent = wp_mail( daktravel_enquiry_recipient(), $subject, $body, $headers );
