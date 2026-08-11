@@ -28,6 +28,18 @@ function daktravel_seo_defaults() {
             'title'       => 'Flights Between South Africa & Israel | D.A.K Travel',
             'description' => 'Compare flights from South Africa to Israel and return travel from Tel Aviv to South Africa, including Johannesburg connections, baggage and flexible fare options.',
         ),
+        'flights-to-israel-from-johannesburg' => array(
+            'title'       => 'Flights to Israel from Johannesburg | D.A.K Travel',
+            'description' => 'Compare Johannesburg to Israel flight options, connections, baggage and fare flexibility with D.A.K Travel, including Tel Aviv–Johannesburg return travel.',
+        ),
+        'flights-from-israel-to-south-africa' => array(
+            'title'       => 'Flights from Israel to South Africa | D.A.K Travel',
+            'description' => 'Compare flights from Tel Aviv to Johannesburg and onward South African connections, with practical advice on baggage, connections and flexible fare options.',
+        ),
+        'south-africa-israel-flight-routes' => array(
+            'title'       => 'South Africa–Israel Flight Routes | D.A.K Travel',
+            'description' => 'A practical guide to South Africa–Israel flight routes from Johannesburg, Cape Town, Durban and regional cities, including return travel from Tel Aviv.',
+        ),
         'groups-delegations' => array(
             'title'       => 'Group & Delegation Travel South Africa | D.A.K Travel',
             'description' => 'D.A.K Travel coordinates group and delegation travel from South Africa, including multi-origin flights, passenger details, deadlines, feeder flights and international connections.',
@@ -102,8 +114,10 @@ function daktravel_seo_primary_image() {
 
     if ( is_front_page() ) {
         $setting = 'daktravel_hero_image';
-    } elseif ( is_page( 'israel-travel' ) ) {
+    } elseif ( is_page( array( 'israel-travel', 'flights-to-israel-from-johannesburg', 'south-africa-israel-flight-routes' ) ) ) {
         $setting = 'daktravel_israel_image';
+    } elseif ( is_page( 'flights-from-israel-to-south-africa' ) ) {
+        $setting = 'daktravel_telaviv_image';
     } elseif ( is_page( 'groups-delegations' ) ) {
         $setting = 'daktravel_group_image';
     } elseif ( is_page( 'business-travel' ) ) {
@@ -123,7 +137,7 @@ function daktravel_seo_primary_image() {
         }
     }
 
-    if ( is_page( 'israel-travel' ) ) {
+    if ( is_page( array( 'israel-travel', 'flights-to-israel-from-johannesburg', 'flights-from-israel-to-south-africa', 'south-africa-israel-flight-routes' ) ) ) {
         return 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Azriely_Center.jpg';
     }
 
