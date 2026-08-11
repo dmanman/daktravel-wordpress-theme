@@ -229,7 +229,6 @@ function daktravel_output_seo_meta() {
     printf( "<meta property=\"og:url\" content=\"%s\">\n", esc_url( $url ) );
     printf( "<meta property=\"og:type\" content=\"%s\">\n", esc_attr( $og_type ) );
     echo "<meta property=\"og:site_name\" content=\"D.A.K Travel\">\n";
-    echo "<meta property=\"og:locale\" content=\"en_ZA\">\n";
     echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
 
     if ( $image ) {
@@ -253,7 +252,6 @@ function daktravel_output_schema() {
         'alternateName' => 'DAK Travel',
         'url'           => home_url( '/' ),
         'telephone'     => '+27 11 440 5980',
-        'email'         => 'info@daktravel.co.za',
         'foundingDate'  => '2006',
         'description'   => 'Established in Johannesburg in 2006, D.A.K Travel specialises in flights and travel between South Africa and Israel, return journeys, complex international travel, groups, delegations and organisational travel.',
         'address'       => array(
