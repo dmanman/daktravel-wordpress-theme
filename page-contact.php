@@ -39,6 +39,9 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
         $form_status = 'error';
     }
 }
+
+$current_request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '/contact/';
+$form_action     = esc_url_raw( $current_request );
 ?>
 <main>
 <section class="dak-page-hero contact-page-hero">
@@ -65,7 +68,6 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
 <section class="dak-intro-section" id="enquiry">
     <div class="container utility-page-shell">
         <div class="eyebrow">Email enquiry</div>
-        <div data-enquiry-result="<?php echo esc_attr( $form_status ); ?>" hidden></div>
 
         <?php if ( 'success' === $form_status ) : ?>
             <div class="form-message form-message--success">Thank you. Your enquiry has been sent to D.A.K Travel.</div>
@@ -75,7 +77,7 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
             <div class="form-message form-message--error">We could not send your enquiry. Please try again or use WhatsApp Us.</div>
         <?php endif; ?>
 
-        <form class="dak-enquiry-form" method="post" action="">
+        <form class="dak-enquiry-form" method="post" action="<?php echo esc_url( $form_action ); ?>">
             <input type="hidden" name="daktravel_enquiry_submit" value="1">
             <input type="hidden" name="return_type" value="<?php echo esc_attr( $requested_type ); ?>">
             <?php wp_nonce_field( 'daktravel_enquiry', 'daktravel_enquiry_nonce' ); ?>
@@ -131,9 +133,8 @@ if ( ! $form_status && isset( $_GET['sent'] ) ) {
             </div>
 
             <label class="form-full">Tell us what you need<span>*</span><textarea name="message" rows="5" required></textarea></label>
-            <div class="form-live-status" role="status" aria-live="polite" hidden></div>
             <div class="form-submit">
-                <button class="btn btn--primary" type="submit" data-normal-label="Send Enquiry">Send Enquiry</button>
+                <button class="btn btn--primary" type="submit">Send Enquiry</button>
                 <span>Sent directly to D.A.K Travel.</span>
             </div>
         </form>
