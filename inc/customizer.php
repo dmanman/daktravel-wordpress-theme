@@ -197,10 +197,85 @@ function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback = 
     return '<div class="dak-media-slot dak-media-placeholder" aria-hidden="true">' . $label_html . '</div>';
 }
 
-function daktravel_credential_mark( $setting_id, $fallback_label, $alt ) {
-    $image = daktravel_media_image( $setting_id, 'medium', 'credential-logo-image', $alt );
-    if ( $image ) {
-        return '<span class="credential-mark credential-mark--logo">' . $image . '</span>';
+/**
+ * Credential media must be logo-like and must never resolve to the About portrait.
+ */
+function daktravel_credential_attachment_is_safe( $attachment_id ) {
+    $attachment_id = absint( $attachment_id );
+    if ( ! $attachment_id ) {
+        return false;
     }
+
+    $portrait_terms = array( 'yochee', 'photo.small', 'photo-small-yk', 'photo_small' );
+    $search_text = strtolower(
+        implode(
+            ' ',
+            array_filter(
+                array(
+                    get_the_title( $attachment_id ),
+                    wp_get_attachment_caption( $attachment_id ),
+                    get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ),
+                    wp_get_attachment_url( $attachment_id ),
+                )
+            )
+        )
+    );
+
+    foreach ( $portrait_terms as $term ) {
+        if ( false !== strpos( $search_text, $term ) ) {
+            return false;
+        }
+    }
+
+    $known_portrait = daktravel_find_existing_attachment( array( 'yochee', 'photo.small.yk', 'photo-small-yk' ) );
+    if ( $known_portrait && $known_portrait === $attachment_id ) {
+        return false;
+    }
+
+    $meta = wp_get_attachment_metadata( $attachment_id );
+    if ( is_array( $meta ) && ! empty( $meta['width'] ) && ! empty( $meta['height'] ) ) {
+        $width  = (float) $meta['width'];
+        $height = (float) $meta['height'];
+        if ( $height > ( $width * 1.20 ) ) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function daktravel_credential_attachment_id( $setting_id ) {
+    $credential_settings = array( 'daktravel_iata_logo', 'daktravel_asata_logo', 'daktravel_clubtravel_logo' );
+    if ( ! in_array( $setting_id, $credential_settings, true ) ) {
+        return 0;
+    }
+
+    $selected = absint( get_theme_mod( $setting_id ) );
+    if ( $selected && daktravel_credential_attachment_is_safe( $selected ) ) {
+        return $selected;
+    }
+
+    $map = daktravel_media_search_terms();
+    $found = isset( $map[ $setting_id ] ) ? daktravel_find_existing_attachment( $map[ $setting_id ] ) : 0;
+    if ( $found && daktravel_credential_attachment_is_safe( $found ) ) {
+        return $found;
+    }
+
+    return 0;
+}
+
+function daktravel_credential_mark( $setting_id, $fallback_label, $alt ) {
+    $attachment_id = daktravel_credential_attachment_id( $setting_id );
+    if ( $attachment_id ) {
+        $attrs = array(
+            'class' => 'credential-logo-image',
+            'alt'   => $alt,
+        );
+        $image = wp_get_attachment_image( $attachment_id, 'medium', false, $attrs );
+        if ( $image ) {
+            return '<span class="credential-mark credential-mark--logo">' . $image . '</span>';
+        }
+    }
+
     return '<span class="credential-mark">' . esc_html( $fallback_label ) . '</span>';
 }
