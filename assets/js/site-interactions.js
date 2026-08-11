@@ -34,12 +34,12 @@
     var hero = document.querySelector('.home .hero-media');
     if (!hero) return;
 
-    /* Real airport-terminal photograph by Matthias Pretterhofer, Unsplash. */
-    var photo = 'https://images.unsplash.com/photo-1661764337360-2b4c1a6721fb?auto=format&fit=crop&fm=jpg&q=84&w=2200';
+    /* Bright real airport-terminal photograph by Samuel S, Unsplash. */
+    var photo = 'https://images.unsplash.com/photo-1415959588285-66bbf7450d17?auto=format&fit=crop&fm=jpg&q=88&w=2200';
 
     hero.style.setProperty(
       'background-image',
-      'linear-gradient(180deg, rgba(7,17,27,.04) 0%, rgba(7,17,27,.10) 42%, rgba(7,17,27,.48) 100%), url("' + photo + '")',
+      'linear-gradient(180deg, rgba(7,17,27,.01) 0%, rgba(7,17,27,.04) 55%, rgba(7,17,27,.30) 100%), url("' + photo + '")',
       'important'
     );
     hero.style.setProperty('background-size', 'cover', 'important');
@@ -48,9 +48,9 @@
 
     var card = hero.querySelector('.advisory-card');
     if (card) {
-      card.style.background = 'rgba(7, 17, 27, .68)';
-      card.style.backdropFilter = 'blur(4px)';
-      card.style.webkitBackdropFilter = 'blur(4px)';
+      card.style.background = 'rgba(7, 17, 27, .58)';
+      card.style.backdropFilter = 'blur(3px)';
+      card.style.webkitBackdropFilter = 'blur(3px)';
     }
   }
 
