@@ -18,16 +18,16 @@ $hero_images = array(
         'alt' => 'Bright view from an airplane window showing the aircraft wing against a clear blue sky',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/3769138/pexels-photo-3769138.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'url' => 'https://images.pexels.com/photos/4160252/pexels-photo-4160252.jpeg?auto=compress&cs=tinysrgb&w=1600',
         'alt' => 'Aerial view of a dramatic coastline and turquoise sea',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/5368745/pexels-photo-5368745.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        'alt' => 'Aerial view of a river cruise boat moving through calm water',
+        'url' => 'https://images.pexels.com/photos/18816997/pexels-photo-18816997.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt' => 'Aerial view of a cruise boat travelling through scenic water and mountains',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        'alt' => 'Aerial view of a white-sand island beach and clear tropical water',
+        'url' => 'https://images.pexels.com/photos/9080954/pexels-photo-9080954.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt' => 'Aerial view of a tropical Maldives island and clear turquoise water',
     ),
 );
 
