@@ -18,7 +18,7 @@
         else :
             ?>
             <figure class="dak-media-slot has-image dak-israel-architecture">
-                <img class="dak-media-image" src="https://images.unsplash.com/photo-1703460755794-13248f18ccca?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=82&amp;w=1800" alt="Modern luxury hotel architecture and palm trees in Tel Aviv, Israel" width="1800" height="1200" loading="eager" fetchpriority="high">
+                <img class="dak-media-image" src="https://images.unsplash.com/photo-1652917071141-28db9af40b72?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=82&amp;w=1800" alt="Contemporary architecture in Tel Aviv, Israel" width="1800" height="1200" loading="eager" fetchpriority="high">
             </figure>
         <?php endif; ?>
     </div>
@@ -39,18 +39,28 @@
 </section>
 
 <?php
-$tel_aviv   = daktravel_media_image( 'daktravel_telaviv_image', 'large', 'dak-israel-strip-image', 'Tel Aviv, Israel' );
-$jerusalem  = daktravel_media_image( 'daktravel_jerusalem_image', 'large', 'dak-israel-strip-image', 'Jerusalem, Israel' );
-$dead_sea   = daktravel_media_image( 'daktravel_deadsea_image', 'large', 'dak-israel-strip-image', 'The Dead Sea, Israel' );
-if ( $tel_aviv || $jerusalem || $dead_sea ) : ?>
+$tel_aviv = daktravel_media_image( 'daktravel_telaviv_image', 'large', 'dak-israel-strip-image', 'Tel Aviv, Israel' );
+if ( ! $tel_aviv ) {
+    $tel_aviv = '<img class="dak-israel-strip-image" src="https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=80&amp;w=1400" alt="Tel Aviv coastline and city, Israel" loading="lazy" width="1400" height="1050">';
+}
+
+$jerusalem = daktravel_media_image( 'daktravel_jerusalem_image', 'large', 'dak-israel-strip-image', 'Jerusalem, Israel' );
+if ( ! $jerusalem ) {
+    $jerusalem = '<img class="dak-israel-strip-image" src="https://images.unsplash.com/photo-1575667456742-4269014e68aa?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=80&amp;w=1400" alt="Old City of Jerusalem, Israel" loading="lazy" width="1400" height="1050">';
+}
+
+$dead_sea = daktravel_media_image( 'daktravel_deadsea_image', 'large', 'dak-israel-strip-image', 'The Dead Sea, Israel' );
+if ( ! $dead_sea ) {
+    $dead_sea = '<img class="dak-israel-strip-image" src="https://images.unsplash.com/photo-1683968851645-46f11ec9cec5?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=80&amp;w=1400" alt="Dead Sea, Israel" loading="lazy" width="1400" height="1050">';
+}
+?>
 <section class="dak-israel-strip" aria-label="Israel destination imagery">
     <div class="container dak-israel-strip-grid">
-        <?php if ( $tel_aviv ) : ?><figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $tel_aviv ); ?></div><figcaption>Tel Aviv</figcaption></figure><?php endif; ?>
-        <?php if ( $jerusalem ) : ?><figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $jerusalem ); ?></div><figcaption>Jerusalem</figcaption></figure><?php endif; ?>
-        <?php if ( $dead_sea ) : ?><figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $dead_sea ); ?></div><figcaption>Dead Sea</figcaption></figure><?php endif; ?>
+        <figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $tel_aviv ); ?></div><figcaption>Tel Aviv</figcaption></figure>
+        <figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $jerusalem ); ?></div><figcaption>Jerusalem</figcaption></figure>
+        <figure><div class="dak-israel-strip-media"><?php echo wp_kses_post( $dead_sea ); ?></div><figcaption>Dead Sea</figcaption></figure>
     </div>
 </section>
-<?php endif; ?>
 
 <section class="dak-dark-band">
     <div class="container dak-narrow">
