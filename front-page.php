@@ -39,6 +39,7 @@
                 <div class="contact-note">
                     <strong>Start with a message.</strong>
                     <span>Send us your dates and route by WhatsApp or email. We’ll check the options and reply.</span>
+                    <a class="btn btn--outline btn--compact" style="margin-top:14px;" href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Email / Enquire</a>
                 </div>
             </div>
         </div>
