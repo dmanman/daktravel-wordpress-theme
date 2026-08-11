@@ -8,7 +8,7 @@
             <p class="lead">D.A.K is an experienced travel agency specialising in South Africa–Israel travel, groups, business travel and complex international journeys.</p>
             <p>We believe clients should know who is handling their booking and be able to reach someone who understands it.</p>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_team_image', 'D.A.K Travel team', 'D.A.K Travel · Since 2006' ) ); ?>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_team_image', 'D.A.K Travel', 'D.A.K Travel · Since 2006', '/2022/08/photo.small_.yk_.jpg' ) ); ?>
     </div>
 </section>
 
