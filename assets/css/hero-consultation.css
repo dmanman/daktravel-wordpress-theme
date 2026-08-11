@@ -72,49 +72,20 @@
   padding: 0;
 }
 
-/* Homepage photo uses the same image-frame treatment as .dak-media-slot on interior pages. */
-.hero--consultation .hero-media.hero-media--clean-photo {
-  position: relative;
+/* The homepage now uses the exact shared .dak-media-slot component from interior pages.
+   Do not recreate its border or overlay here. */
+.hero--consultation .hero-home-media {
   min-height: 0;
   margin: 0;
-  padding: 0 !important;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 0;
-  background: #e9ecee !important;
-  background-image: none !important;
-  box-shadow: var(--dak-deep-shadow);
-  border: 0;
-  isolation: isolate;
 }
 
-/* Exact interior-page image overlay. */
-.hero--consultation .hero-media.hero-media--clean-photo::before {
-  content: "" !important;
-  display: block !important;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg,rgba(6,17,27,.04),rgba(6,17,27,.13));
-  pointer-events: none;
-}
-
-/* Exact interior-page thin white frame: 18px inset, 17% white. */
-.hero--consultation .hero-media.hero-media--clean-photo::after {
-  content: "" !important;
-  display: block !important;
-  position: absolute;
-  inset: 18px;
-  z-index: 2;
-  border: 1px solid rgba(255,255,255,.17);
-  border-radius: 0;
-  pointer-events: none;
-}
-
-.hero-terminal-photo {
+.hero--consultation .hero-home-media .hero-terminal-photo {
   display: block;
   width: 100%;
   height: 100%;
+  min-height: 0;
   object-fit: cover;
   object-position: center center;
   filter: brightness(1.08) saturate(1.08) contrast(.97);
@@ -132,6 +103,7 @@
   align-items: flex-start;
   gap: 5px;
   padding: 0;
+  margin: 0;
   color: #fff;
   text-shadow: 0 2px 14px rgba(6,18,30,.62);
   pointer-events: none;
@@ -187,7 +159,7 @@
     padding: 0;
   }
 
-  .hero--consultation .hero-media.hero-media--clean-photo {
+  .hero--consultation .hero-home-media {
     aspect-ratio: 16 / 10;
   }
 }
@@ -226,7 +198,7 @@
     display: none;
   }
 
-  .hero--consultation .hero-media.hero-media--clean-photo {
+  .hero--consultation .hero-home-media {
     aspect-ratio: 4 / 3;
   }
 
