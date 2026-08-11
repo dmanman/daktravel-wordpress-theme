@@ -62,43 +62,63 @@ function daktravel_enqueue_assets() {
     $specialist_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
 
     $inline_css  = '.hero-media{background-image:linear-gradient(145deg,rgba(6,17,27,.91),rgba(16,38,61,.74)),url("' . esc_url_raw( $specialist_image ) . '")!important;background-size:cover!important;background-position:center!important;}';
+
+    /* The About portrait must never appear on the homepage. */
     $inline_css .= '.home img[src*="photo.small_.yk_"],.home img[src*="photo.small.yk"],.home img[src*="yochee" i],.home img[srcset*="photo.small"],.home img[srcset*="yochee" i],.home img[data-src*="photo.small"],.home img[data-src*="yochee" i],.home img[alt*="Yochee" i],.home img[title*="Yochee" i]{display:none!important;}';
-    /* No photography is permitted beside the homepage trust copy. */
-    $inline_css .= '.home .trust-section img{display:none!important;}';
-    $inline_css .= '.home .trust-section .credential-mark--logo{font-size:0!important;}';
-    $inline_css .= '.home .trust-section .credential-row:nth-of-type(2) .credential-mark--logo::after{content:"IATA";font-size:.72rem;}';
-    $inline_css .= '.home .trust-section .credential-row:nth-of-type(3) .credential-mark--logo::after{content:"ASATA";font-size:.72rem;}';
-    $inline_css .= '.home .trust-section .credential-row:nth-of-type(4) .credential-mark--logo::after{content:"CT";font-size:.72rem;}';
+
+    /* Trust copy is text-only; preserve only the real credential-logo images in the panel. */
+    $inline_css .= '.home .trust-copy{min-height:0!important;padding-right:0!important;}';
+    $inline_css .= '.home .trust-copy::before,.home .trust-copy::after{content:none!important;display:none!important;background:none!important;}';
+    $inline_css .= '.home .trust-section img:not(.credential-logo-image){display:none!important;}';
 
     wp_add_inline_style( 'daktravel-mobile-clarity', $inline_css );
 
     if ( is_front_page() ) {
         $remove_home_portrait = <<<'JS'
-document.addEventListener('DOMContentLoaded', function () {
-    var terms = ['yochee', 'mrs yochee katz', 'photo.small_.yk_', 'photo.small.yk', 'photo-small-yk'];
+(function () {
+    var portraitTerms = ['yochee', 'mrs yochee katz', 'photo.small_.yk_', 'photo.small.yk', 'photo-small-yk'];
 
-    document.querySelectorAll('img').forEach(function (img) {
+    function isPortrait(img) {
         var haystack = [
             img.getAttribute('src') || '',
             img.getAttribute('srcset') || '',
             img.getAttribute('data-src') || '',
+            img.getAttribute('data-srcset') || '',
             img.getAttribute('data-lazy-src') || '',
+            img.getAttribute('data-lazy-srcset') || '',
             img.getAttribute('alt') || '',
             img.getAttribute('title') || ''
         ].join(' ').toLowerCase();
 
-        if (terms.some(function (term) { return haystack.indexOf(term) !== -1; })) {
-            img.remove();
-        }
-    });
+        return portraitTerms.some(function (term) {
+            return haystack.indexOf(term) !== -1;
+        });
+    }
 
-    document.querySelectorAll('[style]').forEach(function (el) {
-        var styleText = (el.getAttribute('style') || '').toLowerCase();
-        if (terms.some(function (term) { return styleText.indexOf(term) !== -1; })) {
-            el.style.backgroundImage = 'none';
+    function cleanHomepage() {
+        document.querySelectorAll('img').forEach(function (img) {
+            if (isPortrait(img)) {
+                img.remove();
+            }
+        });
+
+        var trust = document.querySelector('.trust-section');
+        if (trust) {
+            trust.querySelectorAll('img:not(.credential-logo-image)').forEach(function (img) {
+                img.remove();
+            });
         }
-    });
-});
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cleanHomepage);
+    } else {
+        cleanHomepage();
+    }
+
+    var observer = new MutationObserver(cleanHomepage);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
 JS;
         wp_add_inline_script( 'daktravel-site-interactions', $remove_home_portrait, 'after' );
     }
