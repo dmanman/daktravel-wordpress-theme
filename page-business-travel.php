@@ -8,7 +8,7 @@
             <p class="lead">Reliable bookings, clear communication and a real person to contact when plans change.</p>
             <div class="dak-page-actions"><a class="btn btn--whatsapp" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like to discuss business or organisational travel.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=business#enquiry') ); ?>">Email / Enquire</a></div>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_business_image', 'Business traveller in a premium airport lounge', 'Business travel', 'https://images.unsplash.com/photo-1771970668763-04a319bb5759?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_business_image', 'Premium international travel cabin', 'Business travel', 'https://images.unsplash.com/photo-1706921255467-4236b197b530?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
 </section>
 
