@@ -103,5 +103,8 @@ function daktravel_whatsapp_url( $message = '' ) {
 // Editable real photography and approved organisation logos.
 require_once get_template_directory() . '/inc/customizer.php';
 
+// Simple form-to-email enquiry component.
+require_once get_template_directory() . '/inc/enquiry-form.php';
+
 // Lightweight SEO defaults, social metadata and TravelAgency structured data.
 require_once get_template_directory() . '/inc/seo.php';
