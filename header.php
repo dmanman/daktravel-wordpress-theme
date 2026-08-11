@@ -12,9 +12,9 @@
     <div class="container utility-inner">
         <div class="utility-proof">Johannesburg · IATA accredited · ASATA member</div>
         <div class="utility-links">
-            <a href="tel:+27114405980">+27 11 440 5980</a>
+            <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking help</a>
             <span aria-hidden="true">•</span>
-            <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Existing booking</a>
+            <a class="utility-muted" href="tel:+27114405980">+27 11 440 5980</a>
         </div>
     </div>
 </div>
@@ -42,8 +42,8 @@
         </nav>
 
         <div class="header-cta">
-            <a class="header-phone" href="tel:+27114405980" aria-label="Call D.A.K Travel">Call us</a>
-            <a class="btn btn--primary btn--compact" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>">Start Planning</a>
+            <a class="header-email" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Email / Enquire</a>
+            <a class="btn btn--whatsapp btn--compact" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I would like assistance with a travel enquiry.' ) ); ?>">WhatsApp Us</a>
         </div>
     </div>
 </header>
