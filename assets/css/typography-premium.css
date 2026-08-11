@@ -181,7 +181,7 @@ h3,
   letter-spacing: .025em;
 }
 
-/* The credentials panel reads more like a private-club membership plate. */
+/* Credentials read more like a private-club membership plate. */
 .credential-row strong {
   font-size: 1.22rem;
   line-height: 1.05;
@@ -193,6 +193,21 @@ h3,
   font-size: .72rem;
   line-height: 1.55;
   letter-spacing: .01em;
+}
+
+.credential-mark--logo {
+  padding: 7px 8px;
+  background: #ffffff;
+  border-color: rgba(232,235,237,.48);
+}
+
+.credential-logo-image {
+  display: block;
+  width: 100%;
+  max-width: 64px;
+  max-height: 38px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .feature-point strong,
@@ -334,6 +349,11 @@ h3,
   .btn {
     font-size: .78rem;
     letter-spacing: .03em;
+  }
+
+  .credential-logo-image {
+    max-width: 50px;
+    max-height: 31px;
   }
 
   .site-footer h2 {
