@@ -4,8 +4,8 @@
     <div class="container dak-page-hero-grid">
         <div class="dak-page-hero-copy">
             <div class="eyebrow">South Africa–Israel Travel · Established 2006</div>
-            <h1>Travel from South Africa to Israel, expertly managed.</h1>
-            <p class="lead">We help individuals, families, students, groups and organisations choose the right flights, connections and fare options for Israel.</p>
+            <h1>Flights and travel between South Africa and Israel, expertly managed.</h1>
+            <p class="lead">We help individuals, families, students, groups and organisations travel from South Africa to Israel — and return from Israel to South Africa — with the right flights, connections and fare options.</p>
             <div class="dak-page-actions">
                 <a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with travel between South Africa and Israel.' ) ); ?>">WhatsApp Us</a>
                 <a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Email / Enquire</a>
@@ -27,14 +27,14 @@
 
 <section class="dak-intro-section">
     <div class="container dak-narrow">
-        <div class="eyebrow">Flights to Israel from South Africa</div>
-        <h2>We compare the whole journey.</h2>
-        <p class="lead">The best option is not always the cheapest fare. We look at the route, connection time, baggage, flexibility and what happens if plans change.</p>
+        <div class="eyebrow">Flights to Israel from South Africa — and return</div>
+        <h2>We compare the whole journey in both directions.</h2>
+        <p class="lead">Whether you are flying from Johannesburg, Cape Town or another South African city to Israel, or returning from Tel Aviv to South Africa, we look at the route, connection time, baggage, flexibility and what happens if plans change.</p>
         <div class="dak-feature-list">
-            <div class="dak-feature-row"><span class="num">01</span><strong>Current flight options</strong><p>We check the sensible routings available for your actual travel dates.</p></div>
-            <div class="dak-feature-row"><span class="num">02</span><strong>Connections across South Africa</strong><p>We can coordinate feeder flights from Johannesburg, Cape Town, Durban and regional cities where required.</p></div>
-            <div class="dak-feature-row"><span class="num">03</span><strong>Families &amp; groups</strong><p>Passenger details, dates and special requirements are kept together.</p></div>
-            <div class="dak-feature-row"><span class="num">04</span><strong>Help when plans change</strong><p>You have a real consultant who already understands the booking.</p></div>
+            <div class="dak-feature-row"><span class="num">01</span><strong>South Africa to Israel</strong><p>We check sensible flight options from Johannesburg, Cape Town, Durban and regional cities for your actual travel dates.</p></div>
+            <div class="dak-feature-row"><span class="num">02</span><strong>Israel to South Africa</strong><p>We compare return and one-way options from Tel Aviv to Johannesburg and onward connections across South Africa where required.</p></div>
+            <div class="dak-feature-row"><span class="num">03</span><strong>Return &amp; flexible journeys</strong><p>Round trips, different departure and return cities, family travel and flexible fare options can be considered as one complete itinerary.</p></div>
+            <div class="dak-feature-row"><span class="num">04</span><strong>Help when plans change</strong><p>You have a real consultant who already understands the booking and can help when schedules or travel plans move.</p></div>
         </div>
     </div>
 </section>
@@ -66,15 +66,15 @@ if ( ! $dead_sea ) {
 <section class="dak-dark-band">
     <div class="container dak-narrow">
         <div class="eyebrow">South Africa–Israel specialists</div>
-        <h2>Israel travel is a market we know well.</h2>
-        <p>D.A.K has years of experience arranging Israel travel for individuals, families, youth and community groups, organisations and travellers who need extra assistance.</p>
+        <h2>Travel between South Africa and Israel is a market we know well.</h2>
+        <p>D.A.K has years of experience arranging Johannesburg–Tel Aviv and Tel Aviv–Johannesburg travel, domestic connections across South Africa, family trips, youth and community groups, organisations and travellers who need extra assistance.</p>
     </div>
 </section>
 
 <section class="dak-quiet-cta">
     <div class="container dak-quiet-cta-inner">
-        <div><div class="eyebrow">Start here</div><h2>Send us your Israel travel dates.</h2><p>WhatsApp or email the basics and we will check the sensible options.</p></div>
-        <div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with Israel travel.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Send Enquiry</a></div>
+        <div><div class="eyebrow">Start here</div><h2>Send us your South Africa–Israel travel dates.</h2><p>Tell us where you are starting, where you need to return to and your dates. We will check the sensible options.</p></div>
+        <div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. Please assist me with travel between South Africa and Israel.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Send Enquiry</a></div>
     </div>
 </section>
 </main>
