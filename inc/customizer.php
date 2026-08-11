@@ -20,24 +20,24 @@ function daktravel_customize_register( $wp_customize ) {
 
     $images = array(
         'daktravel_hero_image' => array(
-            'label'       => __( 'Homepage hero image', 'daktravel' ),
-            'description' => __( 'Use a strong, premium real photograph relevant to D.A.K or international travel.', 'daktravel' ),
+            'label'       => __( 'Homepage specialist image', 'daktravel' ),
+            'description' => __( 'Optional replacement for the subtle Israel image behind the homepage specialist panel.', 'daktravel' ),
         ),
         'daktravel_israel_image' => array(
-            'label'       => __( 'Israel luxury architecture image', 'daktravel' ),
-            'description' => __( 'Use a strong licensed or original Israeli architecture / Tel Aviv image for the Israel page.', 'daktravel' ),
+            'label'       => __( 'Israel / Azrieli image', 'daktravel' ),
+            'description' => __( 'Use a strong licensed or original image of the Azrieli Center / Tel Aviv for the Israel page.', 'daktravel' ),
         ),
         'daktravel_telaviv_image' => array(
             'label'       => __( 'Tel Aviv supporting image', 'daktravel' ),
-            'description' => __( 'Optional supporting Tel Aviv image. The theme will also look for the existing-site image automatically.', 'daktravel' ),
+            'description' => __( 'Optional supporting Tel Aviv image. The theme will also look for an existing-site image automatically.', 'daktravel' ),
         ),
         'daktravel_jerusalem_image' => array(
             'label'       => __( 'Jerusalem supporting image', 'daktravel' ),
-            'description' => __( 'Optional supporting Jerusalem image. The theme will also look for the existing-site image automatically.', 'daktravel' ),
+            'description' => __( 'Optional supporting Jerusalem image.', 'daktravel' ),
         ),
         'daktravel_deadsea_image' => array(
             'label'       => __( 'Dead Sea supporting image', 'daktravel' ),
-            'description' => __( 'Optional supporting Dead Sea image. The theme will also look for the existing-site image automatically.', 'daktravel' ),
+            'description' => __( 'Optional supporting Dead Sea image.', 'daktravel' ),
         ),
         'daktravel_group_image' => array(
             'label'       => __( 'Groups & delegations image', 'daktravel' ),
@@ -98,10 +98,6 @@ function daktravel_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'daktravel_customize_register' );
 
-/**
- * Match the new theme slots to assets already stored in the existing WordPress
- * media library. A manually selected Customizer image always takes priority.
- */
 function daktravel_media_search_terms() {
     return array(
         'daktravel_iata_logo'       => array( 'iata' ),
@@ -125,18 +121,11 @@ function daktravel_find_existing_attachment( $terms ) {
         $like = '%' . $wpdb->esc_like( $term ) . '%';
         $attachment_id = (int) $wpdb->get_var(
             $wpdb->prepare(
-                "SELECT ID
-                 FROM {$wpdb->posts}
-                 WHERE post_type = 'attachment'
-                   AND post_status = 'inherit'
-                   AND (LOWER(post_title) LIKE LOWER(%s) OR LOWER(guid) LIKE LOWER(%s))
-                 ORDER BY ID DESC
-                 LIMIT 1",
+                "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'attachment' AND post_status = 'inherit' AND (LOWER(post_title) LIKE LOWER(%s) OR LOWER(guid) LIKE LOWER(%s)) ORDER BY ID DESC LIMIT 1",
                 $like,
                 $like
             )
         );
-
         if ( $attachment_id ) {
             return $attachment_id;
         }
@@ -157,10 +146,7 @@ function daktravel_media_attachment_id( $setting_id ) {
     }
 
     $map = daktravel_media_search_terms();
-    $cache[ $setting_id ] = isset( $map[ $setting_id ] )
-        ? daktravel_find_existing_attachment( $map[ $setting_id ] )
-        : 0;
-
+    $cache[ $setting_id ] = isset( $map[ $setting_id ] ) ? daktravel_find_existing_attachment( $map[ $setting_id ] ) : 0;
     return $cache[ $setting_id ];
 }
 
@@ -169,7 +155,6 @@ function daktravel_media_url( $setting_id, $size = 'full' ) {
     if ( ! $attachment_id ) {
         return '';
     }
-
     $url = wp_get_attachment_image_url( $attachment_id, $size );
     return $url ? $url : '';
 }
@@ -181,40 +166,30 @@ function daktravel_media_image( $setting_id, $size = 'full', $class = '', $alt =
     }
 
     $attrs = array();
-    if ( $class ) {
-        $attrs['class'] = $class;
-    }
-    if ( $alt ) {
-        $attrs['alt'] = $alt;
-    }
-
+    if ( $class ) { $attrs['class'] = $class; }
+    if ( $alt ) { $attrs['alt'] = $alt; }
     return wp_get_attachment_image( $attachment_id, $size, false, $attrs );
 }
 
-/**
- * Existing media-library asset from the current D.A.K website. Theme activation
- * does not remove wp-content/uploads, so these are safe fallbacks while higher-
- * resolution or newer photography is selected in the Customizer.
- */
 function daktravel_existing_upload_url( $relative_path ) {
     $relative_path = '/' . ltrim( (string) $relative_path, '/' );
     return content_url( '/uploads' . $relative_path );
 }
 
 /**
- * Reusable premium image slot. A selected or auto-discovered media-library image
- * always wins. Where a verified existing-site path is supplied, it is used as a
- * final fallback instead of an empty placeholder.
+ * Reusable premium image slot. A selected/local media-library image wins.
+ * The fallback may be either an existing WordPress uploads path or a full HTTPS
+ * URL to a licensed image.
  */
-function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback_relative = '' ) {
+function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback = '' ) {
     $image = daktravel_media_image( $setting_id, 'large', 'dak-media-image', $alt );
 
     if ( $image ) {
         return '<div class="dak-media-slot has-image">' . $image . '</div>';
     }
 
-    if ( $fallback_relative ) {
-        $fallback_url = daktravel_existing_upload_url( $fallback_relative );
+    if ( $fallback ) {
+        $fallback_url = preg_match( '#^https://#i', $fallback ) ? $fallback : daktravel_existing_upload_url( $fallback );
         return '<div class="dak-media-slot has-image"><img class="dak-media-image" src="' . esc_url( $fallback_url ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy"></div>';
     }
 
@@ -222,17 +197,10 @@ function daktravel_media_slot( $setting_id, $alt = '', $label = '', $fallback_re
     return '<div class="dak-media-slot dak-media-placeholder" aria-hidden="true">' . $label_html . '</div>';
 }
 
-/**
- * Credential mark used in the homepage and About page. When an approved logo is
- * selected or already exists in the old site's media library, render that image;
- * otherwise retain a clean text fallback.
- */
 function daktravel_credential_mark( $setting_id, $fallback_label, $alt ) {
     $image = daktravel_media_image( $setting_id, 'medium', 'credential-logo-image', $alt );
-
     if ( $image ) {
         return '<span class="credential-mark credential-mark--logo">' . $image . '</span>';
     }
-
     return '<span class="credential-mark">' . esc_html( $fallback_label ) . '</span>';
 }
