@@ -38,6 +38,13 @@ function daktravel_enqueue_assets() {
         array( 'daktravel-style' ),
         $theme_version . '-premium-1'
     );
+
+    wp_enqueue_style(
+        'daktravel-trust-refine',
+        get_template_directory_uri() . '/assets/css/trust-refine.css',
+        array( 'daktravel-premium-refine' ),
+        $theme_version . '-trust-1'
+    );
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
