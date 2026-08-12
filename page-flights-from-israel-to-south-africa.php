@@ -19,6 +19,16 @@ $south_africa_hero_images = array(
         'credit' => '',
     ),
     array(
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/2/22/South_Africa_-_Drakensberg_%2816261357780%29.jpg',
+        'alt'    => 'Panoramic view of the Drakensberg mountains in South Africa',
+        'credit' => 'Drakensberg · Diriye Amey / CC BY 2.0',
+    ),
+    array(
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/a/a2/View_over_Vaal_Dam.jpg',
+        'alt'    => 'Wide view across Vaal Dam in South Africa',
+        'credit' => 'Vaal Dam · Ossewa / CC BY-SA 4.0',
+    ),
+    array(
         'url'    => 'https://images.pexels.com/photos/34166928/pexels-photo-34166928.jpeg?auto=compress&cs=tinysrgb&w=1600',
         'alt'    => 'Aerial view of Blyde River Canyon in South Africa',
         'credit' => '',
@@ -42,7 +52,7 @@ get_header();
             <div class="dak-page-actions"><a class="btn btn--primary" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Start a Return Travel Enquiry</a></div>
         </div>
         <figure class="dak-media-slot has-image dak-route-slideshow-frame">
-            <div class="dak-route-slideshow" aria-hidden="true">
+            <div class="dak-route-slideshow dak-route-slideshow--<?php echo esc_attr( count( $south_africa_hero_images ) ); ?>" aria-hidden="true">
                 <?php foreach ( $south_africa_hero_images as $index => $image ) : ?>
                     <span class="dak-route-slide dak-route-slide--<?php echo esc_attr( $index + 1 ); ?>">
                         <img
