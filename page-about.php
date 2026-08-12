@@ -9,7 +9,7 @@
             <p>We believe clients should know who is handling their booking and be able to reach someone who understands it.</p>
         </div>
         <aside class="dak-about-portrait" aria-label="D.A.K Travel personal service">
-            <img class="dak-about-portrait-image" src="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200" alt="View from an airplane window across the aircraft wing and sky" loading="eager" decoding="async">
+            <img class="dak-about-portrait-image" src="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=2200" alt="View from an airplane window across the aircraft wing and sky" loading="eager" decoding="async">
             <div class="dak-about-portrait-copy"><span>Personal service</span><strong>Johannesburg · Since 2006</strong></div>
         </aside>
     </div>
@@ -26,6 +26,20 @@
             <div class="dak-feature-row"><span class="num">03</span><strong>Personal</strong><p>You deal with real people who know your booking.</p></div>
             <div class="dak-feature-row"><span class="num">04</span><strong>Confidential</strong><p>Passenger and travel details are handled with discretion.</p></div>
         </div>
+    </div>
+</section>
+
+<section class="section section--ivory">
+    <div class="container editorial-split">
+        <div>
+            <div class="eyebrow">Personal service</div>
+            <h2>A real person behind the booking.</h2>
+            <p class="lead">D.A.K has always been built around personal service. You deal with people who know your itinerary and remain available when plans change.</p>
+        </div>
+        <aside class="dak-about-portrait" aria-label="D.A.K Travel team">
+            <img class="dak-about-portrait-image" src="<?php echo esc_url( daktravel_existing_upload_url( '/2022/08/photo.small_.yk_.jpg' ) ); ?>" alt="D.A.K Travel team" loading="lazy" decoding="async">
+            <div class="dak-about-portrait-copy"><span>Personal service</span><strong>D.A.K Travel · Johannesburg</strong></div>
+        </aside>
     </div>
 </section>
 
