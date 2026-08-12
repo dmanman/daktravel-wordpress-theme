@@ -8,7 +8,7 @@
             <p class="lead">Multi-city journeys, families, elderly travellers and premium travel where the details really matter.</p>
             <div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'Good day D.A.K Travel. I need help with a complex international trip.' ) ); ?>">WhatsApp Us</a><a class="btn btn--outline" href="<?php echo esc_url( home_url('/contact/?type=complex#enquiry') ); ?>">Email / Enquire</a></div>
         </div>
-        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_complex_image', 'Bright modern airport terminal with large glass windows and aircraft visible outside', 'Complex journeys', 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200' ) ); ?>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_complex_image', 'Business traveller in a premium airport lounge', 'Complex journeys', 'https://images.unsplash.com/photo-1771970668763-04a319bb5759?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
 </section>
 
