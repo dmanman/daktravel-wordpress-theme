@@ -35,8 +35,8 @@ get_header();
                     <div class="hero-home-slideshow" aria-hidden="true">
                         <img
                             class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1"
-                            src="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1600"
-                            srcset="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=720 720w, https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1100 1100w, https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1600 1600w"
+                            src="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                            srcset="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=720 720w, https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1100 1100w, https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600 1600w"
                             sizes="<?php echo esc_attr( $hero_sizes ); ?>"
                             alt=""
                             fetchpriority="high"
