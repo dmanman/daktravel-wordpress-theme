@@ -2,7 +2,7 @@
 /**
  * Lightweight SEO layer for D.A.K Travel.
  *
- * Provides page-specific titles/descriptions, one canonical URL, social metadata,
+ * Provides page-specific titles/descriptions, canonical URLs, social metadata,
  * image metadata and TravelAgency/WebPage structured data when a dedicated SEO
  * plugin is not active.
  */
@@ -18,15 +18,6 @@ function daktravel_has_seo_plugin() {
         || class_exists( 'All_in_One_SEO_Pack' );
 }
 
-function daktravel_current_language_tag() {
-    $locale = get_locale();
-    if ( ! $locale ) {
-        return 'en-ZA';
-    }
-
-    return str_replace( '_', '-', sanitize_text_field( $locale ) );
-}
-
 function daktravel_seo_defaults() {
     $defaults = array(
         'home' => array(
@@ -40,14 +31,6 @@ function daktravel_seo_defaults() {
         'flights-to-israel-from-johannesburg' => array(
             'title'       => 'Flights to Israel from Johannesburg | D.A.K Travel',
             'description' => 'Compare Johannesburg to Israel flight options, connections, baggage and fare flexibility with D.A.K Travel, including Tel Aviv–Johannesburg return travel.',
-        ),
-        'flights-to-israel-from-cape-town' => array(
-            'title'       => 'Flights to Israel from Cape Town | D.A.K Travel',
-            'description' => 'Compare Cape Town to Israel flight routes, connections, baggage, ticket structure and fare flexibility with specialist help from D.A.K Travel.',
-        ),
-        'flights-to-israel-from-durban' => array(
-            'title'       => 'Flights to Israel from Durban | D.A.K Travel',
-            'description' => 'Compare Durban to Israel flights, domestic and international connections, baggage and fare flexibility with specialist help from D.A.K Travel.',
         ),
         'flights-from-israel-to-south-africa' => array(
             'title'       => 'Flights from Israel to South Africa | D.A.K Travel',
@@ -131,14 +114,10 @@ function daktravel_seo_primary_image() {
 
     if ( is_front_page() ) {
         $setting = 'daktravel_hero_image';
-    } elseif ( is_page( array(
-        'israel-travel',
-        'flights-to-israel-from-johannesburg',
-        'flights-to-israel-from-cape-town',
-        'flights-to-israel-from-durban',
-        'south-africa-israel-flight-routes',
-    ) ) ) {
+    } elseif ( is_page( array( 'israel-travel', 'flights-to-israel-from-johannesburg', 'south-africa-israel-flight-routes' ) ) ) {
         $setting = 'daktravel_israel_image';
+    } elseif ( is_page( 'flights-from-israel-to-south-africa' ) ) {
+        $setting = 'daktravel_telaviv_image';
     } elseif ( is_page( 'groups-delegations' ) ) {
         $setting = 'daktravel_group_image';
     } elseif ( is_page( 'business-travel' ) ) {
@@ -158,29 +137,15 @@ function daktravel_seo_primary_image() {
         }
     }
 
+    if ( is_page( array( 'israel-travel', 'flights-to-israel-from-johannesburg', 'flights-from-israel-to-south-africa', 'south-africa-israel-flight-routes' ) ) ) {
+        return 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Azriely_Center.jpg';
+    }
+
     if ( is_singular() && has_post_thumbnail() ) {
         $image = wp_get_attachment_image_url( get_post_thumbnail_id(), 'full' );
         if ( $image ) {
             return $image;
         }
-    }
-
-    if ( is_front_page() ) {
-        return 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600';
-    }
-
-    if ( is_page( 'flights-from-israel-to-south-africa' ) ) {
-        return 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Cape_Town_Table_Mountain.jpg';
-    }
-
-    if ( is_page( array(
-        'israel-travel',
-        'flights-to-israel-from-johannesburg',
-        'flights-to-israel-from-cape-town',
-        'flights-to-israel-from-durban',
-        'south-africa-israel-flight-routes',
-    ) ) ) {
-        return 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Azriely_Center.jpg';
     }
 
     return '';
@@ -195,18 +160,6 @@ function daktravel_seo_document_title( $title ) {
 }
 add_filter( 'pre_get_document_title', 'daktravel_seo_document_title', 20 );
 
-/**
- * WordPress core already adds rel=canonical on singular content. Because this
- * theme needs a canonical on the front page as well, it owns canonical output
- * while the lightweight SEO layer is active. This prevents duplicate canonicals.
- */
-function daktravel_remove_core_canonical() {
-    if ( ! daktravel_has_seo_plugin() ) {
-        remove_action( 'wp_head', 'rel_canonical' );
-    }
-}
-add_action( 'wp', 'daktravel_remove_core_canonical', 1 );
-
 function daktravel_output_seo_meta() {
     if ( daktravel_has_seo_plugin() || is_admin() || is_404() || is_search() ) {
         return;
@@ -217,10 +170,8 @@ function daktravel_output_seo_meta() {
         return;
     }
 
-    $url       = is_singular() ? get_permalink() : home_url( '/' );
-    $image     = daktravel_seo_primary_image();
-    $image_alt = ! empty( $meta['title'] ) ? wp_strip_all_tags( $meta['title'] ) : 'D.A.K Travel';
-    $og_type   = is_singular( array( 'post', 'dak_case_study' ) ) ? 'article' : 'website';
+    $url   = is_singular() ? get_permalink() : home_url( '/' );
+    $image = daktravel_seo_primary_image();
 
     printf( "\n<link rel=\"canonical\" href=\"%s\">\n", esc_url( $url ) );
 
@@ -236,15 +187,13 @@ function daktravel_output_seo_meta() {
         printf( "<meta name=\"twitter:description\" content=\"%s\">\n", esc_attr( $meta['description'] ) );
     }
     printf( "<meta property=\"og:url\" content=\"%s\">\n", esc_url( $url ) );
-    printf( "<meta property=\"og:type\" content=\"%s\">\n", esc_attr( $og_type ) );
+    echo "<meta property=\"og:type\" content=\"website\">\n";
     echo "<meta property=\"og:site_name\" content=\"D.A.K Travel\">\n";
     echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
 
     if ( $image ) {
         printf( "<meta property=\"og:image\" content=\"%s\">\n", esc_url( $image ) );
-        printf( "<meta property=\"og:image:alt\" content=\"%s\">\n", esc_attr( $image_alt ) );
         printf( "<meta name=\"twitter:image\" content=\"%s\">\n", esc_url( $image ) );
-        printf( "<meta name=\"twitter:image:alt\" content=\"%s\">\n", esc_attr( $image_alt ) );
     }
 }
 add_action( 'wp_head', 'daktravel_output_seo_meta', 2 );
@@ -254,8 +203,6 @@ function daktravel_output_schema() {
         return;
     }
 
-    $language = daktravel_current_language_tag();
-
     $business = array(
         '@type'         => 'TravelAgency',
         '@id'           => home_url( '/#travelagency' ),
@@ -263,6 +210,7 @@ function daktravel_output_schema() {
         'alternateName' => 'DAK Travel',
         'url'           => home_url( '/' ),
         'telephone'     => '+27 11 440 5980',
+        'email'         => 'info@daktravel.co.za',
         'foundingDate'  => '2006',
         'description'   => 'Established in Johannesburg in 2006, D.A.K Travel specialises in flights and travel between South Africa and Israel, return journeys, complex international travel, groups, delegations and organisational travel.',
         'address'       => array(
@@ -293,21 +241,19 @@ function daktravel_output_schema() {
     if ( $custom_logo_id ) {
         $logo = wp_get_attachment_image_url( $custom_logo_id, 'full' );
         if ( $logo ) {
-            $business['logo']  = $logo;
-            $business['image'] = $logo;
+            $business['logo'] = $logo;
         }
     }
 
     $graph = array( $business );
 
     $graph[] = array(
-        '@type'         => 'WebSite',
-        '@id'           => home_url( '/#website' ),
-        'url'           => home_url( '/' ),
-        'name'          => 'D.A.K Travel',
-        'alternateName' => 'DAK Travel',
-        'inLanguage'    => $language,
-        'publisher'     => array( '@id' => home_url( '/#travelagency' ) ),
+        '@type'      => 'WebSite',
+        '@id'        => home_url( '/#website' ),
+        'url'        => home_url( '/' ),
+        'name'       => 'D.A.K Travel',
+        'inLanguage' => 'en-ZA',
+        'publisher'  => array( '@id' => home_url( '/#travelagency' ) ),
     );
 
     if ( is_front_page() || is_page() ) {
@@ -319,7 +265,7 @@ function daktravel_output_schema() {
             '@id'        => trailingslashit( $page_url ) . '#webpage',
             'url'        => $page_url,
             'name'       => $meta['title'],
-            'inLanguage' => $language,
+            'inLanguage' => 'en-ZA',
             'isPartOf'   => array( '@id' => home_url( '/#website' ) ),
             'about'      => array( '@id' => home_url( '/#travelagency' ) ),
             'publisher'  => array( '@id' => home_url( '/#travelagency' ) ),
@@ -347,8 +293,6 @@ add_action( 'wp_head', 'daktravel_output_schema', 30 );
 
 function daktravel_robots_for_pages( $robots ) {
     $robots['max-image-preview'] = 'large';
-    $robots['max-snippet']       = -1;
-    $robots['max-video-preview'] = -1;
 
     // Linked from existing email signatures, but not intended as a search landing page.
     if ( is_page( 'email-disclaimer' ) ) {
