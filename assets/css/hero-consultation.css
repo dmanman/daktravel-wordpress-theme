@@ -99,6 +99,7 @@
 .hero--consultation .hero-home-media .hero-slide {
   position: absolute;
   inset: 0;
+  display: block;
   opacity: 0;
 }
 
