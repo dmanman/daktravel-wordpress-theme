@@ -34,13 +34,17 @@
 }
 
 .hero--consultation .btn--whatsapp {
-  border: 1px solid rgba(11,23,36,.22);
-  background: rgba(255,255,255,.78);
-  color: var(--ink);
+  border: 1px solid #20bd5a;
+  background: #25d366;
+  color: #062b16;
+  box-shadow: 0 8px 22px rgba(37,211,102,.18);
 }
 
 .hero--consultation .btn--whatsapp:hover {
-  background: #fff;
+  border-color: #1ebd5b;
+  background: #31e173;
+  color: #052311;
+  box-shadow: 0 10px 26px rgba(37,211,102,.26);
 }
 
 .hero-trust-line {
@@ -238,17 +242,28 @@
 }
 
 .google-review-link {
-  color: #243746;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid #1769d2;
+  border-radius: 999px;
+  background: #1a73e8;
+  color: #fff;
   font-size: .84rem;
   font-weight: 800;
+  line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
-  border-bottom: 1px solid rgba(184,132,63,.55);
-  padding-bottom: 2px;
+  box-shadow: 0 6px 16px rgba(26,115,232,.16);
 }
 
 .google-review-link:hover {
-  border-bottom-color: #b8843f;
+  border-color: #1558b0;
+  background: #1765cc;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(26,115,232,.24);
 }
 
 @media (max-width: 1100px) {
