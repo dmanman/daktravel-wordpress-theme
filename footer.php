@@ -1,3 +1,25 @@
+<?php if ( is_front_page() ) : ?>
+<section class="google-review-bar" id="google-review-bar" aria-label="Google customer review">
+    <div class="container google-review-inner">
+        <div class="google-review-mark">
+            <span class="google-review-stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <span class="google-review-source">Google Reviews</span>
+        </div>
+        <p class="google-review-quote"><strong>“Incredible service”</strong> <span>— Joni Kowensky</span></p>
+        <a class="google-review-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=D.A.K%20Travel%2C%2017%20Northfield%20Avenue%2C%20Glenhazel%2C%20Johannesburg">View on Google →</a>
+    </div>
+</section>
+<script>
+(function () {
+    var bar = document.getElementById('google-review-bar');
+    var confidence = document.querySelector('.confidence-bar');
+    if (bar && confidence) {
+        confidence.insertAdjacentElement('afterend', bar);
+    }
+}());
+</script>
+<?php endif; ?>
+
 <footer class="site-footer">
     <div class="container footer-grid">
         <div>
