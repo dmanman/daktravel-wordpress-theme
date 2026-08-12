@@ -37,9 +37,9 @@ get_header();
                 <figure class="dak-media-slot has-image hero-home-media">
                     <div class="hero-home-slideshow" aria-hidden="true">
                         <img class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1" src="<?php echo esc_url( $hero_image ); ?>" alt="" fetchpriority="high" decoding="async">
-                        <img class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--2" src="https://images.pexels.com/photos/4160252/pexels-photo-4160252.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" decoding="async">
-                        <img class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--3" src="https://images.pexels.com/photos/18816997/pexels-photo-18816997.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" decoding="async">
-                        <img class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--4" src="https://images.pexels.com/photos/9080954/pexels-photo-9080954.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" decoding="async">
+                        <span class="hero-home-slide hero-home-slide--2"></span>
+                        <span class="hero-home-slide hero-home-slide--3"></span>
+                        <span class="hero-home-slide hero-home-slide--4"></span>
                     </div>
                     <figcaption class="hero-photo-meta" aria-hidden="true">
                         <span>The world, within reach.</span>
