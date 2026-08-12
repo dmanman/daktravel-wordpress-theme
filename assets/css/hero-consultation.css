@@ -155,7 +155,7 @@
 /* Secondary images only exist in the desktop/tablet media query, so phones never request them. */
 @media (min-width: 681px) and (prefers-reduced-motion: no-preference) {
   .hero--consultation .hero-home-slide--2 {
-    background-image: url("https://images.pexels.com/photos/4160252/pexels-photo-4160252.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    background-image: url("https://images.pexels.com/photos/34168788/pexels-photo-34168788.jpeg?auto=compress&cs=tinysrgb&w=1200");
   }
 
   .hero--consultation .hero-home-slide--3 {
