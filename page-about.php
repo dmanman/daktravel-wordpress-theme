@@ -1,5 +1,15 @@
 <?php get_header(); ?>
 <main>
+<style>
+.dak-about-person{width:100%;max-width:380px;justify-self:end;margin:0;}
+.dak-about-person-image{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;}
+.dak-about-person-copy{padding-top:12px;color:#68737d;font-size:.78rem;line-height:1.45;}
+.dak-about-person-copy span,.dak-about-person-copy strong{display:block;}
+.dak-about-person-copy strong{color:#0a1723;margin-top:3px;}
+@media(max-width:980px){.dak-about-person{justify-self:start;max-width:340px;}}
+@media(max-width:680px){.dak-about-person{max-width:280px;}.dak-about-person-image{max-height:340px;}}
+</style>
+
 <section class="dak-page-hero dak-about-hero">
     <div class="container dak-page-hero-grid">
         <div class="dak-page-hero-copy">
