@@ -23,13 +23,9 @@
 <header class="site-header">
     <div class="container header-inner">
         <div class="site-branding">
-            <?php if ( has_custom_logo() ) : ?>
-                <?php the_custom_logo(); ?>
-            <?php else : ?>
-                <a class="legacy-logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="D.A.K Travel home">
-                    <img class="legacy-site-logo" src="<?php echo esc_url( daktravel_existing_upload_url( '/2015/08/cropped-logo.daktravel.jpg' ) ); ?>" alt="D.A.K Travel">
-                </a>
-            <?php endif; ?>
+            <a class="legacy-logo-link dak-logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="D.A.K Travel home">
+                <img class="legacy-site-logo dak-site-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/dak-logo-2026.svg' ); ?>" alt="D.A.K Travel" width="600" height="202" decoding="async">
+            </a>
         </div>
 
         <nav class="site-nav" aria-label="Primary navigation">
