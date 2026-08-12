@@ -10,7 +10,7 @@
 @media(max-width:680px){.dak-about-person{max-width:280px;}.dak-about-person-image{max-height:340px;}}
 </style>
 
-<section class="dak-page-hero dak-about-hero">
+<section class="dak-page-hero">
     <div class="container dak-page-hero-grid">
         <div class="dak-page-hero-copy">
             <div class="eyebrow">About D.A.K Travel</div>
