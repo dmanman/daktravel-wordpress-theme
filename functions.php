@@ -82,11 +82,11 @@ function daktravel_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
 /**
- * The rebuilt homepage is a bespoke theme template and does not use Elementor,
- * MailMunch or the legacy Google-hosted jQuery/WebFont loader. Old plugins may
- * still enqueue those assets globally, so remove only those known legacy assets
- * from the homepage critical path. The cleanup is deliberately homepage-only
- * until every older WordPress page has been verified independently.
+ * The rebuilt homepage is a bespoke theme template and does not use Elementor
+ * or the legacy Google-hosted jQuery/WebFont loader. MailMunch is intentionally
+ * retained because D.A.K actively uses it. Remove only known obsolete assets
+ * from the homepage critical path; keep the cleanup homepage-only until older
+ * WordPress pages have been independently verified.
  */
 function daktravel_prune_homepage_legacy_assets() {
     if ( is_admin() || ! is_front_page() ) {
@@ -99,7 +99,6 @@ function daktravel_prune_homepage_legacy_assets() {
         '/plugins/elementor/',
         '/plugins/elementor-pro/',
         '/uploads/elementor/',
-        'mailmunch.co/',
     );
 
     if ( $wp_styles instanceof WP_Styles ) {
@@ -121,7 +120,6 @@ function daktravel_prune_homepage_legacy_assets() {
     $script_fragments = array(
         '/plugins/elementor/',
         '/plugins/elementor-pro/',
-        'mailmunch.co/',
         'ajax.googleapis.com/ajax/libs/jquery/1.11.3/',
         'ajax.googleapis.com/ajax/libs/webfont/',
     );
@@ -145,6 +143,53 @@ function daktravel_prune_homepage_legacy_assets() {
 add_action( 'wp_enqueue_scripts', 'daktravel_prune_homepage_legacy_assets', 9999 );
 add_action( 'wp_head', 'daktravel_prune_homepage_legacy_assets', 1 );
 add_action( 'wp_footer', 'daktravel_prune_homepage_legacy_assets', 1 );
+add_action( 'wp_print_scripts', 'daktravel_prune_homepage_legacy_assets', 0 );
+add_action( 'wp_print_footer_scripts', 'daktravel_prune_homepage_legacy_assets', 0 );
+
+/**
+ * Last-line defence for obsolete scripts that are registered after the normal
+ * enqueue pass. MailMunch and WordPress's own current jQuery are not affected.
+ */
+function daktravel_filter_homepage_legacy_script_tag( $tag, $handle, $src ) {
+    if ( ! is_front_page() ) {
+        return $tag;
+    }
+
+    $blocked = array(
+        'ajax.googleapis.com/ajax/libs/jquery/1.11.3/',
+        'ajax.googleapis.com/ajax/libs/webfont/',
+    );
+
+    foreach ( $blocked as $fragment ) {
+        if ( false !== stripos( (string) $src, $fragment ) ) {
+            return '';
+        }
+    }
+
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'daktravel_filter_homepage_legacy_script_tag', 9999, 3 );
+
+/**
+ * Remove obsolete resource-hint origins from the homepage. The theme keeps only
+ * the origins that matter for the current design and intentionally retained tools.
+ */
+function daktravel_filter_homepage_resource_hints( $urls, $relation_type ) {
+    if ( ! is_front_page() || 'preconnect' !== $relation_type ) {
+        return $urls;
+    }
+
+    return array_values(
+        array_filter(
+            (array) $urls,
+            static function ( $url ) {
+                $href = is_array( $url ) && isset( $url['href'] ) ? (string) $url['href'] : (string) $url;
+                return false === stripos( $href, 'ajax.googleapis.com' );
+            }
+        )
+    );
+}
+add_filter( 'wp_resource_hints', 'daktravel_filter_homepage_resource_hints', 20, 2 );
 
 /**
  * Elementor's Google-font output is unnecessary on the bespoke homepage.
