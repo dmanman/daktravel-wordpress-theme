@@ -93,7 +93,7 @@ get_header();
                                     <source media="(min-width: 681px)" srcset="<?php echo esc_url( $image['url'] ); ?>">
                                     <img
                                         class="dak-media-image hero-terminal-photo"
-                                        src="<?php echo esc_url( $transparent_pixel ); ?>"
+                                        src="<?php echo esc_attr( $transparent_pixel ); ?>"
                                         alt=""
                                         loading="lazy"
                                         fetchpriority="low"
