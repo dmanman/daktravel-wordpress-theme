@@ -82,6 +82,81 @@ function daktravel_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
 /**
+ * The rebuilt homepage is a bespoke theme template and does not use Elementor,
+ * MailMunch or the legacy Google-hosted jQuery/WebFont loader. Old plugins may
+ * still enqueue those assets globally, so remove only those known legacy assets
+ * from the homepage critical path. The cleanup is deliberately homepage-only
+ * until every older WordPress page has been verified independently.
+ */
+function daktravel_prune_homepage_legacy_assets() {
+    if ( is_admin() || ! is_front_page() ) {
+        return;
+    }
+
+    global $wp_styles, $wp_scripts;
+
+    $style_fragments = array(
+        '/plugins/elementor/',
+        '/plugins/elementor-pro/',
+        '/uploads/elementor/',
+        'mailmunch.co/',
+    );
+
+    if ( $wp_styles instanceof WP_Styles ) {
+        foreach ( (array) $wp_styles->queue as $handle ) {
+            if ( empty( $wp_styles->registered[ $handle ] ) ) {
+                continue;
+            }
+
+            $src = (string) $wp_styles->registered[ $handle ]->src;
+            foreach ( $style_fragments as $fragment ) {
+                if ( false !== stripos( $src, $fragment ) ) {
+                    wp_dequeue_style( $handle );
+                    break;
+                }
+            }
+        }
+    }
+
+    $script_fragments = array(
+        '/plugins/elementor/',
+        '/plugins/elementor-pro/',
+        'mailmunch.co/',
+        'ajax.googleapis.com/ajax/libs/jquery/1.11.3/',
+        'ajax.googleapis.com/ajax/libs/webfont/',
+    );
+
+    if ( $wp_scripts instanceof WP_Scripts ) {
+        foreach ( (array) $wp_scripts->queue as $handle ) {
+            if ( empty( $wp_scripts->registered[ $handle ] ) ) {
+                continue;
+            }
+
+            $src = (string) $wp_scripts->registered[ $handle ]->src;
+            foreach ( $script_fragments as $fragment ) {
+                if ( false !== stripos( $src, $fragment ) ) {
+                    wp_dequeue_script( $handle );
+                    break;
+                }
+            }
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'daktravel_prune_homepage_legacy_assets', 9999 );
+add_action( 'wp_head', 'daktravel_prune_homepage_legacy_assets', 1 );
+add_action( 'wp_footer', 'daktravel_prune_homepage_legacy_assets', 1 );
+
+/**
+ * Elementor's Google-font output is unnecessary on the bespoke homepage.
+ * This also prevents stale Elementor local-font CSS from reintroducing HTTP
+ * font URLs while the WordPress-side Elementor cache is being cleaned up.
+ */
+function daktravel_disable_elementor_fonts_on_homepage( $print_google_fonts ) {
+    return is_front_page() ? false : $print_google_fonts;
+}
+add_filter( 'elementor/frontend/print_google_fonts', 'daktravel_disable_elementor_fonts_on_homepage', 20 );
+
+/**
  * Compact TranslatePress language switcher for the top utility bar.
  * The site intentionally supports English, Hebrew and Arabic only.
  */
