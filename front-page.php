@@ -7,8 +7,7 @@ wp_enqueue_style(
     file_exists( $home_css_path ) ? (string) filemtime( $home_css_path ) : wp_get_theme()->get( 'Version' )
 );
 
-$hero_sizes         = '(max-width: 680px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 36px), 52vw';
-$hero_attachment_id = function_exists( 'daktravel_media_attachment_id' ) ? daktravel_media_attachment_id( 'daktravel_hero_image' ) : 0;
+$hero_sizes = '(max-width: 680px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 36px), 52vw';
 
 get_header();
 ?>
@@ -34,34 +33,16 @@ get_header();
             <div class="hero-media-wrap">
                 <figure class="dak-media-slot has-image hero-home-media">
                     <div class="hero-home-slideshow" aria-hidden="true">
-                        <?php if ( $hero_attachment_id ) : ?>
-                            <?php
-                            echo wp_get_attachment_image(
-                                $hero_attachment_id,
-                                'large',
-                                false,
-                                array(
-                                    'class'         => 'dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1',
-                                    'alt'           => '',
-                                    'fetchpriority' => 'high',
-                                    'loading'       => 'eager',
-                                    'decoding'      => 'async',
-                                    'sizes'         => $hero_sizes,
-                                )
-                            );
-                            ?>
-                        <?php else : ?>
-                            <img
-                                class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1"
-                                src="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1600"
-                                srcset="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=720 720w, https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1100 1100w, https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1600 1600w"
-                                sizes="<?php echo esc_attr( $hero_sizes ); ?>"
-                                alt=""
-                                fetchpriority="high"
-                                loading="eager"
-                                decoding="async"
-                            >
-                        <?php endif; ?>
+                        <img
+                            class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1"
+                            src="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1600"
+                            srcset="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=720 720w, https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1100 1100w, https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=1600 1600w"
+                            sizes="<?php echo esc_attr( $hero_sizes ); ?>"
+                            alt=""
+                            fetchpriority="high"
+                            loading="eager"
+                            decoding="async"
+                        >
                         <span class="hero-home-slide hero-home-slide--2"></span>
                         <span class="hero-home-slide hero-home-slide--3"></span>
                         <span class="hero-home-slide hero-home-slide--4"></span>
