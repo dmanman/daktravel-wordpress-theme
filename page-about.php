@@ -9,14 +9,7 @@
             <p>We believe clients should know who is handling their booking and be able to reach someone who understands it.</p>
         </div>
         <aside class="dak-about-portrait" aria-label="D.A.K Travel personal service">
-            <?php
-            $team_image = daktravel_media_image( 'daktravel_team_image', 'medium', 'dak-about-portrait-image', 'D.A.K Travel team' );
-            if ( $team_image ) {
-                echo wp_kses_post( $team_image );
-            } else {
-                ?>
-                <img class="dak-about-portrait-image" src="<?php echo esc_url( daktravel_existing_upload_url( '/2022/08/photo.small_.yk_.jpg' ) ); ?>" alt="D.A.K Travel team" loading="lazy">
-            <?php } ?>
+            <img class="dak-about-portrait-image" src="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200" alt="View from an airplane window across the aircraft wing and sky" loading="eager" decoding="async">
             <div class="dak-about-portrait-copy"><span>Personal service</span><strong>Johannesburg · Since 2006</strong></div>
         </aside>
     </div>
