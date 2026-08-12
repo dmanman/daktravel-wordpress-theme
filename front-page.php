@@ -13,6 +13,17 @@ $hero_attachment_id = function_exists( 'daktravel_media_attachment_id' ) ? daktr
 get_header();
 ?>
 <main>
+    <section class="google-review-bar" aria-label="Google customer review">
+        <div class="container google-review-inner">
+            <div class="google-review-mark">
+                <span class="google-review-stars" aria-label="5 out of 5 stars">★★★★★</span>
+                <span class="google-review-source">Google Reviews</span>
+            </div>
+            <p class="google-review-quote"><strong>“Incredible service”</strong> <span>— Joni Kowensky</span></p>
+            <a class="google-review-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=D.A.K%20Travel%2C%2017%20Northfield%20Avenue%2C%20Glenhazel%2C%20Johannesburg">View on Google →</a>
+        </div>
+    </section>
+
     <section class="hero hero--consultation">
         <div class="container hero-grid">
             <div class="hero-copy">
