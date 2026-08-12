@@ -10,20 +10,24 @@ wp_enqueue_style(
 /* Keep this Johannesburg-specific slideshow visually distinct from the main Israel Travel page. */
 $israel_hero_images = array(
     array(
-        'url' => 'https://images.pexels.com/photos/17291340/pexels-photo-17291340/free-photo-of-drone-shot-of-haifa-in-israel.jpeg?auto=compress&dpr=1&h=750&w=1260',
-        'alt' => 'Aerial view of Haifa and the Bahai Gardens on Israel Mediterranean coast',
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Haifa%27s_Bahai_garden%2C_view_from_above.jpg',
+        'alt'    => 'View over the Bahai Gardens and Haifa on Israel Mediterranean coast',
+        'credit' => 'Haifa Bahá’í Gardens · Yuval Y / CC BY 2.5',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/30113408/pexels-photo-30113408/free-photo-of-aerial-view-of-caesarea-ancient-ruins-and-coastline.png?auto=compress&cs=tinysrgb&dpr=1&h=750&w=1260',
-        'alt' => 'Aerial view of ancient Caesarea ruins and the Mediterranean coastline in Israel',
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Caesarea_Maritima_from_air.jpg',
+        'alt'    => 'Aerial view of Caesarea Maritima and the Mediterranean coastline in Israel',
+        'credit' => 'Caesarea Maritima aerial · Eldar Eldadi / CC BY-SA 4.0',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/30428821/pexels-photo-30428821/free-photo-of-dramatic-aerial-view-of-the-negev-desert.png?auto=compress&cs=tinysrgb&dpr=1&h=750&w=1260',
-        'alt' => 'Dramatic aerial view of the Negev Desert in southern Israel',
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Israel-2013-Aerial_10-Negev.jpg',
+        'alt'    => 'Aerial view of the Negev Desert in southern Israel',
+        'credit' => 'Negev aerial · Andrew Shiva / CC BY-SA 4.0',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/13554691/pexels-photo-13554691.jpeg?auto=compress&dpr=1&h=750&w=1260',
-        'alt' => 'Drone view of the old city and Mediterranean harbour of Acre in northern Israel',
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/7/70/View_of_Acre_Harbor.jpg',
+        'alt'    => 'View of Acre harbour and old city in northern Israel',
+        'credit' => 'Acre Harbor · CallMeBarcode / CC BY-SA 4.0',
     ),
 );
 
@@ -49,6 +53,9 @@ get_header();
                             <?php echo 0 === $index ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; ?>
                             decoding="async"
                         >
+                        <?php if ( ! empty( $image['credit'] ) ) : ?>
+                            <span class="dak-route-slide-credit"><?php echo esc_html( $image['credit'] ); ?></span>
+                        <?php endif; ?>
                     </span>
                 <?php endforeach; ?>
             </div>
