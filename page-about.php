@@ -1,17 +1,14 @@
 <?php get_header(); ?>
 <main>
 <section class="dak-page-hero dak-about-hero">
-    <div class="container dak-page-hero-grid dak-about-hero-grid">
+    <div class="container dak-page-hero-grid">
         <div class="dak-page-hero-copy">
             <div class="eyebrow">About D.A.K Travel</div>
             <h1>Established in Johannesburg in 2006.</h1>
             <p class="lead">D.A.K is an experienced travel agency specialising in South Africa–Israel travel, groups, business travel and complex international journeys.</p>
             <p>We believe clients should know who is handling their booking and be able to reach someone who understands it.</p>
         </div>
-        <aside class="dak-about-portrait" aria-label="D.A.K Travel personal service">
-            <img class="dak-about-portrait-image" src="https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=2200" alt="View from an airplane window across the aircraft wing and sky" loading="eager" decoding="async">
-            <div class="dak-about-portrait-copy"><span>Personal service</span><strong>Johannesburg · Since 2006</strong></div>
-        </aside>
+        <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_about_city_image', 'Johannesburg skyline with the Hillbrow Tower above the city', 'Johannesburg', 'https://images.unsplash.com/photo-1654575998971-4f467c8a89c1?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
 </section>
 
@@ -36,9 +33,16 @@
             <h2>A real person behind the booking.</h2>
             <p class="lead">D.A.K has always been built around personal service. You deal with people who know your itinerary and remain available when plans change.</p>
         </div>
-        <aside class="dak-about-portrait" aria-label="D.A.K Travel team">
-            <img class="dak-about-portrait-image" src="<?php echo esc_url( daktravel_existing_upload_url( '/2022/08/photo.small_.yk_.jpg' ) ); ?>" alt="D.A.K Travel team" loading="lazy" decoding="async">
-            <div class="dak-about-portrait-copy"><span>Personal service</span><strong>D.A.K Travel · Johannesburg</strong></div>
+        <aside class="dak-about-person" aria-label="D.A.K Travel personal service">
+            <?php
+            $team_image = daktravel_media_image( 'daktravel_team_image', 'medium', 'dak-about-person-image', 'D.A.K Travel team' );
+            if ( $team_image ) {
+                echo wp_kses_post( $team_image );
+            } else {
+                ?>
+                <img class="dak-about-person-image" src="<?php echo esc_url( daktravel_existing_upload_url( '/2022/08/photo.small_.yk_.jpg' ) ); ?>" alt="D.A.K Travel team" loading="lazy" decoding="async">
+            <?php } ?>
+            <div class="dak-about-person-copy"><span>Personal service</span><strong>D.A.K Travel · Johannesburg</strong></div>
         </aside>
     </div>
 </section>
