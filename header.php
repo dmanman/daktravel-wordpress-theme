@@ -4,6 +4,24 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
+    <style id="dak-logo-size-adjustment">
+        @media (min-width: 981px) {
+            .header-inner {
+                grid-template-columns: 295px minmax(0,1fr) auto;
+                min-height: 102px;
+            }
+            .dak-logo-link {
+                display: block;
+                line-height: 0;
+            }
+            .dak-site-logo {
+                display: block;
+                width: 275px;
+                max-width: 275px;
+                height: auto;
+            }
+        }
+    </style>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
