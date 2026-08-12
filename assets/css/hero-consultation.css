@@ -93,14 +93,18 @@
   min-height: 0;
   object-fit: cover;
   object-position: center center;
-  filter: brightness(1.08) saturate(1.08) contrast(.97);
-  transform: scale(1.005);
 }
 
 .hero--consultation .hero-home-slide {
   position: absolute;
   inset: 0;
+  display: block;
   opacity: 0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(1.08) saturate(1.08) contrast(.97);
+  transform: scale(1.005);
 }
 
 .hero--consultation .hero-home-slide--1 {
@@ -148,7 +152,20 @@
   100% { opacity: 0; }
 }
 
+/* Secondary images only exist in the desktop/tablet media query, so phones never request them. */
 @media (min-width: 681px) and (prefers-reduced-motion: no-preference) {
+  .hero--consultation .hero-home-slide--2 {
+    background-image: url("https://images.pexels.com/photos/4160252/pexels-photo-4160252.jpeg?auto=compress&cs=tinysrgb&w=1200");
+  }
+
+  .hero--consultation .hero-home-slide--3 {
+    background-image: url("https://images.pexels.com/photos/18816997/pexels-photo-18816997.jpeg?auto=compress&cs=tinysrgb&w=1200");
+  }
+
+  .hero--consultation .hero-home-slide--4 {
+    background-image: url("https://images.pexels.com/photos/9080954/pexels-photo-9080954.jpeg?auto=compress&cs=tinysrgb&w=1200");
+  }
+
   .hero--consultation .hero-home-slide {
     animation: dak-home-hero-crossfade 24s linear infinite;
     will-change: opacity;
@@ -200,7 +217,7 @@
   }
 }
 
-/* Phones stay on the original first image and avoid the animation. */
+/* Phones and reduced-motion users stay on the original first image. */
 @media (max-width: 680px), (prefers-reduced-motion: reduce) {
   .hero--consultation .hero-home-slide {
     animation: none !important;
