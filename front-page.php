@@ -7,10 +7,8 @@ wp_enqueue_style(
     file_exists( $home_css_path ) ? (string) filemtime( $home_css_path ) : wp_get_theme()->get( 'Version' )
 );
 
-$hero_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_hero_image', 'full' ) : '';
-if ( ! $hero_image ) {
-    $hero_image = 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600';
-}
+$hero_sizes         = '(max-width: 680px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 36px), 52vw';
+$hero_attachment_id = function_exists( 'daktravel_media_attachment_id' ) ? daktravel_media_attachment_id( 'daktravel_hero_image' ) : 0;
 
 get_header();
 ?>
@@ -36,7 +34,34 @@ get_header();
             <div class="hero-media-wrap">
                 <figure class="dak-media-slot has-image hero-home-media">
                     <div class="hero-home-slideshow" aria-hidden="true">
-                        <img class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1" src="<?php echo esc_url( $hero_image ); ?>" alt="" fetchpriority="high" decoding="async">
+                        <?php if ( $hero_attachment_id ) : ?>
+                            <?php
+                            echo wp_get_attachment_image(
+                                $hero_attachment_id,
+                                'large',
+                                false,
+                                array(
+                                    'class'         => 'dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1',
+                                    'alt'           => '',
+                                    'fetchpriority' => 'high',
+                                    'loading'       => 'eager',
+                                    'decoding'      => 'async',
+                                    'sizes'         => $hero_sizes,
+                                )
+                            );
+                            ?>
+                        <?php else : ?>
+                            <img
+                                class="dak-media-image hero-terminal-photo hero-home-slide hero-home-slide--1"
+                                src="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                                srcset="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=720 720w, https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1100 1100w, https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600 1600w"
+                                sizes="<?php echo esc_attr( $hero_sizes ); ?>"
+                                alt=""
+                                fetchpriority="high"
+                                loading="eager"
+                                decoding="async"
+                            >
+                        <?php endif; ?>
                         <span class="hero-home-slide hero-home-slide--2"></span>
                         <span class="hero-home-slide hero-home-slide--3"></span>
                         <span class="hero-home-slide hero-home-slide--4"></span>
