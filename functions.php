@@ -197,5 +197,5 @@ function daktravel_whatsapp_url( $message = '' ) {
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/site-pages.php';
 require_once get_template_directory() . '/inc/enquiry-form.php';
-require_once get_template_directory() . '/inc/seo.php';
-require_once get_template_directory() . '/inc/seo-audit-enhancements.php';
+
+/* Emergency recovery: SEO includes temporarily disabled until the white-screen fatal is isolated. */
