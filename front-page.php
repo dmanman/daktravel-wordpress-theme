@@ -9,7 +9,7 @@ wp_enqueue_style(
 
 $hero_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_hero_image', 'full' ) : '';
 if ( ! $hero_image ) {
-    $hero_image = 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200';
+    $hero_image = 'https://images.unsplash.com/photo-1706016136865-52d211b0335b?auto=format&fit=crop&fm=jpg&q=82&w=2200';
 }
 
 get_header();
