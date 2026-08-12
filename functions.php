@@ -22,23 +22,95 @@ function daktravel_setup() {
 }
 add_action( 'after_setup_theme', 'daktravel_setup' );
 
-function daktravel_enqueue_assets() {
-    $theme_version = wp_get_theme()->get( 'Version' );
+/**
+ * Refinement styles are authored as separate files for maintainability but are
+ * served to visitors as one hashed static file. The bundle automatically gets a
+ * new filename whenever any source file changes, so long-lived browser caching
+ * remains safe.
+ */
+function daktravel_refinement_css_files() {
+    return array(
+        'assets/css/premium-refine.css',
+        'assets/css/trust-refine.css',
+        'assets/css/luxury-simple.css',
+        'assets/css/silver-refine.css',
+        'assets/css/atelier-premium.css',
+        'assets/css/typography-premium.css',
+        'assets/css/mobile-clarity.css',
+        'assets/css/multilingual.css',
+    );
+}
 
-    /*
-     * Use variable font ranges rather than requesting a separate file for every
-     * individual weight. This preserves the current typography while reducing
-     * the number of font resources required by modern browsers.
-     */
-    wp_enqueue_style(
-        'daktravel-fonts',
-        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400..600;1,400..500&family=Manrope:wght@400..800&display=swap',
-        array(),
-        null
+function daktravel_refinement_css_bundle() {
+    static $bundle = null;
+
+    if ( null !== $bundle ) {
+        return $bundle;
+    }
+
+    $theme_dir = trailingslashit( get_template_directory() );
+    $files     = daktravel_refinement_css_files();
+    $signature = array();
+
+    foreach ( $files as $relative_path ) {
+        $path = $theme_dir . $relative_path;
+        if ( ! is_readable( $path ) ) {
+            $bundle = false;
+            return $bundle;
+        }
+        $signature[] = $relative_path . ':' . filemtime( $path ) . ':' . filesize( $path );
+    }
+
+    $hash       = substr( md5( implode( '|', $signature ) ), 0, 14 );
+    $uploads    = wp_upload_dir();
+    $cache_dir  = trailingslashit( $uploads['basedir'] ) . 'daktravel-cache';
+    $cache_url  = trailingslashit( $uploads['baseurl'] ) . 'daktravel-cache';
+    $filename   = 'site-refinements-' . $hash . '.css';
+    $bundle_path = trailingslashit( $cache_dir ) . $filename;
+    $bundle_url  = trailingslashit( $cache_url ) . $filename;
+
+    if ( ! empty( $uploads['error'] ) ) {
+        $bundle = false;
+        return $bundle;
+    }
+
+    if ( ! file_exists( $bundle_path ) ) {
+        if ( ! wp_mkdir_p( $cache_dir ) ) {
+            $bundle = false;
+            return $bundle;
+        }
+
+        $contents = "/* D.A.K Travel generated refinement bundle. Do not edit directly. */\n";
+        foreach ( $files as $relative_path ) {
+            $css = file_get_contents( $theme_dir . $relative_path );
+            if ( false === $css ) {
+                $bundle = false;
+                return $bundle;
+            }
+            $contents .= "\n/* Source: " . $relative_path . " */\n" . $css . "\n";
+        }
+
+        if ( false === file_put_contents( $bundle_path, $contents, LOCK_EX ) ) {
+            $bundle = false;
+            return $bundle;
+        }
+
+        foreach ( glob( trailingslashit( $cache_dir ) . 'site-refinements-*.css' ) as $old_bundle ) {
+            if ( $old_bundle !== $bundle_path && is_file( $old_bundle ) ) {
+                @unlink( $old_bundle );
+            }
+        }
+    }
+
+    $bundle = array(
+        'url'     => $bundle_url,
+        'version' => $hash,
     );
 
-    wp_enqueue_style( 'daktravel-style', get_stylesheet_uri(), array( 'daktravel-fonts' ), $theme_version );
+    return $bundle;
+}
 
+function daktravel_enqueue_refinement_fallback( $theme_version ) {
     $premium_css_path = get_template_directory() . '/assets/css/premium-refine.css';
     wp_enqueue_style( 'daktravel-premium-refine', get_template_directory_uri() . '/assets/css/premium-refine.css', array( 'daktravel-style' ), file_exists( $premium_css_path ) ? (string) filemtime( $premium_css_path ) : $theme_version );
 
@@ -62,6 +134,36 @@ function daktravel_enqueue_assets() {
 
     $multilingual_css_path = get_template_directory() . '/assets/css/multilingual.css';
     wp_enqueue_style( 'daktravel-multilingual', get_template_directory_uri() . '/assets/css/multilingual.css', array( 'daktravel-mobile-clarity' ), file_exists( $multilingual_css_path ) ? (string) filemtime( $multilingual_css_path ) : $theme_version );
+}
+
+function daktravel_enqueue_assets() {
+    $theme_version = wp_get_theme()->get( 'Version' );
+
+    /*
+     * Use variable font ranges rather than requesting a separate file for every
+     * individual weight. This preserves the current typography while reducing
+     * the number of font resources required by modern browsers.
+     */
+    wp_enqueue_style(
+        'daktravel-fonts',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400..600;1,400..500&family=Manrope:wght@400..800&display=swap',
+        array(),
+        null
+    );
+
+    wp_enqueue_style( 'daktravel-style', get_stylesheet_uri(), array( 'daktravel-fonts' ), $theme_version );
+
+    $refinement_bundle = daktravel_refinement_css_bundle();
+    if ( $refinement_bundle ) {
+        wp_enqueue_style(
+            'daktravel-multilingual',
+            $refinement_bundle['url'],
+            array( 'daktravel-style', 'daktravel-fonts' ),
+            $refinement_bundle['version']
+        );
+    } else {
+        daktravel_enqueue_refinement_fallback( $theme_version );
+    }
 
     /* The interaction script is only used by the conditional enquiry form. */
     if ( is_page( 'contact' ) ) {
