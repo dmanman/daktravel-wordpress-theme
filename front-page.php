@@ -7,29 +7,50 @@ wp_enqueue_style(
     file_exists( $home_css_path ) ? (string) filemtime( $home_css_path ) : wp_get_theme()->get( 'Version' )
 );
 
-$hero_image = function_exists( 'daktravel_media_url' ) ? daktravel_media_url( 'daktravel_hero_image', 'full' ) : '';
+$hero_sizes         = '(max-width: 680px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 36px), 52vw';
+$hero_attachment_id = function_exists( 'daktravel_media_attachment_id' ) ? daktravel_media_attachment_id( 'daktravel_hero_image' ) : 0;
+$hero_image         = '';
+$hero_srcset        = '';
+
+if ( $hero_attachment_id ) {
+    $hero_image  = wp_get_attachment_image_url( $hero_attachment_id, 'large' );
+    $hero_srcset = wp_get_attachment_image_srcset( $hero_attachment_id, 'large' );
+}
+
 if ( ! $hero_image ) {
-    $hero_image = 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=2200';
+    $hero_image = 'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600';
+    $hero_srcset = implode(
+        ', ',
+        array(
+            'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=720 720w',
+            'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1100 1100w',
+            'https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&cs=tinysrgb&w=1600 1600w',
+        )
+    );
 }
 
 $hero_images = array(
     array(
-        'url' => $hero_image,
-        'alt' => 'Bright view from an airplane window showing the aircraft wing against a clear blue sky',
+        'url'    => $hero_image,
+        'srcset' => $hero_srcset,
+        'sizes'  => $hero_sizes,
+        'alt'    => 'Bright view from an airplane window showing the aircraft wing against a clear blue sky',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/4160252/pexels-photo-4160252.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'url' => 'https://images.pexels.com/photos/4160252/pexels-photo-4160252.jpeg?auto=compress&cs=tinysrgb&w=1400',
         'alt' => 'Aerial view of a dramatic coastline and turquoise sea',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/18816997/pexels-photo-18816997.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'url' => 'https://images.pexels.com/photos/18816997/pexels-photo-18816997.jpeg?auto=compress&cs=tinysrgb&w=1400',
         'alt' => 'Aerial view of a cruise boat travelling through scenic water and mountains',
     ),
     array(
-        'url' => 'https://images.pexels.com/photos/9080954/pexels-photo-9080954.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'url' => 'https://images.pexels.com/photos/9080954/pexels-photo-9080954.jpeg?auto=compress&cs=tinysrgb&w=1400',
         'alt' => 'Aerial view of a tropical Maldives island and clear turquoise water',
     ),
 );
+
+$transparent_pixel = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 get_header();
 ?>
@@ -56,13 +77,30 @@ get_header();
                 <figure class="dak-media-slot has-image hero-home-media">
                     <div class="hero-home-slideshow" aria-hidden="true">
                         <?php foreach ( $hero_images as $index => $image ) : ?>
-                            <img
-                                class="dak-media-image hero-terminal-photo hero-slide hero-slide--<?php echo esc_attr( $index + 1 ); ?>"
-                                src="<?php echo esc_url( $image['url'] ); ?>"
-                                alt=""
-                                <?php echo 0 === $index ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'; ?>
-                                decoding="async"
-                            >
+                            <picture class="hero-slide hero-slide--<?php echo esc_attr( $index + 1 ); ?>">
+                                <?php if ( 0 === $index ) : ?>
+                                    <img
+                                        class="dak-media-image hero-terminal-photo"
+                                        src="<?php echo esc_url( $image['url'] ); ?>"
+                                        <?php if ( ! empty( $image['srcset'] ) ) : ?>srcset="<?php echo esc_attr( $image['srcset'] ); ?>"<?php endif; ?>
+                                        <?php if ( ! empty( $image['sizes'] ) ) : ?>sizes="<?php echo esc_attr( $image['sizes'] ); ?>"<?php endif; ?>
+                                        alt=""
+                                        fetchpriority="high"
+                                        loading="eager"
+                                        decoding="async"
+                                    >
+                                <?php else : ?>
+                                    <source media="(min-width: 681px)" srcset="<?php echo esc_url( $image['url'] ); ?>">
+                                    <img
+                                        class="dak-media-image hero-terminal-photo"
+                                        src="<?php echo esc_url( $transparent_pixel ); ?>"
+                                        alt=""
+                                        loading="lazy"
+                                        fetchpriority="low"
+                                        decoding="async"
+                                    >
+                                <?php endif; ?>
+                            </picture>
                         <?php endforeach; ?>
                     </div>
                     <figcaption class="hero-photo-meta" aria-hidden="true">
