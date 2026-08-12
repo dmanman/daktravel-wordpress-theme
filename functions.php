@@ -27,7 +27,7 @@ function daktravel_enqueue_assets() {
 
     wp_enqueue_style(
         'daktravel-fonts',
-        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400..600;1,400..500&family=Manrope:wght@400..800&display=swap',
         array(),
         null
     );
