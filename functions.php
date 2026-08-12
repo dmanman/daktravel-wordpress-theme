@@ -58,8 +58,11 @@ function daktravel_enqueue_assets() {
     $multilingual_css_path = get_template_directory() . '/assets/css/multilingual.css';
     wp_enqueue_style( 'daktravel-multilingual', get_template_directory_uri() . '/assets/css/multilingual.css', array( 'daktravel-mobile-clarity' ), file_exists( $multilingual_css_path ) ? (string) filemtime( $multilingual_css_path ) : $theme_version );
 
-    $interactions_path = get_template_directory() . '/assets/js/site-interactions.js';
-    wp_enqueue_script( 'daktravel-site-interactions', get_template_directory_uri() . '/assets/js/site-interactions.js', array(), file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version, true );
+    /* The interaction script is only used by the conditional enquiry form. */
+    if ( is_page( 'contact' ) ) {
+        $interactions_path = get_template_directory() . '/assets/js/site-interactions.js';
+        wp_enqueue_script( 'daktravel-site-interactions', get_template_directory_uri() . '/assets/js/site-interactions.js', array(), file_exists( $interactions_path ) ? (string) filemtime( $interactions_path ) : $theme_version, true );
+    }
 
     /* Homepage specialist panel: Israel imagery only. */
     $specialist_image = 'https://images.unsplash.com/photo-1646226303063-1e5334284894?auto=format&fit=crop&fm=jpg&q=82&w=1800';
@@ -75,56 +78,6 @@ function daktravel_enqueue_assets() {
     $inline_css .= '.home .trust-section img:not(.credential-logo-image){display:none!important;}';
 
     wp_add_inline_style( 'daktravel-multilingual', $inline_css );
-
-    if ( is_front_page() ) {
-        $remove_home_portrait = <<<'JS'
-(function () {
-    var portraitTerms = ['yochee', 'mrs yochee katz', 'photo.small_.yk_', 'photo.small.yk', 'photo-small-yk'];
-
-    function isPortrait(img) {
-        var haystack = [
-            img.getAttribute('src') || '',
-            img.getAttribute('srcset') || '',
-            img.getAttribute('data-src') || '',
-            img.getAttribute('data-srcset') || '',
-            img.getAttribute('data-lazy-src') || '',
-            img.getAttribute('data-lazy-srcset') || '',
-            img.getAttribute('alt') || '',
-            img.getAttribute('title') || ''
-        ].join(' ').toLowerCase();
-
-        return portraitTerms.some(function (term) {
-            return haystack.indexOf(term) !== -1;
-        });
-    }
-
-    function cleanHomepage() {
-        document.querySelectorAll('img').forEach(function (img) {
-            if (isPortrait(img)) {
-                img.remove();
-            }
-        });
-
-        var trust = document.querySelector('.trust-section');
-        if (trust) {
-            trust.querySelectorAll('img:not(.credential-logo-image)').forEach(function (img) {
-                img.remove();
-            });
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', cleanHomepage);
-    } else {
-        cleanHomepage();
-    }
-
-    var observer = new MutationObserver(cleanHomepage);
-    observer.observe(document.documentElement, { childList: true, subtree: true });
-})();
-JS;
-        wp_add_inline_script( 'daktravel-site-interactions', $remove_home_portrait, 'after' );
-    }
 }
 add_action( 'wp_enqueue_scripts', 'daktravel_enqueue_assets' );
 
