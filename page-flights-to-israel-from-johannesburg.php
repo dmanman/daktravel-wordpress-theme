@@ -20,6 +20,11 @@ $israel_hero_images = array(
         'credit' => 'Caesarea Maritima aerial · Eldar Eldadi / CC BY-SA 4.0',
     ),
     array(
+        'url'    => 'https://upload.wikimedia.org/wikipedia/commons/3/3e/The_Western_Wall%2C_Jerusalem.jpg',
+        'alt'    => 'The Western Wall and prayer plaza in Jerusalem',
+        'credit' => 'Western Wall, Jerusalem · Danielrosehill / CC BY 4.0',
+    ),
+    array(
         'url'    => 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Israel-2013-Aerial_10-Negev.jpg',
         'alt'    => 'Aerial view of the Negev Desert in southern Israel',
         'credit' => 'Negev aerial · Andrew Shiva / CC BY-SA 4.0',
@@ -43,7 +48,7 @@ get_header();
             <div class="dak-page-actions"><a class="btn btn--primary" href="<?php echo esc_url( home_url('/contact/?type=israel#enquiry') ); ?>">Start an Israel Enquiry</a></div>
         </div>
         <figure class="dak-media-slot has-image dak-route-slideshow-frame">
-            <div class="dak-route-slideshow" aria-hidden="true">
+            <div class="dak-route-slideshow dak-route-slideshow--<?php echo esc_attr( count( $israel_hero_images ) ); ?>" aria-hidden="true">
                 <?php foreach ( $israel_hero_images as $index => $image ) : ?>
                     <span class="dak-route-slide dak-route-slide--<?php echo esc_attr( $index + 1 ); ?>">
                         <img
