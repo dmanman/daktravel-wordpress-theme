@@ -18,6 +18,30 @@ function daktravel_has_seo_plugin() {
         || class_exists( 'All_in_One_SEO_Pack' );
 }
 
+/**
+ * Return a search/schema friendly BCP-47 language tag for the current
+ * TranslatePress/WordPress language. D.A.K's Hebrew version is intended for
+ * Hebrew-speaking travellers in Israel, while the source English site remains
+ * South Africa oriented.
+ */
+function daktravel_current_language_tag() {
+    $locale = str_replace( '_', '-', (string) get_locale() );
+
+    if ( 0 === stripos( $locale, 'he' ) ) {
+        return 'he-IL';
+    }
+
+    if ( 0 === stripos( $locale, 'en' ) ) {
+        return 'en-ZA';
+    }
+
+    return $locale ? $locale : 'en-ZA';
+}
+
+function daktravel_current_og_locale() {
+    return str_replace( '-', '_', daktravel_current_language_tag() );
+}
+
 function daktravel_seo_defaults() {
     $defaults = array(
         'home' => array(
@@ -187,6 +211,7 @@ function daktravel_output_seo_meta() {
         printf( "<meta name=\"twitter:description\" content=\"%s\">\n", esc_attr( $meta['description'] ) );
     }
     printf( "<meta property=\"og:url\" content=\"%s\">\n", esc_url( $url ) );
+    printf( "<meta property=\"og:locale\" content=\"%s\">\n", esc_attr( daktravel_current_og_locale() ) );
     echo "<meta property=\"og:type\" content=\"website\">\n";
     echo "<meta property=\"og:site_name\" content=\"D.A.K Travel\">\n";
     echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
@@ -202,6 +227,8 @@ function daktravel_output_schema() {
     if ( daktravel_has_seo_plugin() || is_admin() || is_404() || is_search() ) {
         return;
     }
+
+    $language = daktravel_current_language_tag();
 
     $business = array(
         '@type'         => 'TravelAgency',
@@ -252,7 +279,7 @@ function daktravel_output_schema() {
         '@id'        => home_url( '/#website' ),
         'url'        => home_url( '/' ),
         'name'       => 'D.A.K Travel',
-        'inLanguage' => 'en-ZA',
+        'inLanguage' => $language,
         'publisher'  => array( '@id' => home_url( '/#travelagency' ) ),
     );
 
@@ -265,11 +292,19 @@ function daktravel_output_schema() {
             '@id'        => trailingslashit( $page_url ) . '#webpage',
             'url'        => $page_url,
             'name'       => $meta['title'],
-            'inLanguage' => 'en-ZA',
+            'inLanguage' => $language,
             'isPartOf'   => array( '@id' => home_url( '/#website' ) ),
             'about'      => array( '@id' => home_url( '/#travelagency' ) ),
             'publisher'  => array( '@id' => home_url( '/#travelagency' ) ),
         );
+
+        if ( is_page( 'flights-from-israel-to-south-africa' ) ) {
+            $webpage['audience'] = array(
+                '@type'          => 'Audience',
+                'geographicArea' => array( '@type' => 'Country', 'name' => 'Israel' ),
+            );
+        }
+
         if ( ! empty( $meta['description'] ) ) {
             $webpage['description'] = $meta['description'];
         }
