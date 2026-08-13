@@ -12,4 +12,5 @@ function daktravel_hebrew_to_israel_template_override( $template ) {
 add_filter( 'template_include', 'daktravel_hebrew_to_israel_template_override', 20000 );
 
 require_once get_template_directory() . '/inc/hebrew-existing-booking-template.php';
+require_once get_template_directory() . '/inc/hebrew-info-template.php';
 require_once get_template_directory() . '/inc/home-lcp.php';
