@@ -383,3 +383,32 @@
     line-height: 1.45;
   }
 }
+
+/* Lighthouse accessibility pass: preserve the gold hierarchy while meeting contrast. */
+.home .eyebrow,
+.home .confidence-item .proof-no,
+.home .case-study-label,
+.home .service-no {
+  color: #73532d !important;
+  opacity: 1 !important;
+}
+
+.home .confidentiality-section .eyebrow,
+.home .section--ink .eyebrow,
+.home .dak-dark-band .eyebrow,
+.home .final-cta .eyebrow {
+  color: #f0d5a2 !important;
+  opacity: 1 !important;
+}
+
+/* Mobile navigation and footer links meet the recommended 44px touch target. */
+@media (max-width: 980px) {
+  .home .mobile-menu-panel a,
+  .home .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
