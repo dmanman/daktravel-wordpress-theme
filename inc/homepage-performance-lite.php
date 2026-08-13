@@ -24,4 +24,32 @@ function daktravel_homepage_contrast_patch() {
 }
 add_action( 'wp_head', 'daktravel_homepage_contrast_patch', 99 );
 
+function daktravel_trim_global_font_request( $src, $handle ) {
+    if ( 'daktravel-fonts' !== $handle || false === strpos( $src, 'fonts.googleapis.com/css2' ) ) {
+        return $src;
+    }
+    $src = str_replace( '&family=Noto+Sans+Hebrew:wght@400..800', '', $src );
+    $src = str_replace( '&family=Noto+Serif+Hebrew:wght@400..700', '', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'daktravel_trim_global_font_request', 50, 2 );
+
+function daktravel_preload_homepage_hero() {
+    if ( ! is_front_page() ) { return; }
+    echo '<link rel="preload" as="image" href="https://images.pexels.com/photos/8495975/pexels-photo-8495975.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=720" fetchpriority="high">' . "\n";
+    echo '<link rel="preconnect" href="https://a.mailmunch.co" crossorigin>' . "\n";
+}
+add_action( 'wp_head', 'daktravel_preload_homepage_hero', 2 );
+
+function daktravel_defer_mailmunch_script_tag( $tag, $handle, $src ) {
+    if ( ! is_front_page() || false === stripos( (string) $src, 'mailmunch.co/app/v1/site.js' ) ) {
+        return $tag;
+    }
+    if ( false === stripos( $tag, ' defer' ) && false === stripos( $tag, ' async' ) ) {
+        $tag = str_replace( '<script ', '<script defer ', $tag );
+    }
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'daktravel_defer_mailmunch_script_tag', 50, 3 );
+
 require_once get_template_directory() . '/inc/hebrew-to-israel-template.php';
