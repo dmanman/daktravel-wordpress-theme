@@ -1,24 +1,6 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-function daktravel_homepage_credential_text_mark( $html, $attachment_id, $size, $icon, $attr ) {
-    if ( ! is_front_page() || empty( $attr['class'] ) || false === strpos( (string) $attr['class'], 'credential-logo-image' ) ) {
-        return $html;
-    }
-
-    $alt = isset( $attr['alt'] ) ? (string) $attr['alt'] : '';
-    if ( false !== stripos( $alt, 'IATA' ) ) {
-        $label = 'IATA';
-    } elseif ( false !== stripos( $alt, 'ASATA' ) ) {
-        $label = 'ASATA';
-    } else {
-        $label = 'CT';
-    }
-
-    return '<span class="credential-mark credential-mark--text">' . esc_html( $label ) . '</span>';
-}
-add_filter( 'wp_get_attachment_image', 'daktravel_homepage_credential_text_mark', 50, 5 );
-
 function daktravel_late_prune_homepage_google_jquery() {
     if ( ! is_front_page() ) { return; }
 
