@@ -109,3 +109,5 @@ function daktravel_ensure_required_pages() {
     }
 }
 add_action( 'init', 'daktravel_ensure_required_pages', 20 );
+
+require_once get_template_directory() . '/inc/native-hebrew.php';
