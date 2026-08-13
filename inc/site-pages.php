@@ -49,6 +49,10 @@ function daktravel_required_pages() {
             'title'   => 'Complex Travel',
             'content' => '',
         ),
+        'mauritius-holidays-from-south-africa' => array(
+            'title'   => 'Mauritius Holidays from South Africa',
+            'content' => 'Mauritius holidays from South Africa arranged by D.A.K Travel, including flights, resorts, transfers and travel insurance.',
+        ),
         'about' => array(
             'title'   => 'About D.A.K Travel',
             'content' => '',
