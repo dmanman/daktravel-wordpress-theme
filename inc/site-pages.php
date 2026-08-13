@@ -53,6 +53,10 @@ function daktravel_required_pages() {
             'title'   => 'Mauritius Holidays from South Africa',
             'content' => 'Mauritius holidays from South Africa arranged by D.A.K Travel, including flights, resorts, transfers and travel insurance.',
         ),
+        'zanzibar-holidays-from-south-africa' => array(
+            'title'   => 'Zanzibar Holidays from South Africa',
+            'content' => 'Zanzibar holidays from South Africa arranged by D.A.K Travel, including flights, accommodation, transfers and travel insurance.',
+        ),
         'about' => array(
             'title'   => 'About D.A.K Travel',
             'content' => '',
