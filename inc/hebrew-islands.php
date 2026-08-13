@@ -35,9 +35,18 @@ if ( class_exists( 'WP_Sitemaps_Provider' ) && ! class_exists( 'DAK_Hebrew_Sitem
         public function get_url_list( $page_num, $object_subtype = '' ) {
             if ( 1 !== (int) $page_num ) { return array(); }
             $paths = array(
-                '/he/', '/he/flights-to-south-africa/', '/he/groups/', '/he/business-travel/',
-                '/he/complex-travel/', '/he/about/', '/he/contact/',
-                '/he/mauritius-holidays/', '/he/zanzibar-holidays/'
+                '/he/',
+                '/he/flights-to-israel-from-south-africa/',
+                '/he/flights-to-south-africa/',
+                '/he/groups/',
+                '/he/business-travel/',
+                '/he/complex-travel/',
+                '/he/mauritius-holidays/',
+                '/he/zanzibar-holidays/',
+                '/he/israel-eta-il-entry-requirements/',
+                '/he/south-africa-traveller-declaration/',
+                '/he/about/',
+                '/he/contact/'
             );
             $urls = array();
             foreach ( $paths as $path ) { $urls[] = array( 'loc' => home_url( $path ) ); }
