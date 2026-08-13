@@ -4,35 +4,11 @@
             <div class="eyebrow">צור קשר עם D.A.K Travel</div>
             <h1>ספרו לנו על הנסיעה שלכם.</h1>
             <p class="lead">לשאלה מהירה השתמשו ב-WhatsApp. להצעת מחיר או בקשה מפורטת יותר, שלחו את הטופס הקצר למטה.</p>
-            <div class="dak-page-actions">
-                <a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'שלום D.A.K Travel. אשמח לעזרה עם נסיעה מישראל לדרום אפריקה.' ) ); ?>">WhatsApp</a>
-                <a class="btn btn--outline" href="#enquiry">שליחת פנייה</a>
-            </div>
+            <div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'שלום D.A.K Travel. אשמח לעזרה עם נסיעה מישראל לדרום אפריקה.' ) ); ?>">WhatsApp</a><a class="btn btn--outline" href="#enquiry">שליחת פנייה</a></div>
             <p class="contact-phone"><strong>טלפון:</strong> <a href="tel:+27114405980">+27 11 440 5980</a></p>
         </div>
         <?php echo wp_kses_post( daktravel_media_slot( 'daktravel_contact_image', 'כנף מטוס מעל העננים', 'שירות נסיעות אישי', 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&fm=jpg&q=82&w=1800' ) ); ?>
     </div>
 </section>
-<section class="dak-intro-section" id="enquiry"><div class="container utility-page-shell">
-    <div class="eyebrow">פנייה ל-D.A.K Travel</div>
-    <form class="dak-enquiry-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-        <input type="hidden" name="action" value="daktravel_enquiry">
-        <input type="hidden" name="daktravel_enquiry_submit" value="1">
-        <input type="hidden" name="return_type" value="general">
-        <input type="hidden" name="enquiry_type" value="General travel enquiry">
-        <?php wp_nonce_field( 'daktravel_enquiry', 'daktravel_enquiry_nonce' ); ?>
-        <div class="dak-honeypot" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-        <div class="form-grid">
-            <label>שם מלא<span>*</span><input type="text" name="name" required autocomplete="name"></label>
-            <label>דוא״ל<span>*</span><input type="email" name="email" required autocomplete="email"></label>
-            <label>טלפון / WhatsApp<input type="tel" name="mobile" autocomplete="tel"></label>
-            <label>עיר יציאה בישראל<input type="text" name="departure" placeholder="לדוגמה: תל אביב"></label>
-            <label>יעד בדרום אפריקה<input type="text" name="destination" placeholder="לדוגמה: יוהנסבורג / קייפטאון"></label>
-            <label>תאריכי נסיעה<input type="text" name="dates" placeholder="אם ידועים"></label>
-            <label>מספר נוסעים<input type="text" name="travellers"></label>
-        </div>
-        <label class="form-full">ספרו לנו מה אתם צריכים<span>*</span><textarea name="message" rows="5" required></textarea></label>
-        <div class="form-submit"><button class="btn btn--primary" type="submit">שליחת פנייה</button><span>הפנייה נשלחת ישירות ל-D.A.K Travel.</span></div>
-    </form>
-</div></section>
+<section class="dak-intro-section" id="enquiry"><div class="container utility-page-shell"><div class="eyebrow">פנייה ל-D.A.K Travel</div><form class="dak-enquiry-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>"><input type="hidden" name="action" value="daktravel_enquiry"><input type="hidden" name="daktravel_enquiry_submit" value="1"><input type="hidden" name="return_type" value="general"><input type="hidden" name="return_lang" value="he"><input type="hidden" name="enquiry_type" value="General travel enquiry"><?php wp_nonce_field( 'daktravel_enquiry', 'daktravel_enquiry_nonce' ); ?><div class="dak-honeypot" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div><div class="form-grid"><label>שם מלא<span>*</span><input type="text" name="name" required autocomplete="name"></label><label>דוא״ל<span>*</span><input type="email" name="email" required autocomplete="email"></label><label>טלפון / WhatsApp<input type="tel" name="mobile" autocomplete="tel"></label><label>עיר יציאה בישראל<input type="text" name="departure" placeholder="לדוגמה: תל אביב"></label><label>יעד בדרום אפריקה<input type="text" name="destination" placeholder="לדוגמה: יוהנסבורג / קייפטאון"></label><label>תאריכי נסיעה<input type="text" name="dates" placeholder="אם ידועים"></label><label>מספר נוסעים<input type="text" name="travellers"></label></div><label class="form-full">ספרו לנו מה אתם צריכים<span>*</span><textarea name="message" rows="5" required></textarea></label><div class="form-submit"><button class="btn btn--primary" type="submit">שליחת פנייה</button><span>הפנייה נשלחת ישירות ל-D.A.K Travel.</span></div></form></div></section>
 <section class="section section--ivory"><div class="container dak-narrow"><div class="eyebrow">אפשר גם ישירות</div><div class="dak-hebrew-contact-grid"><div class="dak-hebrew-contact-card"><strong>WhatsApp</strong><p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'שלום D.A.K Travel. אשמח לעזרה עם נסיעה מישראל לדרום אפריקה.' ) ); ?>" class="dak-hebrew-ltr">+27 82 440 6144</a></p></div><div class="dak-hebrew-contact-card"><strong>דוא״ל וטלפון</strong><p class="dak-hebrew-ltr"><a href="mailto:info@daktravel.co.za">info@daktravel.co.za</a><br><a href="tel:+27114405980">+27 11 440 5980</a></p></div></div></div></section>
