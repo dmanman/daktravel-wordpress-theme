@@ -71,7 +71,7 @@
             <p>International flight options where suitable for the itinerary.</p>
             <div class="case-study">
                 <span class="case-study-label">Holiday suppliers</span>
-                <strong>World Leisure Holidays · The Holiday Factory</strong>
+                <strong>World Leisure Holidays · The Holiday Factory · Thompsons Tours</strong>
                 <span>Selected holiday packages and resort options, subject to availability.</span>
             </div>
             <div class="case-study">
