@@ -16,6 +16,7 @@ function daktravel_hebrew_path_key() {
         'he/flights-to-south-africa' => 'flights',
         'he/groups'                   => 'groups',
         'he/business-travel'          => 'business',
+        'he/complex-travel'           => 'complex',
         'he/about'                    => 'about',
         'he/contact'                  => 'contact',
     );
