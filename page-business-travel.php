@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+$dak_path = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+$dak_path = is_string( $dak_path ) ? trim( rawurldecode( $dak_path ), '/' ) : '';
+if ( 'he/business-travel' === $dak_path ) {
+    include get_template_directory() . '/templates/hebrew-entry.php';
+    return;
+}
+get_header();
+?>
 <main>
 <section class="dak-page-hero">
     <div class="container dak-page-hero-grid">
