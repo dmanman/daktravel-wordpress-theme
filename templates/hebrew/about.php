@@ -1,0 +1,1 @@
+<section class="dak-intro-section"><div class="container dak-narrow"><div class="eyebrow">אודות D.A.K Travel</div><h1>סוכנות נסיעות ביוהנסבורג מאז 2006.</h1><p class="lead">D.A.K Travel היא סוכנות נסיעות ותיקה עם ניסיון בנסיעות בין ישראל לדרום אפריקה, קבוצות ונסיעות עסקים.</p><p>אנחנו מאמינים שלקוח צריך לדעת מי מטפל בהזמנה שלו ולקבל מענה מאדם שמכיר את הפרטים.</p></div></section>
