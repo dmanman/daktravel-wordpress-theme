@@ -58,6 +58,7 @@ $partial = get_template_directory() . '/templates/hebrew/' . sanitize_file_name(
 ?>
 <main>
 <?php if ( file_exists( $partial ) ) { include $partial; } ?>
+<?php if ( 'home' === $key ) { $islands = get_template_directory() . '/templates/hebrew/island-links.php'; if ( file_exists( $islands ) ) { include $islands; } } ?>
 <?php if ( 'about' === $key ) { $personal = get_template_directory() . '/templates/hebrew/about-personal.php'; if ( file_exists( $personal ) ) { include $personal; } } ?>
 <section class="dak-quiet-cta"><div class="container dak-quiet-cta-inner"><div><div class="eyebrow">D.A.K Travel · Johannesburg</div><h2>צריכים עזרה עם נסיעה לדרום אפריקה?</h2><p>שלחו לנו את התאריכים והפרטים הבסיסיים ונבדוק את האפשרויות המתאימות.</p></div><div class="dak-page-actions"><a class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'שלום D.A.K Travel. אשמח לעזרה עם נסיעה מישראל לדרום אפריקה.' ) ); ?>">WhatsApp</a><a class="btn btn--outline" href="<?php echo esc_url( daktravel_native_hebrew_url( 'contact' ) ); ?>">צור קשר</a></div></div></section>
 </main>
