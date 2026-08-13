@@ -41,3 +41,5 @@ function daktravel_homepage_contrast_patch() {
     echo '<style id="dak-homepage-contrast-patch">.home .confidentiality-section .eyebrow{color:#73532d!important;opacity:1!important;}</style>';
 }
 add_action( 'wp_head', 'daktravel_homepage_contrast_patch', 99 );
+
+require_once get_template_directory() . '/inc/hebrew-to-israel-template.php';
