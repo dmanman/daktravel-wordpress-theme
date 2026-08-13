@@ -268,10 +268,13 @@ function daktravel_credential_mark( $setting_id, $fallback_label, $alt ) {
     $attachment_id = daktravel_credential_attachment_id( $setting_id );
     if ( $attachment_id ) {
         $attrs = array(
-            'class' => 'credential-logo-image',
-            'alt'   => $alt,
+            'class'    => 'credential-logo-image',
+            'alt'      => $alt,
+            'loading'  => 'lazy',
+            'decoding' => 'async',
+            'sizes'    => '(max-width: 680px) 34px, 60px',
         );
-        $image = wp_get_attachment_image( $attachment_id, 'medium', false, $attrs );
+        $image = wp_get_attachment_image( $attachment_id, 'thumbnail', false, $attrs );
         if ( $image ) {
             return '<span class="credential-mark credential-mark--logo">' . $image . '</span>';
         }
