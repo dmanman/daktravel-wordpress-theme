@@ -169,34 +169,11 @@ get_header();
     </section>
 
     <section class="section section--ivory" aria-labelledby="selected-leisure-travel">
-        <div class="container editorial-split">
-            <div>
-                <div class="eyebrow">Selected leisure travel</div>
-                <h2 id="selected-leisure-travel">Mauritius &amp; island holidays.</h2>
-                <p class="lead">Alongside our specialist travel work, D.A.K also arranges selected leisure holidays where flights, accommodation, transfers and insurance are best considered together.</p>
-                <p>Mauritius is our first dedicated island-holiday guide, with personal help choosing a practical package rather than simply comparing a long list of resorts.</p>
-                <a class="text-link" href="<?php echo esc_url( home_url( '/mauritius-holidays-from-south-africa/' ) ); ?>">Explore Mauritius holidays</a>
-            </div>
-            <div class="editorial-panel">
-                <div class="case-study-label">Airlines &amp; travel suppliers we work with</div>
-                <h3>Established suppliers across the journey.</h3>
-                <p>Depending on the itinerary and product, D.A.K works with a range of established travel suppliers. We describe these as suppliers we work with rather than implying an exclusive partnership.</p>
-                <div class="case-study">
-                    <span class="case-study-label">Airlines</span>
-                    <strong>Ethiopian Airlines · Emirates</strong>
-                    <span>International flight options where suitable for the itinerary.</span>
-                </div>
-                <div class="case-study">
-                    <span class="case-study-label">Holiday suppliers</span>
-                    <strong>World Leisure Holidays · The Holiday Factory</strong>
-                    <span>Selected holiday packages and resort options, subject to availability.</span>
-                </div>
-                <div class="case-study">
-                    <span class="case-study-label">Travel components</span>
-                    <strong>First Car Rental · Hollard Travel Insurance · TIC</strong>
-                    <span>Car hire and travel-insurance options where appropriate to the booking.</span>
-                </div>
-            </div>
+        <div class="container dak-narrow">
+            <div class="eyebrow">Selected leisure travel</div>
+            <h2 id="selected-leisure-travel">Mauritius holidays from South Africa.</h2>
+            <p class="lead">D.A.K also arranges selected Mauritius holidays where flights, resort accommodation, transfers and travel insurance are best considered together.</p>
+            <a class="text-link" href="<?php echo esc_url( home_url( '/mauritius-holidays-from-south-africa/' ) ); ?>">Explore Mauritius holidays</a>
         </div>
     </section>
 
