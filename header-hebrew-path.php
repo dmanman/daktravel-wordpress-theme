@@ -11,7 +11,13 @@
 <div class="utility-bar">
     <div class="container utility-inner">
         <div class="utility-proof"><strong>מאז 2006</strong><span>יוהנסבורג</span><span>IATA</span><span>ASATA</span></div>
-        <div class="utility-links"><a href="<?php echo esc_url( 'complex' === $dak_he_key ? home_url( '/complex-travel/' ) : daktravel_native_english_url_for_hebrew_key( $dak_he_key ) ); ?>" hreflang="en-ZA" lang="en">EN</a><span class="utility-language-slot"><strong lang="he">עברית</strong></span></div>
+        <div class="utility-links">
+            <a class="utility-specialist" href="<?php echo esc_url( home_url( '/he/flights-to-israel-from-south-africa/' ) ); ?>">דרום אפריקה - ישראל</a>
+            <a class="utility-specialist" href="<?php echo esc_url( home_url( '/he/flights-to-south-africa/' ) ); ?>">ישראל - דרום אפריקה</a>
+            <a href="<?php echo esc_url( home_url( '/he/contact/?type=existing#enquiry' ) ); ?>">הזמנה קיימת</a>
+            <a href="<?php echo esc_url( 'complex' === $dak_he_key ? home_url( '/complex-travel/' ) : ( 'to-israel' === $dak_he_key ? home_url( '/flights-to-israel-from-johannesburg/' ) : daktravel_native_english_url_for_hebrew_key( $dak_he_key ) ) ); ?>" hreflang="en-ZA" lang="en">EN</a>
+            <span class="utility-language-slot"><strong lang="he">עברית</strong></span>
+        </div>
     </div>
 </div>
 <header class="site-header">
@@ -27,12 +33,14 @@
         <div class="header-cta"><a class="btn btn--whatsapp btn--compact" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( daktravel_whatsapp_url( 'שלום D.A.K Travel. אשמח לעזרה עם נסיעה מישראל לדרום אפריקה.' ) ); ?>">WhatsApp</a></div>
         <details class="mobile-menu"><summary aria-label="פתח תפריט">תפריט</summary><div class="mobile-menu-panel">
             <a class="mobile-menu-primary" href="<?php echo esc_url( daktravel_native_hebrew_url( 'flights' ) ); ?>">טיסות לדרום אפריקה</a>
+            <a href="<?php echo esc_url( home_url( '/he/flights-to-israel-from-south-africa/' ) ); ?>">טיסות לישראל מדרום אפריקה</a>
             <a href="<?php echo esc_url( daktravel_native_hebrew_url( 'groups' ) ); ?>">קבוצות ומשלחות</a>
             <a href="<?php echo esc_url( daktravel_native_hebrew_url( 'business' ) ); ?>">נסיעות עסקים</a>
             <a href="<?php echo esc_url( home_url( '/he/complex-travel/' ) ); ?>">נסיעות מורכבות</a>
             <a href="<?php echo esc_url( daktravel_native_hebrew_url( 'about' ) ); ?>">אודות</a>
+            <a href="<?php echo esc_url( home_url( '/he/contact/?type=existing#enquiry' ) ); ?>">הזמנה קיימת</a>
             <a href="<?php echo esc_url( daktravel_native_hebrew_url( 'contact' ) ); ?>">צור קשר</a>
-            <a href="<?php echo esc_url( 'complex' === $dak_he_key ? home_url( '/complex-travel/' ) : daktravel_native_english_url_for_hebrew_key( $dak_he_key ) ); ?>">English</a>
+            <a href="<?php echo esc_url( 'complex' === $dak_he_key ? home_url( '/complex-travel/' ) : ( 'to-israel' === $dak_he_key ? home_url( '/flights-to-israel-from-johannesburg/' ) : daktravel_native_english_url_for_hebrew_key( $dak_he_key ) ) ); ?>">English</a>
         </div></details>
     </div>
 </header>
