@@ -23,6 +23,16 @@ $css_path      = get_template_directory() . '/assets/css/native-hebrew.css';
 wp_enqueue_style( 'daktravel-native-hebrew-fonts', 'https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400..800&family=Noto+Serif+Hebrew:wght@400..700&display=swap', array(), null );
 wp_enqueue_style( 'daktravel-native-hebrew', get_template_directory_uri() . '/assets/css/native-hebrew.css', array( 'daktravel-multilingual', 'daktravel-native-hebrew-fonts' ), file_exists( $css_path ) ? (string) filemtime( $css_path ) : $theme_version );
 
+if ( 'home' === $key ) {
+    $home_css_path = get_template_directory() . '/assets/css/hero-consultation.css';
+    wp_enqueue_style( 'daktravel-hero-consultation-he', get_template_directory_uri() . '/assets/css/hero-consultation.css', array( 'daktravel-native-hebrew' ), file_exists( $home_css_path ) ? (string) filemtime( $home_css_path ) : $theme_version );
+}
+
+if ( 'flights' === $key ) {
+    $route_css_path = get_template_directory() . '/assets/css/route-slideshow.css';
+    wp_enqueue_style( 'daktravel-route-slideshow-he', get_template_directory_uri() . '/assets/css/route-slideshow.css', array( 'daktravel-native-hebrew' ), file_exists( $route_css_path ) ? (string) filemtime( $route_css_path ) : $theme_version );
+}
+
 add_filter( 'pre_get_document_title', static function () use ( $pages, $key ) { return $pages[ $key ]['seo_title']; }, 9999 );
 add_filter( 'rank_math/frontend/title', static function () use ( $pages, $key ) { return $pages[ $key ]['seo_title']; }, 9999 );
 add_filter( 'rank_math/frontend/description', static function () use ( $pages, $key ) { return $pages[ $key ]['description']; }, 9999 );
