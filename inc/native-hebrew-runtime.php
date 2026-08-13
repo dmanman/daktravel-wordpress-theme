@@ -18,8 +18,19 @@ function daktravel_native_switcher_fallback_script() {
     <script id="dak-native-language-switcher-fallback">
     document.addEventListener('DOMContentLoaded',function(){
       var slot=document.querySelector('.utility-language-slot');
-      if(!slot||slot.querySelector('a,strong'))return;
-      slot.innerHTML='<nav class="dak-language-switcher" aria-label="Language"><strong lang="en">EN</strong><span aria-hidden="true">·</span><a lang="he" hreflang="he-IL" href="<?php echo esc_url( $target ); ?>">עברית</a></nav>';
+      if(slot&&!slot.querySelector('a,strong')){
+        slot.innerHTML='<nav class="dak-language-switcher" aria-label="Language"><strong lang="en">EN</strong><span aria-hidden="true">·</span><a lang="he" hreflang="he-IL" href="<?php echo esc_url( $target ); ?>">עברית</a></nav>';
+      }
+      var mobile=document.querySelector('.mobile-menu-panel');
+      if(mobile&&!mobile.querySelector('[data-dak-hebrew-link]')){
+        var link=document.createElement('a');
+        link.href='<?php echo esc_url( $target ); ?>';
+        link.lang='he';
+        link.hreflang='he-IL';
+        link.setAttribute('data-dak-hebrew-link','1');
+        link.textContent='עברית';
+        mobile.appendChild(link);
+      }
     });
     </script>
     <?php
