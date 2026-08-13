@@ -31,3 +31,12 @@ function daktravel_regulatory_seo_defaults( $defaults ) {
     return $defaults;
 }
 add_filter( 'daktravel_seo_defaults', 'daktravel_regulatory_seo_defaults', 30 );
+
+function daktravel_official_info_links() {
+    $hebrew = function_exists( 'daktravel_is_hebrew_request_path' ) && daktravel_is_hebrew_request_path();
+    $eta = $hebrew ? '/he/israel-eta-il-entry-requirements/' : '/israel-eta-il-entry-requirements/';
+    $sars = $hebrew ? '/he/south-africa-traveller-declaration/' : '/south-africa-traveller-declaration/';
+    $label = $hebrew ? 'מידע רשמי לנוסעים' : 'Official traveller requirements';
+    echo '<div style="padding:14px;text-align:center;background:#07111b;color:#fff;font-size:13px"><strong>' . esc_html( $label ) . '</strong> · <a style="color:#fff" href="' . esc_url( home_url( $eta ) ) . '">ETA-IL</a> · <a style="color:#fff" href="' . esc_url( home_url( $sars ) ) . '">SARS</a></div>';
+}
+add_action( 'wp_footer', 'daktravel_official_info_links', 2 );
