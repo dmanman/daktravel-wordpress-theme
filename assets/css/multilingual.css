@@ -1,4 +1,4 @@
-/* D.A.K Travel — English/Hebrew top-bar selector and Hebrew RTL support */
+/* D.A.K Travel — TranslatePress language selector and RTL support */
 
 .utility-language-slot {
   display: inline-flex;
@@ -30,37 +30,147 @@
   color: rgba(255,255,255,.38);
 }
 
-/* TranslatePress adds a Hebrew body class. Mirror the reading direction while
-   keeping machine-readable contact details left-to-right. */
-body[class*="translatepress-he"] {
+/* TranslatePress adds language-specific body classes. The selectors below make
+   Hebrew read and behave as a native RTL site rather than a mirrored English
+   layout. Arabic retains the same directional foundation where enabled. */
+body[class*="translatepress-he"],
+body[class*="translatepress-ar"] {
   direction: rtl;
   text-align: right;
 }
 
+/* Hebrew gets Hebrew-capable display and body fonts while keeping the same
+   premium serif/sans hierarchy as the English site. */
+body[class*="translatepress-he"] {
+  --dak-display: "Noto Serif Hebrew", "Times New Roman", serif;
+  --dak-sans: "Noto Sans Hebrew", Arial, sans-serif;
+  font-family: var(--dak-sans);
+  letter-spacing: 0;
+}
+
+body[class*="translatepress-he"] h1,
+body[class*="translatepress-he"] h2,
+body[class*="translatepress-he"] h3,
+body[class*="translatepress-he"] .dak-page-hero-copy h1,
+body[class*="translatepress-he"] .service-card h3,
+body[class*="translatepress-he"] .trust-copy h2,
+body[class*="translatepress-he"] .dak-dark-band h2,
+body[class*="translatepress-he"] .dak-quiet-cta h2,
+body[class*="translatepress-he"] .final-cta h2 {
+  font-family: var(--dak-display);
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+body[class*="translatepress-he"] .eyebrow,
+body[class*="translatepress-he"] .service-no,
+body[class*="translatepress-he"] .step-no,
+body[class*="translatepress-he"] .proof-no,
+body[class*="translatepress-he"] .case-study-label,
+body[class*="translatepress-he"] .trust-panel-title,
+body[class*="translatepress-he"] .dak-enquiry-form label {
+  letter-spacing: .025em;
+  text-transform: none;
+}
+
+body[class*="translatepress-he"] .site-nav a,
+body[class*="translatepress-he"] .utility-proof,
+body[class*="translatepress-he"] .utility-links,
+body[class*="translatepress-he"] .btn,
+body[class*="translatepress-he"] .text-link,
+body[class*="translatepress-he"] .mobile-menu-panel a,
+body[class*="translatepress-he"] .site-footer p,
+body[class*="translatepress-he"] .site-footer a {
+  letter-spacing: 0;
+}
+
+body[class*="translatepress-he"] .site-nav a:hover,
+body[class*="translatepress-he"] .text-link:hover {
+  letter-spacing: 0;
+}
+
+/* Direction-aware flex/grid groups. */
 body[class*="translatepress-he"] .site-nav ul,
 body[class*="translatepress-he"] .utility-inner,
+body[class*="translatepress-he"] .utility-proof,
 body[class*="translatepress-he"] .utility-links,
 body[class*="translatepress-he"] .hero-actions,
-body[class*="translatepress-he"] .dak-page-actions {
+body[class*="translatepress-he"] .hero-trust-line,
+body[class*="translatepress-he"] .dak-page-actions,
+body[class*="translatepress-he"] .final-cta-inner,
+body[class*="translatepress-he"] .final-cta-actions,
+body[class*="translatepress-he"] .mobile-actions,
+body[class*="translatepress-he"] .google-review-mark,
+body[class*="translatepress-he"] .dak-language-switcher {
   direction: rtl;
 }
 
+body[class*="translatepress-he"] .hero-copy,
+body[class*="translatepress-he"] .dak-page-hero-copy,
+body[class*="translatepress-he"] .section-intro,
+body[class*="translatepress-he"] .trust-copy,
+body[class*="translatepress-he"] .confidentiality-copy,
+body[class*="translatepress-he"] .editorial-panel,
+body[class*="translatepress-he"] .service-card,
+body[class*="translatepress-he"] .dak-feature-row,
+body[class*="translatepress-he"] .site-footer,
+body[class*="translatepress-he"] .mobile-menu-panel,
+body[class*="translatepress-he"] .dak-quiet-cta,
+body[class*="translatepress-he"] .final-cta {
+  text-align: right;
+}
+
+body[class*="translatepress-he"] .hero-photo-meta {
+  align-items: flex-end;
+  text-align: right;
+}
+body[class*="translatepress-he"] .hero-photo-meta span:last-child {
+  text-align: right;
+}
+
+/* Mirror language-switcher divider spacing. */
+body[class*="translatepress-he"] .utility-language-slot {
+  margin-left: 0;
+  margin-right: 12px;
+  padding-left: 0;
+  padding-right: 14px;
+  border-left: 0;
+  border-right: 1px solid rgba(255,255,255,.22);
+}
+
+/* Forms read naturally in Hebrew while machine-readable values remain LTR. */
 body[class*="translatepress-he"] .dak-enquiry-form input,
 body[class*="translatepress-he"] .dak-enquiry-form select,
 body[class*="translatepress-he"] .dak-enquiry-form textarea {
+  direction: rtl;
   text-align: right;
 }
 
+body[class*="translatepress-he"] input[type="email"],
+body[class*="translatepress-he"] input[type="tel"],
 body[class*="translatepress-he"] a[href^="tel:"],
 body[class*="translatepress-he"] a[href^="mailto:"],
 body[class*="translatepress-he"] .contact-phone,
 body[class*="translatepress-he"] .credential-row small {
   direction: ltr;
   unicode-bidi: isolate;
+  text-align: left;
 }
 
 body[class*="translatepress-he"] .text-link::after {
   content: "←";
+}
+
+/* Keep logos/images visually unchanged; only copy direction changes. */
+body[class*="translatepress-he"] .credential-logo-image,
+body[class*="translatepress-he"] .dak-media-image {
+  direction: ltr;
+}
+
+@media (max-width: 980px) {
+  body[class*="translatepress-he"] .mobile-menu-panel {
+    direction: rtl;
+  }
 }
 
 @media (max-width: 680px) {
@@ -71,5 +181,18 @@ body[class*="translatepress-he"] .text-link::after {
   .dak-language-switcher {
     gap: 5px;
     font-size: .63rem;
+  }
+
+  body[class*="translatepress-he"] .utility-language-slot {
+    margin-left: 0;
+    margin-right: 8px;
+    padding-left: 0;
+    padding-right: 9px;
+  }
+
+  body[class*="translatepress-he"] h1,
+  body[class*="translatepress-he"] .hero h1,
+  body[class*="translatepress-he"] .dak-page-hero-copy h1 {
+    line-height: 1.03;
   }
 }
