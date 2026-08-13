@@ -13,7 +13,8 @@
             <a href="<?php echo esc_url( home_url( '/groups-delegations/' ) ); ?>">Groups &amp; Delegations</a><br>
             <a href="<?php echo esc_url( home_url( '/business-travel/' ) ); ?>">Business Travel</a><br>
             <a href="<?php echo esc_url( home_url( '/complex-travel/' ) ); ?>">Complex Travel</a><br>
-            <a href="<?php echo esc_url( home_url( '/mauritius-holidays-from-south-africa/' ) ); ?>">Mauritius Holidays</a></p>
+            <a href="<?php echo esc_url( home_url( '/mauritius-holidays-from-south-africa/' ) ); ?>">Mauritius Holidays</a><br>
+            <a href="<?php echo esc_url( home_url( '/zanzibar-holidays-from-south-africa/' ) ); ?>">Zanzibar Holidays</a></p>
             <h3 style="color:#fff;margin-top:26px;">Israel Flight Guides</h3>
             <p><a href="<?php echo esc_url( home_url( '/flights-to-israel-from-johannesburg/' ) ); ?>">Johannesburg to Israel</a><br>
             <a href="<?php echo esc_url( home_url( '/flights-to-israel-from-cape-town/' ) ); ?>">Cape Town to Israel</a><br>
