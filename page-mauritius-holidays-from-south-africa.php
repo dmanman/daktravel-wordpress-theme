@@ -4,6 +4,14 @@
  * Kept intentionally separate from D.A.K's primary South Africa–Israel positioning.
  */
 
+$route_slideshow_css_path = get_template_directory() . '/assets/css/route-slideshow.css';
+wp_enqueue_style(
+    'daktravel-route-slideshow',
+    get_template_directory_uri() . '/assets/css/route-slideshow.css',
+    array( 'daktravel-multilingual' ),
+    file_exists( $route_slideshow_css_path ) ? (string) filemtime( $route_slideshow_css_path ) : wp_get_theme()->get( 'Version' )
+);
+
 $mauritius_title = 'Mauritius Holidays from South Africa | D.A.K Travel';
 $mauritius_desc  = 'Plan Mauritius holidays from South Africa with D.A.K Travel, including flights, resorts, transfers and travel insurance with personal Johannesburg-based support.';
 
@@ -23,8 +31,38 @@ if ( defined( 'RANK_MATH_VERSION' ) ) {
     add_filter( 'rank_math/frontend/description', static function () use ( $mauritius_desc ) { return $mauritius_desc; } );
 }
 
-$mauritius_image = 'https://images.pexels.com/photos/3703465/pexels-photo-3703465.jpeg?auto=compress&cs=tinysrgb&w=1800';
-$mauritius_sizes = '(max-width: 680px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 36px), 52vw';
+$mauritius_hero_images = array(
+    array(
+        'url'    => 'https://images.pexels.com/photos/3703465/pexels-photo-3703465.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of the Le Morne coastline and lagoon in Mauritius',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/34870507/pexels-photo-34870507.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Aerial view of Le Morne Brabant and turquoise lagoon in Mauritius',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/34732320/pexels-photo-34732320.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Tropical Mauritius beach resort with palm trees and thatched umbrellas',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/33791769/pexels-photo-33791769.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Mauritius tropical beach with clear blue water and palm trees',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/6331869/pexels-photo-6331869.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Boardwalk and gazebo on the coast at Bel Ombre in Mauritius',
+        'credit' => '',
+    ),
+    array(
+        'url'    => 'https://images.pexels.com/photos/36731926/pexels-photo-36731926.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        'alt'    => 'Tropical Mauritius lagoon with mountain and clear water',
+        'credit' => '',
+    ),
+);
 
 get_header();
 ?>
@@ -38,17 +76,23 @@ get_header();
             <p>This is a selected leisure service alongside our specialist South Africa–Israel, group, business and complex-travel work.</p>
             <div class="dak-page-actions"><a class="btn btn--primary" href="<?php echo esc_url( home_url('/contact/?type=mauritius#enquiry') ); ?>">Plan a Mauritius Holiday</a></div>
         </div>
-        <figure class="dak-media-slot has-image">
-            <img
-                class="dak-media-image"
-                src="<?php echo esc_url( $mauritius_image ); ?>"
-                srcset="https://images.pexels.com/photos/3703465/pexels-photo-3703465.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=720 720w, https://images.pexels.com/photos/3703465/pexels-photo-3703465.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100 1100w, https://images.pexels.com/photos/3703465/pexels-photo-3703465.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800 1800w"
-                sizes="<?php echo esc_attr( $mauritius_sizes ); ?>"
-                alt="Aerial view of the Le Morne coastline and lagoon in Mauritius"
-                fetchpriority="high"
-                loading="eager"
-                decoding="async"
-            >
+        <figure class="dak-media-slot has-image dak-route-slideshow-frame">
+            <div class="dak-route-slideshow dak-route-slideshow--<?php echo esc_attr( count( $mauritius_hero_images ) ); ?>" aria-hidden="true">
+                <?php foreach ( $mauritius_hero_images as $index => $image ) : ?>
+                    <span class="dak-route-slide dak-route-slide--<?php echo esc_attr( $index + 1 ); ?>">
+                        <img
+                            class="dak-media-image"
+                            src="<?php echo esc_url( $image['url'] ); ?>"
+                            alt="<?php echo esc_attr( $image['alt'] ); ?>"
+                            <?php echo 0 === $index ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; ?>
+                            decoding="async"
+                        >
+                        <?php if ( ! empty( $image['credit'] ) ) : ?>
+                            <span class="dak-route-slide-credit"><?php echo esc_html( $image['credit'] ); ?></span>
+                        <?php endif; ?>
+                    </span>
+                <?php endforeach; ?>
+            </div>
         </figure>
     </div>
 </section>
