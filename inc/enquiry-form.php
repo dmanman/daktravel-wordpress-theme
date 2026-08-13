@@ -124,7 +124,14 @@ function daktravel_handle_enquiry() {
         $args['type'] = $return_type;
     }
 
-    wp_safe_redirect( add_query_arg( $args, home_url( '/contact/' ) ) . '#enquiry' );
+    $return_lang = daktravel_post_text( 'return_lang' );
+    if ( 'he' === $return_lang && function_exists( 'daktravel_native_hebrew_url' ) ) {
+        $return_url = daktravel_native_hebrew_url( 'contact' );
+    } else {
+        $return_url = home_url( '/contact/' );
+    }
+
+    wp_safe_redirect( add_query_arg( $args, $return_url ) . '#enquiry' );
     exit;
 }
 add_action( 'admin_post_nopriv_daktravel_enquiry', 'daktravel_handle_enquiry' );
