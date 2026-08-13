@@ -171,9 +171,10 @@ get_header();
     <section class="section section--ivory" aria-labelledby="selected-leisure-travel">
         <div class="container dak-narrow">
             <div class="eyebrow">Selected leisure travel</div>
-            <h2 id="selected-leisure-travel">Mauritius holidays from South Africa.</h2>
-            <p class="lead">D.A.K also arranges selected Mauritius holidays where flights, resort accommodation, transfers and travel insurance are best considered together.</p>
-            <a class="text-link" href="<?php echo esc_url( home_url( '/mauritius-holidays-from-south-africa/' ) ); ?>">Explore Mauritius holidays</a>
+            <h2 id="selected-leisure-travel">Mauritius &amp; Zanzibar holidays from South Africa.</h2>
+            <p class="lead">D.A.K also arranges selected Indian Ocean holidays where flights, resort accommodation, transfers and travel insurance are best considered together.</p>
+            <p><a class="text-link" href="<?php echo esc_url( home_url( '/mauritius-holidays-from-south-africa/' ) ); ?>">Explore Mauritius holidays</a></p>
+            <a class="text-link" href="<?php echo esc_url( home_url( '/zanzibar-holidays-from-south-africa/' ) ); ?>">Explore Zanzibar holidays</a>
         </div>
     </section>
 
