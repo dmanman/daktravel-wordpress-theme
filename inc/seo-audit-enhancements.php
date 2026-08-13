@@ -184,3 +184,4 @@ add_filter( 'robots_txt', 'daktravel_robots_txt_sitemap', 20, 2 );
 
 require_once get_template_directory() . '/inc/hebrew-paths.php';
 require_once get_template_directory() . '/inc/hebrew-islands.php';
+require_once get_template_directory() . '/inc/homepage-performance-lite.php';
