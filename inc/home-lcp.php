@@ -22,3 +22,12 @@ function daktravel_regulatory_english_hreflang() {
     printf( "<link rel=\"alternate\" hreflang=\"x-default\" href=\"%s\">\n", esc_url( $en ) );
 }
 add_action( 'wp_head', 'daktravel_regulatory_english_hreflang', 3 );
+
+function daktravel_regulatory_seo_defaults( $defaults ) {
+    $defaults['south-africa-traveller-declaration'] = array(
+        'title' => 'South Africa Traveller Declaration | SARS | D.A.K Travel',
+        'description' => 'SARS Traveller Declaration guidance for people entering or leaving South Africa from 1 July 2026, including timing, transit exceptions and official links.',
+    );
+    return $defaults;
+}
+add_filter( 'daktravel_seo_defaults', 'daktravel_regulatory_seo_defaults', 30 );
