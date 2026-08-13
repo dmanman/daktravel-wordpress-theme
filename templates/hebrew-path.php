@@ -2,11 +2,21 @@
 $key   = function_exists( 'daktravel_hebrew_path_key' ) ? daktravel_hebrew_path_key() : '';
 $pages = function_exists( 'daktravel_native_hebrew_pages' ) ? daktravel_native_hebrew_pages() : array();
 
+if ( 'complex' === $key ) {
+    $pages['complex'] = array(
+        'seo_title'   => 'נסיעות מורכבות לדרום אפריקה | D.A.K Travel Johannesburg',
+        'description' => 'תכנון נסיעות מורכבות מישראל לדרום אפריקה, מסלולים מרובי ערים, משפחות, נוסעים מבוגרים וטיסות פרימיום עם שירות אישי מיוהנסבורג.',
+    );
+}
+
 if ( ! $key || ! isset( $pages[ $key ] ) ) {
     get_header();
     get_footer();
     return;
 }
+
+$hebrew_url  = 'complex' === $key ? home_url( '/he/complex-travel/' ) : daktravel_native_hebrew_url( $key );
+$english_url = 'complex' === $key ? home_url( '/complex-travel/' ) : daktravel_native_english_url_for_hebrew_key( $key );
 
 $theme_version = wp_get_theme()->get( 'Version' );
 $css_path      = get_template_directory() . '/assets/css/native-hebrew.css';
@@ -16,24 +26,21 @@ wp_enqueue_style( 'daktravel-native-hebrew', get_template_directory_uri() . '/as
 add_filter( 'pre_get_document_title', static function () use ( $pages, $key ) { return $pages[ $key ]['seo_title']; }, 9999 );
 add_filter( 'rank_math/frontend/title', static function () use ( $pages, $key ) { return $pages[ $key ]['seo_title']; }, 9999 );
 add_filter( 'rank_math/frontend/description', static function () use ( $pages, $key ) { return $pages[ $key ]['description']; }, 9999 );
-add_filter( 'rank_math/frontend/canonical', static function () use ( $key ) { return daktravel_native_hebrew_url( $key ); }, 9999 );
+add_filter( 'rank_math/frontend/canonical', static function () use ( $hebrew_url ) { return $hebrew_url; }, 9999 );
 add_filter( 'wp_robots', static function ( $robots ) { unset( $robots['noindex'] ); $robots['index'] = true; $robots['follow'] = true; return $robots; }, 9999 );
 
-add_action( 'wp_head', static function () use ( $pages, $key ) {
-    $english = daktravel_native_english_url_for_hebrew_key( $key );
-    $hebrew  = daktravel_native_hebrew_url( $key );
-
+add_action( 'wp_head', static function () use ( $pages, $key, $english_url, $hebrew_url ) {
     if ( ! daktravel_has_seo_plugin() ) {
-        printf( "\n<link rel=\"canonical\" href=\"%s\">\n", esc_url( $hebrew ) );
+        printf( "\n<link rel=\"canonical\" href=\"%s\">\n", esc_url( $hebrew_url ) );
         printf( "<meta name=\"description\" content=\"%s\">\n", esc_attr( $pages[ $key ]['description'] ) );
         printf( "<meta property=\"og:title\" content=\"%s\">\n", esc_attr( $pages[ $key ]['seo_title'] ) );
         printf( "<meta property=\"og:description\" content=\"%s\">\n", esc_attr( $pages[ $key ]['description'] ) );
         echo "<meta property=\"og:locale\" content=\"he_IL\">\n";
     }
 
-    printf( "<link rel=\"alternate\" hreflang=\"en-ZA\" href=\"%s\">\n", esc_url( $english ) );
-    printf( "<link rel=\"alternate\" hreflang=\"he-IL\" href=\"%s\">\n", esc_url( $hebrew ) );
-    printf( "<link rel=\"alternate\" hreflang=\"x-default\" href=\"%s\">\n", esc_url( $english ) );
+    printf( "<link rel=\"alternate\" hreflang=\"en-ZA\" href=\"%s\">\n", esc_url( $english_url ) );
+    printf( "<link rel=\"alternate\" hreflang=\"he-IL\" href=\"%s\">\n", esc_url( $hebrew_url ) );
+    printf( "<link rel=\"alternate\" hreflang=\"x-default\" href=\"%s\">\n", esc_url( $english_url ) );
 }, 1 );
 
 get_header( 'hebrew-path' );
