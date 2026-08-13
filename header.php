@@ -1,5 +1,6 @@
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<?php $dak_html_dir = 0 === stripos( (string) get_locale(), 'he' ) || 0 === stripos( (string) get_locale(), 'ar' ) ? 'rtl' : 'ltr'; ?>
+<html <?php language_attributes(); ?> dir="<?php echo esc_attr( $dak_html_dir ); ?>">
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
