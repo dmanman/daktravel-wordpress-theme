@@ -57,6 +57,32 @@
     </div>
 </section>
 
+<section class="section">
+    <div class="container editorial-split">
+        <div>
+            <div class="eyebrow">Airlines &amp; travel suppliers we work with</div>
+            <h2>Established suppliers across the journey.</h2>
+            <p class="lead">Depending on the itinerary and product, D.A.K works with a range of established airlines, holiday wholesalers, car-rental companies and travel insurers.</p>
+            <p>Supplier choice depends on the route, dates, availability and traveller requirements. These are suppliers we work with rather than exclusive partnerships.</p>
+        </div>
+        <div class="editorial-panel">
+            <div class="case-study-label">Airlines</div>
+            <h3>Ethiopian Airlines · Emirates</h3>
+            <p>International flight options where suitable for the itinerary.</p>
+            <div class="case-study">
+                <span class="case-study-label">Holiday suppliers</span>
+                <strong>World Leisure Holidays · The Holiday Factory</strong>
+                <span>Selected holiday packages and resort options, subject to availability.</span>
+            </div>
+            <div class="case-study">
+                <span class="case-study-label">Travel components</span>
+                <strong>First Car Rental · Hollard Travel Insurance · TIC</strong>
+                <span>Car hire and travel-insurance options where appropriate to the booking.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="section section--ink">
     <div class="container trust-grid">
         <div class="trust-copy"><div class="eyebrow">Professional standing</div><h2>Trust should be easy to verify.</h2><p class="lead" style="color:#c4ced6;">D.A.K operates as an established South African travel business with recognised industry credentials.</p></div>
