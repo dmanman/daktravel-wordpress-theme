@@ -90,24 +90,17 @@ function daktravel_refine_seo_defaults( $defaults ) {
 }
 add_filter( 'daktravel_seo_defaults', 'daktravel_refine_seo_defaults', 20 );
 
-/**
- * Use a generated description for posts/case studies when no manual excerpt or
- * custom D.A.K SEO description exists.
- */
 function daktravel_output_generated_singular_description() {
     if ( daktravel_has_seo_plugin() || ! is_singular( array( 'post', 'dak_case_study' ) ) ) {
         return;
     }
-
     $post_id = get_queried_object_id();
     if ( ! $post_id || has_excerpt( $post_id ) || get_post_meta( $post_id, '_dak_seo_description', true ) ) {
         return;
     }
-
     $content = wp_strip_all_tags( strip_shortcodes( get_post_field( 'post_content', $post_id ) ) );
     $content = preg_replace( '/\s+/', ' ', $content );
     $desc    = wp_trim_words( trim( $content ), 26, '…' );
-
     if ( $desc ) {
         printf( "\n<meta name=\"description\" content=\"%s\">\n", esc_attr( $desc ) );
         printf( "<meta property=\"og:description\" content=\"%s\">\n", esc_attr( $desc ) );
@@ -116,27 +109,12 @@ function daktravel_output_generated_singular_description() {
 }
 add_action( 'wp_head', 'daktravel_output_generated_singular_description', 4 );
 
-/**
- * Return a simple, user-oriented hierarchy for BreadcrumbList markup.
- */
 function daktravel_breadcrumb_items() {
     if ( is_front_page() ) {
         return array();
     }
-
-    $items = array(
-        array( 'name' => 'D.A.K Travel', 'url' => home_url( '/' ) ),
-    );
-
-    $israel_pages = array(
-        'israel-travel',
-        'flights-to-israel-from-johannesburg',
-        'flights-to-israel-from-cape-town',
-        'flights-to-israel-from-durban',
-        'flights-from-israel-to-south-africa',
-        'south-africa-israel-flight-routes',
-    );
-
+    $items = array( array( 'name' => 'D.A.K Travel', 'url' => home_url( '/' ) ) );
+    $israel_pages = array( 'israel-travel', 'flights-to-israel-from-johannesburg', 'flights-to-israel-from-cape-town', 'flights-to-israel-from-durban', 'flights-from-israel-to-south-africa', 'south-africa-israel-flight-routes' );
     if ( is_page( $israel_pages ) ) {
         if ( ! is_page( 'israel-travel' ) ) {
             $items[] = array( 'name' => 'Israel Travel', 'url' => home_url( '/israel-travel/' ) );
@@ -146,45 +124,25 @@ function daktravel_breadcrumb_items() {
     } elseif ( is_singular( 'dak_case_study' ) ) {
         $items[] = array( 'name' => 'Case Studies', 'url' => home_url( '/case-studies/' ) );
     }
-
     if ( is_singular() || is_page() ) {
-        $items[] = array(
-            'name' => wp_strip_all_tags( get_the_title( get_queried_object_id() ) ),
-            'url'  => get_permalink( get_queried_object_id() ),
-        );
+        $items[] = array( 'name' => wp_strip_all_tags( get_the_title( get_queried_object_id() ) ), 'url' => get_permalink( get_queried_object_id() ) );
     }
-
     return $items;
 }
 
-/**
- * Add BreadcrumbList and Article schema where they genuinely match the page.
- */
 function daktravel_output_additional_schema() {
     if ( daktravel_has_seo_plugin() || is_admin() || is_404() || is_search() ) {
         return;
     }
-
     $graph = array();
     $items = daktravel_breadcrumb_items();
-
     if ( count( $items ) >= 2 ) {
         $list = array();
         foreach ( $items as $index => $item ) {
-            $list[] = array(
-                '@type'    => 'ListItem',
-                'position' => $index + 1,
-                'name'     => $item['name'],
-                'item'     => $item['url'],
-            );
+            $list[] = array( '@type' => 'ListItem', 'position' => $index + 1, 'name' => $item['name'], 'item' => $item['url'] );
         }
-
-        $graph[] = array(
-            '@type'           => 'BreadcrumbList',
-            'itemListElement' => $list,
-        );
+        $graph[] = array( '@type' => 'BreadcrumbList', 'itemListElement' => $list );
     }
-
     if ( is_singular( 'post' ) ) {
         $post_id = get_queried_object_id();
         $meta    = daktravel_get_seo_meta();
@@ -197,33 +155,22 @@ function daktravel_output_additional_schema() {
             'author'           => array( '@type' => 'Organization', 'name' => 'D.A.K Travel' ),
             'publisher'        => array( '@id' => home_url( '/#travelagency' ) ),
         );
-
         if ( ! empty( $meta['description'] ) ) {
             $article['description'] = $meta['description'];
         }
-
         $image = daktravel_seo_primary_image();
         if ( $image ) {
             $article['image'] = array( $image );
         }
-
         $graph[] = $article;
     }
-
     if ( ! $graph ) {
         return;
     }
-
-    echo "\n<script type=\"application/ld+json\">" . wp_json_encode(
-        array( '@context' => 'https://schema.org', '@graph' => $graph ),
-        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-    ) . "</script>\n";
+    echo "\n<script type=\"application/ld+json\">" . wp_json_encode( array( '@context' => 'https://schema.org', '@graph' => $graph ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
 }
 add_action( 'wp_head', 'daktravel_output_additional_schema', 31 );
 
-/**
- * Advertise WordPress core's XML sitemap in the virtual robots.txt file.
- */
 function daktravel_robots_txt_sitemap( $output, $public ) {
     if ( $public ) {
         $sitemap = home_url( '/wp-sitemap.xml' );
@@ -234,3 +181,5 @@ function daktravel_robots_txt_sitemap( $output, $public ) {
     return $output;
 }
 add_filter( 'robots_txt', 'daktravel_robots_txt_sitemap', 20, 2 );
+
+require_once get_template_directory() . '/inc/hebrew-paths.php';
