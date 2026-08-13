@@ -57,6 +57,14 @@ function daktravel_required_pages() {
             'title'   => 'Zanzibar Holidays from South Africa',
             'content' => 'Zanzibar holidays from South Africa arranged by D.A.K Travel, including flights, accommodation, transfers and travel insurance.',
         ),
+        'israel-eta-il-entry-requirements' => array(
+            'title'   => 'Israel ETA-IL Entry Requirements',
+            'content' => 'Official ETA-IL and Israel entry requirement information for travellers using foreign passports.',
+        ),
+        'south-africa-traveller-declaration' => array(
+            'title'   => 'South Africa Traveller Declaration',
+            'content' => 'SARS online Traveller Declaration information for travellers entering or leaving South Africa.',
+        ),
         'about' => array(
             'title'   => 'About D.A.K Travel',
             'content' => '',
@@ -77,8 +85,6 @@ function daktravel_required_pages() {
             'title'   => 'Travel Updates',
             'content' => '',
         ),
-        // Required by links in existing D.A.K email signatures. Intentionally
-        // excluded from the main site navigation.
         'email-disclaimer' => array(
             'title'   => 'Email Disclaimer',
             'content' => '<h2>Email confidentiality notice</h2><p>This email and any attachments are intended only for the person or organisation to whom they are addressed and may contain confidential information.</p><p>If you received a D.A.K Travel email in error, please notify the sender and delete it. Any unauthorised use, copying or distribution is prohibited.</p><p>D.A.K Travel does not guarantee that email transmission is secure or error-free. Travel quotations, schedules and availability remain subject to confirmation and the applicable supplier terms.</p>',
