@@ -43,6 +43,11 @@
     <a href="<?php echo esc_url( home_url( '/contact/#enquiry' ) ); ?>">Email</a>
     <a href="<?php echo esc_url( home_url( '/contact/?type=existing#enquiry' ) ); ?>">Existing booking</a>
 </div>
-<?php wp_footer(); ?>
+<?php
+if ( function_exists( 'daktravel_native_language_switcher' ) ) {
+    require_once get_template_directory() . '/inc/native-hebrew-runtime.php';
+}
+wp_footer();
+?>
 </body>
 </html>
